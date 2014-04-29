@@ -1,0 +1,40 @@
+{{!< ../layout}}
+{{#content "pageStyles"}}
+{{!-- page css --}}
+{{/content}}
+{{#content "pageScript"}}
+<script src="/javascripts/forum/index.js"></script>
+{{/content}}
+
+<div class="main" ng-controller="indexController">
+    {{!-- category --}}
+    <div class="forum-category" ng-repeat="category in categorys">
+        <h4 ng-style="{background:category.bcolor}">{%category.name%}</h4>
+        {{!-- channel --}}
+        <div class="forum-channel">
+            <div class="item"
+             ng-repeat="channel in channels | filter:{category_id:category.id}:stick"
+             ng-mouseenter="channel.hover=1"
+             ng-mouseleave="channel.hover=0"
+             ng-style="{background:channel.bcolor}">
+                <a class="name" ng-href="/channel/{% channel.id %}">{% channel.name %}</a>
+                <div class="count">{% channel.count %}</div>
+                <div ng-hide="channel.hover && channel.lastpost.id">
+                    <div class="icon"></div>
+                </div>
+                <div ng-show="channel.hover && channel.lastpost.id">
+                    <a class="lastpost-title" ng-href="/topic/{% channel.lastpost.id %}">
+                        {% channel.lastpost.title || '暂无内容' %}
+                    </a>
+                    <a class="lastpost-author" ng-href="/user/{% channel.lastpost.author.id %}">
+                        {% channel.lastpost.author.name %}
+                    </a>
+                    <div class="lastpost-time">
+                        {% channel.lastpost.lastpost | smartDate %}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="clear"></div>
+    </div>
+</div>

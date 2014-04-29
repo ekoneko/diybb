@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="cn-ZH">
+    <head>
+        <meta charset='utf-8' />
+        <title>diybb</title>
+
+        <link rel="stylesheet" type="text/css" href="/stylesheets/style.css" />
+        {{{block "pageStyles"}}}
+    </head>
+    <body>
+        <header>
+            <a href="{{siteurl}}" class="logo">
+                <img src="/images/logo.png" alt="" />
+            </a>
+            <div class="account">
+                <!--
+                <a href="/login">登陆</a> |
+                <a href="/register">注册</a>
+                -->
+                <i class="icon-envelope"></i>
+                <div class="message">3</div>
+                <div class="message-dialog">
+                    <div class="count">3 Message</div>
+                    <ul>
+                        <li><a href="/message/1">消息1</a></li>
+                        <li><a href="/message/2">消息2</a></li>
+                    </ul>
+                    <div class="view-all"><a  href="/message">See all</a></div>
+                </div>
+                <div class="avatar"><img src="/images/avatar.png" /></div>
+            </div>
+        </header>
+        {{{body}}}
+        <script src="/libraries/jquery/jquery.min.js"></script>
+        <!-- <script src="/libraries/jquery/jquery.i18n.min.js"></script> -->
+        <script src="/libraries/jquery-tmpl/jquery.tmpl.min.js"></script>
+        <script src="/javascripts/common.js"></script>
+        {{{block "pageScript"}}}
+        <footer>
+            <div class="powerby">power by <a href="{{siteurl}}">{{sitename}}</a></div>
+        </footer>

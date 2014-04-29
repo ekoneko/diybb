@@ -1,0 +1,7 @@
+{
+	"host" : "localhost",
+	"user" : "username",
+	"password" : "password",
+	"database" : "databasename",
+	"prefix" : "prefix_"
+}

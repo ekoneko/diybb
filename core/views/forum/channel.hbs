@@ -1,0 +1,41 @@
+{{!< ../layout}}
+{{#content "pageStyles"}}
+{{!-- page css --}}
+{{/content}}
+{{#content "pageScript"}}
+<script src="/javascripts/forum/channel.js"></script>
+{{/content}}
+
+<div class="main" ng-controller="channelController">
+    <div class="breadcrumbs">
+        <a href="{{siteurl}}">{{sitename}}</a>
+        <i> &gt; </i>
+        <a ng-href="/channel/{{current.id}}">{{current.name}}</a>
+    </div>
+    <div class="channel-panel">
+        <div class="item" ng-repeat="topic in topics">
+            <a class="title" ng-href="/topic/{% topic.id %}">{% topic.title %}</a>
+            <div class="count">{% topic.count %}</div>
+            <div class="author">
+                <a ng-href="/user/{% topic.user_id %}" target="_blank">{% topic.user_name %}</a>
+                <span class="created">{% topic.created | smartDate %}</span>
+            </div>
+            <div class="lastpost">
+                <a ng-href="/user/{% topic.lastpost_user.id %}" target="_blank">{% topic.lastpost_user.name %}</a>
+                <div class="created">最后回复于{% topic.lastpost_time | smartDate %}</div>
+            </div>
+        </div>
+        <ul class="pagination">
+            <li class="page">
+                <a ng-href="1"><i class="icon-double-angle-left"></i></a>
+            </li>
+            <li class="page">1</li>
+            <li class="page"><a ng-href="/channel/1/2">2</a></li>
+            <li class="page"><a ng-href="/channel/1/3">3</a></li>
+            <li>...</li>
+            <li class="page">
+                <a ng-href="/channel/1/{{totalPage}}"><i class="icon-double-angle-right"></i></a>
+            </li>
+        </ul>
+    </div>
+</div>

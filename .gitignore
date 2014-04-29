@@ -1,0 +1,4 @@
+configs/*.json
+!configs/*.simple.json
+node_modules/
+public/libraries/
