@@ -2,3 +2,5 @@ configs/*.json
 !configs/*.simple.json
 node_modules/
 public/libraries/
+public/javascripts/cache/ea819558457e77f8e4f83c86c103e1ad.js
+public/stylesheets/src/.sass-cache 

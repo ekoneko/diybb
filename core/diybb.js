@@ -1,9 +1,12 @@
 /*jslint node: true */
 /*jslint nomen: true */
+/*jslint regexp: true */
 module.exports = function (callback) {
     'use strict';
     
     var path = require('path'),
+        fs = require('fs'),
+        md5 = require('MD5'),
         hbs = require('express-hbs'),
         express = require('express'),
         when = require('when'),
@@ -14,12 +17,6 @@ module.exports = function (callback) {
         initConfig = function () {
             var deferred = when.defer(),
                 i18nConfig = require('../configs/i18n.json');
-            app.config = {
-                db: require('../configs/db.json'),
-                redis: require('../configs/redis.json'),
-                common: require('../configs/common.json'),
-                router: require('../configs/router.json')
-            };
             i18nConfig.directory = path.join(__dirname, '..', i18nConfig.directory);
             i18n.configure(i18nConfig);
 
@@ -30,7 +27,7 @@ module.exports = function (callback) {
         initDb = function () {
             var db = require('./lib/db.js'),
                 deferred = when.defer();
-            db.init(app.config.db, function (err) {
+            db.init(require('../configs/db.json'), function (err) {
                 if (err) {
                     return deferred.reject(err);
                 }
@@ -54,7 +51,7 @@ module.exports = function (callback) {
         initRedis = function () {
             var redis = require('./lib/redis'),
                 deferred = when.defer();
-            redis.init(app.config.redis, function () {
+            redis.init(require('../configs/redis.json'), function () {
                 deferred.resolve();
             });
             return deferred.promise;
@@ -64,7 +61,7 @@ module.exports = function (callback) {
             var deferred = when.defer();
             app.set('env', process.env.NODE_ENV);
             app.use(express.favicon());
-            app.use(express.logger());
+            app.use(express.logger('dev'));
             app.use(express.bodyParser());
             app.use(express.cookieParser('secret'));
             app.use(express.methodOverride());
@@ -79,6 +76,7 @@ module.exports = function (callback) {
 
         initTemplate = function () {
             var deferred = when.defer();
+            require('child_process').exec('rm -Rf ./public/javascripts/cache/*');
             app.engine('hbs', hbs.express3({
                 partialsDir: __dirname + '/views',
                 contentHelperName: 'content',
@@ -100,13 +98,41 @@ module.exports = function (callback) {
                 }
                 return accum;
             });
+
+            hbs.registerAsyncHelper('script', function (block, callback) {
+                var version = require('../configs/common.json').version,
+                    src,
+                    tags = block.fn(),
+                    cacheName,
+                    data = '';
+                if ('product' !== process.env.NODE_ENV) {
+                    return tags;
+                }
+                tags = tags.replace(/<!--(.*?)-->/g, '');
+                cacheName = '/javascripts/cache/' + md5(tags) + '.js';
+                fs.exists(path.join(__dirname, '..', 'public', cacheName), function (exists) {
+                    if (!exists) {
+                        _.each(tags.match(/<script[^>]*\ssrc="[^"]+"/g), function (tag) {
+                            src = tag.match(/\ssrc="(.+)"/)[1];
+                            data += fs.readFileSync(path.join(__dirname, '../public', src));
+                            data += ';';
+                        });
+                        fs.writeFile(path.join(__dirname, '../public', cacheName), data, function () {
+                            callback('<script src="' + cacheName + '?' + version + '"></script>');
+                        });
+                    } else {
+                        callback('<script src="' + cacheName + '?' + version + '"></script>');
+                    }
+                });
+            });
             
             process.nextTick(deferred.resolve);
             return deferred.promise;
         },
 
         initRouter = function () {
-            var setRoute, deferred;
+            var setRoute, deferred,
+                router = require('../configs/router.json');
             setRoute = function (method, key, value) {
                 app[method](key, function (req, res, next) {
                     var params = value.split('/'),
@@ -122,7 +148,7 @@ module.exports = function (callback) {
             };
             deferred = when.defer();
             _.each(['get', 'post'], function (method) {
-                _.map(app.config.router[method], function (value, key) {
+                _.map(router[method], function (value, key) {
                     setRoute(method, key, value);
                 });
             });
@@ -137,9 +163,9 @@ module.exports = function (callback) {
         .then(initDb)
         .then(initTable)
         .then(initRedis)
-        .then(initTemplate)
         .then(initExpress)
         .then(initRouter)
+        .then(initTemplate)
         .then(function () {
             callback(app);
         })
