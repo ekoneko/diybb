@@ -1,0 +1,6 @@
+{
+    "locales": ["en", "zh"],
+    "cookie": "locale",
+    "directory": "public/i18n",
+    "defaultLocale": "en"
+}

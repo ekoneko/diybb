@@ -7,17 +7,22 @@ module.exports = function (callback) {
         hbs = require('express-hbs'),
         express = require('express'),
         when = require('when'),
+        i18n = require('i18n'),
         _ = require('underscore'),
         app = express(),
         controller = require('./lib/controller.js'),
         initConfig = function () {
-            var deferred = when.defer();
+            var deferred = when.defer(),
+                i18nConfig = require('../configs/i18n.json');
             app.config = {
                 db: require('../configs/db.json'),
                 redis: require('../configs/redis.json'),
                 common: require('../configs/common.json'),
                 router: require('../configs/router.json')
             };
+            i18nConfig.directory = path.join(__dirname, '..', i18nConfig.directory);
+            i18n.configure(i18nConfig);
+
             process.nextTick(deferred.resolve);
             return deferred.promise;
         },
@@ -67,6 +72,7 @@ module.exports = function (callback) {
                 src: ["../public/javascripts"]
             }));
             app.use(app.router);
+            app.use(i18n.init);
             process.nextTick(deferred.resolve);
             return deferred.promise;
         },
@@ -75,12 +81,14 @@ module.exports = function (callback) {
             var deferred = when.defer();
             app.engine('hbs', hbs.express3({
                 partialsDir: __dirname + '/views',
-                contentHelperName: 'content'
+                contentHelperName: 'content',
+                i18n: i18n
             }));
             app.set('view engine', 'hbs');
             app.set('views', __dirname + '/views');
             app.use(express["static"]('./public'));
 
+            // hbs helper
             hbs.registerHelper('braces', function (string) {
                 return '{{' + string + '}}';
             });
@@ -92,6 +100,7 @@ module.exports = function (callback) {
                 }
                 return accum;
             });
+            
             process.nextTick(deferred.resolve);
             return deferred.promise;
         },
