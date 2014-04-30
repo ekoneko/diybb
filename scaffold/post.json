@@ -1,0 +1,9 @@
+{
+    "id" : 1,
+    "title" : "title",
+    "content": "content",
+    "user_id" : 1,
+    "user_name" : "kaze",
+    "channel_id" : 1,
+    "created" : 1398615683512
+}

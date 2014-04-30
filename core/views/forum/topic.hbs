@@ -10,9 +10,11 @@
     <div class="breadcrumbs">
         <a href="{{siteurl}}">{{sitename}}</a>
         <i> &gt; </i>
-        <a ng-href="/topic/{{id}}">{{title}}</a>
+        <a ng-href="/topic/{{post.id}}">{{post.title}}</a>
     </div>
     <div class="topic-panel">
-
+        <div class="title">{{post.title}}</div>
+        <div class="auth"><a href="/user/{{post.user_id}}" target="_blank">{{post.user_name}}</a>
+        <div class="content">{{post.content}}</div>
     </div>
 </div>

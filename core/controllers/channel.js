@@ -1,28 +1,30 @@
-module.exports = function() {
-
+/*jslint node: true */
+/*jslint nomen: true */
+module.exports = function () {
+    'use strict';
+    
     /* get */
-    this.index = function() {
-        var commonConfig = require('../../configs/common.json');
-        var id = this.req.params.id;
-        // load topic list
+    this.index = function () {
+        var id = this.req.params.id,
+            _ = require('underscore'),
+            fn = require('../lib/function.js'),
+            commonConfig = require('../../configs/common.json'),
+            channelConfig = {
+                size: 10,
+                total: 24
+            },
+            topics = require('../../scaffold/topic.json');
+        
+        _.each(topics, function (item) {
+            item.lastpost_time = fn.smartDate(item.lastpost_time);
+        });
+        
         this.res.render('forum/channel.hbs', {
             siteurl: commonConfig.siteurl,
             sitename: commonConfig.sitename,
-            current: {
-                id: 1,
-                name: '板块1',
-                page: 1
-            },
-            topics: [{
-                id: 1,
-                title: 'watching dog',
-                count: 3,
-                author: 'kaze'
-            }],
-            config: {
-                size: 10,
-                total: 24
-            }
+            current: require('../../scaffold/channel.json')[id],
+            topics: topics,
+            config: channelConfig
         });
-    }
+    };
 };

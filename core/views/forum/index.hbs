@@ -6,35 +6,35 @@
 <script src="/javascripts/forum/index.js"></script>
 {{/content}}
 
-<div class="main" ng-controller="indexController">
+<div class="main">
     {{!-- category --}}
-    <div class="forum-category" ng-repeat="category in categorys">
-        <h4 ng-style="{background:category.bcolor}">{%category.name%}</h4>
+    {{#each categorys}}
+    <div class="forum-category">
+        <h4 style="background:{{bcolor}}">{{name}}</h4>
         {{!-- channel --}}
         <div class="forum-channel">
-            <div class="item"
-             ng-repeat="channel in channels | filter:{category_id:category.id}:stick"
-             ng-mouseenter="channel.hover=1"
-             ng-mouseleave="channel.hover=0"
-             ng-style="{background:channel.bcolor}">
-                <a class="name" ng-href="/channel/{% channel.id %}">{% channel.name %}</a>
-                <div class="count">{% channel.count %}</div>
-                <div ng-hide="channel.hover && channel.lastpost.id">
+            {{#each channels}}
+            <div class="item" style="background:{{bcolor}};">
+                <a class="name" href="/channel/{{id}}">{{name}}</a>
+                <div class="count">{{count}}</div>
+                <div>
                     <div class="icon"></div>
                 </div>
-                <div ng-show="channel.hover && channel.lastpost.id">
-                    <a class="lastpost-title" ng-href="/topic/{% channel.lastpost.id %}">
-                        {% channel.lastpost.title || '暂无内容' %}
+                <div class="lastpost" style="display:none;">
+                    <a class="lastpost-title" href="/topic/{{lastpost.id}}">
+                        {{lastpost.title}}
                     </a>
-                    <a class="lastpost-author" ng-href="/user/{% channel.lastpost.author.id %}">
-                        {% channel.lastpost.author.name %}
+                    <a class="lastpost-author" href="/user/{{channel.lastpost.author.id}}">
+                        {{lastpost.author.name}}
                     </a>
                     <div class="lastpost-time">
-                        {% channel.lastpost.lastpost | smartDate %}
+                        {{lasttime}}
                     </div>
                 </div>
             </div>
+            {{/each}}
         </div>
         <div class="clear"></div>
     </div>
+    {{/each}}
 </div>

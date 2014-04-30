@@ -1,23 +1,25 @@
-module.exports = function() {
+/*jslint node: true */
+module.exports = function () {
+    'use strict';
 
     /* get */
-    this.index = function() {
-        var commonConfig = require('../../configs/common.json');
-        var id = this.req.params.id;
+    this.index = function () {
+        var id = this.req.params.id,
+            commonConfig = require('../../configs/common.json'),
+            post = require('../../scaffold/post.json');
         this.res.render('forum/topic.hbs', {
             siteurl: commonConfig.siteurl,
             sitename: commonConfig.sitename,
-            id: 1,
-            title: 'test'
+            post: post
         });
-    }
+    };
 
     /* post */
-    this.add = function() {
+    this.add = function () {
 
-    }
+    };
 
-    this.edit = function() {
+    this.edit = function () {
         
-    }
-}
+    };
+};
