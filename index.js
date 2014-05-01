@@ -5,7 +5,7 @@
     var diybb = require('./core/diybb.js'),
         http = require('http');
 
-    process.env.NODE_ENV = "product";
+    // process.env.NODE_ENV = "product";
     process.env.PORT = process.env.PORT || 3000;
 
     diybb(function (app) {
