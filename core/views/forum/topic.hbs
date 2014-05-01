@@ -14,7 +14,11 @@
     </div>
     <div class="topic-panel">
         <div class="title">{{post.title}}</div>
-        <div class="auth"><a href="/user/{{post.user_id}}" target="_blank">{{post.user_name}}</a>
-        <div class="content">{{post.content}}</div>
+        <div class="auth">
+            <div class="avatar"><img src="/images/avatar.png" width="32" height="32"></div>
+            <a class="name" href="/user/{{post.user_id}}" target="_blank">{{post.user_name}}</a>
+            <div class="created">{{post.created}}</div>
+        </div>
+        <div class="content">{{{post.content}}}</div>
     </div>
 </div>

@@ -100,7 +100,7 @@ module.exports = function (callback) {
             });
 
             hbs.registerAsyncHelper('script', function (block, callback) {
-                var version = require('../configs/common.json').version,
+                var version,
                     src,
                     tags = block.fn(),
                     cacheName,
@@ -111,6 +111,7 @@ module.exports = function (callback) {
                 tags = tags.replace(/<!--(.*?)-->/g, '');
                 cacheName = '/javascripts/cache/' + md5(tags) + '.js';
                 fs.exists(path.join(__dirname, '..', 'public', cacheName), function (exists) {
+                    version = require('../configs/common.json').version;
                     if (!exists) {
                         _.each(tags.match(/<script[^>]*\ssrc="[^"]+"/g), function (tag) {
                             src = tag.match(/\ssrc="(.+)"/)[1];

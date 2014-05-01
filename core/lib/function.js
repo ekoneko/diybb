@@ -9,7 +9,11 @@
      * @return {String}
      */
     this.smartDate = function (timestamp) {
+        console.log(timestamp);
         var now, date, deltaTime, modify, dateString;
+        if (!timestamp) {
+            return '';
+        }
         timestamp = Number(timestamp);
         now = new Date();
         date = new Date(timestamp);

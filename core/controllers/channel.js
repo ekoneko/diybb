@@ -16,7 +16,10 @@ module.exports = function () {
             topics = require('../../scaffold/topic.json');
         
         _.each(topics, function (item) {
-            item.lastpost_time = fn.smartDate(item.lastpost_time);
+            if (typeof item.created === 'number') {
+                item.created = fn.smartDate(item.created);
+                item.lastpost_time = fn.smartDate(item.lastpost_time);
+            }
         });
         
         this.res.render('forum/channel.hbs', {
