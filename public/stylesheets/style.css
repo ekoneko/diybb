@@ -1426,22 +1426,25 @@ header {
       float: left;
       line-height: 32px; }
     header .account .avatar {
-      margin-left: 10px;
-      width: 32px;
-      height: 32px;
+      margin: 4px 0 0 10px;
+      width: 28px;
+      height: 28px;
       float: left;
       border-radius: 5px;
       overflow: hidden; }
     header .account .message {
       line-height: 28px;
       min-width: 16px;
-      background-color: #e93636;
+      background-color: #999999;
       color: white;
       text-align: center;
       padding: 0 4px;
       border-radius: 6px;
       float: left;
-      margin: 3px 8px 0 8px; }
+      margin: 3px 8px 0 8px;
+      cursor: pointer; }
+    header .account .message.has-new {
+      background-color: #e93636; }
     header .account .message-dialog {
       position: absolute;
       top: 44px;
@@ -1608,9 +1611,9 @@ footer {
       position: absolute;
       top: 18px;
       right: 240px;
-      height: 34px;
-      line-height: 34px;
-      padding: 0 10px;
+      height: 30px;
+      line-height: 30px;
+      padding: 0 7px;
       background-color: #4b7ce9;
       border-radius: 4px; }
     .channel-panel .item .lastpost {

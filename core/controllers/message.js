@@ -1,16 +1,21 @@
-module.exports = function() {
+/*jslint node: true */
+/*jslint nomen: true */
+module.exports = function () {
+    'use strict';
 
     /* get */
-    this.list = function() {
+    this.index = function () {
+            
+    };
+    
+    this['new'] = function () {
+        this.res.send(require('../../scaffold/messages.json'));
+    };
+
+    /* post */
+    this.read = function () {
         this.res.send({
-            total: 12,
-            data: [{
-                id: 1,
-                title: '消息1'
-            }, {
-                id: 2,
-                title: '消息2'
-            }]
+            state: true
         });
-    }
+    };
 };

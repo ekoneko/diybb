@@ -41,7 +41,48 @@
     /**
      * message
      */
-    $.getJson('/message/list', function (data) {
-        
-    });
+    var Message = function () {
+        var message = $('#message'),
+            messageDialog = $('#message-dialog'),
+            messageList = messageDialog.find('ul'),
+            messageTemplate = $('#message-template').html();
+        $.getJSON('/message/new', function (data) {
+            message.html(data.total);
+            if (data.total) {
+                message.addClass('has-new');
+                $.each(data.data, function (k, item) {
+                    $.tmpl(messageTemplate, item).appendTo(messageList);
+                });
+            }
+            if (data.total > 0) {
+                message.one('read', function () {
+                    $.post('/message/read', function () {
+                        message.removeClass('has-new');
+                        message.html(0);
+                    });
+                }).bind('click', function () {
+                    messageDialog.trigger('open');
+                    message.trigger('read');
+                });
+                messageDialog.bind('open', function () {
+                    if (messageDialog.is(':visible')) {
+                        return;
+                    }
+                    messageDialog.show();
+                    setTimeout(function () {
+                        $(window).bind('click.message', function (event) {
+                            if (event.target.id !== 'message-dialog' &&
+                                    $(event.target).parents('#message-dialog').length === 0) {
+                                messageDialog.hide();
+                                $(window).unbind('.message');
+                            }
+                        });
+                    }, 1);
+                });
+            } else {
+                message.href = '/message';
+            }
+        });
+    };
+    new Message();
 }());

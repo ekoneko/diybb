@@ -18,16 +18,18 @@
                 <a href="/register">{{__ 'Register'}}</a>
                 -->
                 <i class="icon-envelope"></i>
-                <div class="message">3</div>
-                <div class="message-dialog">
+                <div id="message" class="message"></div>
+                <div id="message-dialog" class="message-dialog" style="display:none;">
                     <div class="count">{{__ '%d Message' 3}}</div>
                     <ul>
-                        <li><a href="/message/1">消息1</a></li>
-                        <li><a href="/message/2">消息2</a></li>
+                        
                     </ul>
+                    <script id="message-template" type="text/template">
+                        <li><a href="/message/${id}">${title}</a></li>
+                    </script>
                     <div class="view-all"><a  href="/message">{{__ 'See all'}}</a></div>
                 </div>
-                <div class="avatar"><img src="/images/avatar.png" /></div>
+                <a class="avatar" href="/user/{{user 'id'}}"><img src="{{user 'avatar'}}" width="28" height="28" /></a>
             </div>
         </header>
         {{{body}}}
