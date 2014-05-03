@@ -15,7 +15,6 @@
             _ = require('underscore'),
             express = require('express');
         require('child_process').exec('rm -Rf ../public/javascripts/cache/*');
-        console.log(__dirname + '/../views');
         app.engine('hbs', hbs.express3({
             partialsDir: path.join(__dirname + '/../views'),
             contentHelperName: 'content',
