@@ -91,9 +91,9 @@ module.exports = function (callback) {
                         return next();
                     }
                     if (params[1] !== '*') {
-                        return c.execAction(params[1]);
+                        return c.execAction(params[1], method);
                     }
-                    c.execAction(req.params[0] || 'index');
+                    c.execAction(req.params[0] || 'index', method);
                 });
             };
             deferred = when.defer();

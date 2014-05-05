@@ -1,7 +1,8 @@
 configs/*.json
 !configs/*.simple.json
 node_modules/
-public/libraries/
-public/javascripts/cache
+public/libraries/*
+public/javascripts/cache/
 public/stylesheets/src/.sass-cache 
 *.sassc
+todo.md

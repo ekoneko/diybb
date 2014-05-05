@@ -18,12 +18,12 @@
              * execAction
              * @param {String} action
              */
-            this.execAction = function (action) {
-                if (!action || typeof this[action] !== 'function') {
+            this.execAction = function (action, method) {
+                if (!action || typeof this[method][action] !== 'function') {
                     action = 'index';
                 }
-                if (this[action]) {
-                    this[action].call(this);
+                if (this[method][action]) {
+                    this[method][action].call(this);
                 } else {
                     next();
                 }

@@ -1,24 +1,25 @@
-module.exports = function() {
+/*jslint node: true */
+module.exports = function () {
+    'use strict';
 
-    /* get */
-    this.account = function() {
-        var id = this.req.params.id;
-    }
+    this.get = {
+        account : function () {
+            var id = this.req.params.id;
+        },
+        register : function () {
 
-    this.register = function() {
+        }
+    };
 
-    }
-
-    /* post */
-    this.login = function() {
-        //
-    }
-
-    this.register = function() {
-        //
-    }
-
-    this.edit = function() {
-        //
-    }
+    this.post = {
+        login : function () {
+            //
+        },
+        register : function () {
+            //
+        },
+        edit : function () {
+            //
+        }
+    };
 };
