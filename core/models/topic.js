@@ -1,17 +1,18 @@
+/*jslint node: true */
 module.exports = function() {
-    this.table = 'topic';
+    'use strict';
 
-    this.getNews = function(size, channel, callback) {
-        var sql, data;
-        size = size || 20;
-        sql = 'SELECT * FROM ?? WHERE `state` = "enable"';
-        data = [this.getTable()];
-        if (channel) {
-            sql += ' AND `channel` = ?'
-            data.push(Number(channel));
-        }
-        sql += ' ORDER BY `created` desc LIMIT ?';
-        data.push(size);
-        this.query(sql, data, callback);
+    this.table = 'topic';
+     var when = require('when');
+
+    this.add = function(data) {
+        var deferred = when.defer();
+        this.insert(data, function (err, data) {
+            if (err) {
+                return deferred.reject(err);
+            }
+            deferred.resolve(data);
+        });
+        return deferred.promise;
     };
-}
+};

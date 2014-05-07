@@ -26,4 +26,20 @@ module.exports = function () {
         });
         return deferred.promise;
     };
+
+    this.get = function (id) {
+        var deferred = when.defer();
+        this.getAll().then(function (channels) {
+            var i;
+            for (i in channels) {
+                if (channels[i].id === id) {
+                    return deferred.resolve(channels[i]);
+                }
+            }
+            return deferred.resolve(null);
+        }).otherwise(function (err) {
+            deferred.reject(err);
+        });
+        return deferred.promise;
+    };
 };
