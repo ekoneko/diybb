@@ -22,7 +22,6 @@
         }));
         app.set('view engine', 'hbs');
         app.set('views', __dirname + '/../views');
-        app.use(express["static"]('./public'));
 
         // hbs helper
         hbs.registerHelper('braces', function (string) {
@@ -48,15 +47,15 @@
             }
             tags = tags.replace(/<!--(.*?)-->/g, '');
             cacheName = '/javascripts/cache/' + md5(tags) + '.js';
-            fs.exists(path.join(__dirname, '..', 'public', cacheName), function (exists) {
-                version = require('../configs/common.json').version;
+            fs.exists(path.join(__dirname, '..', '..', 'public', cacheName), function (exists) {
+                version = require('../../configs/common.json').version;
                 if (!exists) {
                     _.each(tags.match(/<script[^>]*\ssrc="[^"]+"/g), function (tag) {
                         src = tag.match(/\ssrc="(.+)"/)[1];
-                        data += fs.readFileSync(path.join(__dirname, '../public', src));
+                        data += fs.readFileSync(path.join(__dirname, '../../public', src));
                         data += ';';
                     });
-                    fs.writeFile(path.join(__dirname, '../public', cacheName), data, function () {
+                    fs.writeFile(path.join(__dirname, '../../public', cacheName), data, function () {
                         callback('<script src="' + cacheName + '?' + version + '"></script>');
                     });
                 } else {

@@ -6,3 +6,4 @@ public/javascripts/cache/
 public/stylesheets/src/.sass-cache 
 *.sassc
 todo.md
+public/javascripts/config.js

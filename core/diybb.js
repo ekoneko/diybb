@@ -7,6 +7,7 @@ module.exports = function (callback) {
     var path = require('path'),
         express = require('express'),
         when = require('when'),
+        fs = require('fs'),
         i18n = require('i18n'),
         _ = require('underscore'),
         app = express(),
@@ -16,8 +17,18 @@ module.exports = function (callback) {
                 i18nConfig = require('../configs/i18n.json');
             i18nConfig.directory = path.join(__dirname, '..', i18nConfig.directory);
             i18n.configure(i18nConfig);
-
-            process.nextTick(deferred.resolve);
+            fs.readFile(path.join(__dirname, '../configs/bower.json'), function(err, data) {
+                if (err) {
+                    return deferred.reject(err);
+                }
+                data = "window.diybb =" + data;
+                fs.writeFile(path.join(__dirname, '..', 'public/javascripts/config.js'), data, function (err) {
+                    if (err) {
+                        return deferred.reject(err);
+                    }
+                    deferred.resolve();
+                });
+            });
             return deferred.promise;
         },
 
@@ -67,6 +78,7 @@ module.exports = function (callback) {
             }));
             app.use(app.router);
             app.use(i18n.init);
+            app.use(express["static"]('./public'));
             process.nextTick(deferred.resolve);
             return deferred.promise;
         },
@@ -120,6 +132,6 @@ module.exports = function (callback) {
             callback(app);
         })
         .otherwise(function (err) {
-            console.log('Error: ' + err);
+            console.log(err);
         });
 };

@@ -18,6 +18,7 @@
     "jquery": "1.9",
     "jquery-i18n": "~1.1.1",
     "jquery-tmpl": "https://github.com/BorisMoore/jquery-tmpl.git",
-    "tinymce": "http://download.moxiecode.com/tinymce/tinymce_4.0.25_dev.zip"
+    "tinymce": "http://download.moxiecode.com/tinymce/tinymce_4.0.25_dev.zip",
+    "jquery.cookie": "~1.4.1"
   }
 }

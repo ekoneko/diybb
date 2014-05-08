@@ -1,9 +1,23 @@
 {
     "get" : {
         "/" : "index/index",
-        "/test/*" : "test/*"
+        "/channel/:id" : "channel/index",
+        "/topic/add" : "topic/add",
+        "/topic/edit/:id" : "topic/edit",
+        "/topic/:id" : "topic/index",
+        "/user/:id" : "user/account",
+        "/user/register" : "user/register",
+        "/message/*" : "message/*",
+        "/message/:id" : "message/index",
+        "/category/ls" : "category/ls",
+        "/system/*" : "system/*"
     },
     "post" : {
-        
+        "/user/login" : "user/login",
+        "/user/register" : "user/register",
+        "/user/edit" : "user/edit",
+        "/topic/add" : "topic/add",
+        "/topic/edit" : "topic/edit",
+        "/message/read" : "message/read"
     }
 }

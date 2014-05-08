@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <meta charset="utf-8" />
+</head>
+<body>
+<style type="text/css">
+    p { font-size: 14px;}
+</style>
+<p id="success" style="display:none;">上传完毕, <a href="{{url}}" target="_blank">预览</a></p>
+<p id="failed" style="display:none;">出现异常, 请<a href="/system/imageuploader">重试</a>或联系管理员</p>
+<script>
+    (function () {
+        var $ = window.$ || parent.$,
+            diybb = window.diybb || parent.diybb,
+            err = '{{err}}',
+            url = '{{url}}',
+            expires;
+
+        if (err) {
+            $(document).find('#failed').show();
+        }
+
+        if (url) {
+            expires = new Date();
+            expires.setTime(+expires+600000);
+            $.cookie(diybb.cookiePrefix + 'uploadimage', url, {
+                path: diybb.cookiePath,
+                domain: diybb.cookieDomain,
+                expires: expires
+            });
+            $(document).find('#success').show();
+        }
+    }());
+</script>

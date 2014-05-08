@@ -189,5 +189,6 @@ tinymce.addI18n('zh_CN', {
     "Table": "\u8868\u683c",
     "Format": "\u683c\u5f0f",
     "Insert link": "\u63d2\u5165\u94fe\u63a5",
-    "Upload picture": "\u4e0a\u4f20\u56fe\u7247"
+    "Upload picture": "\u4e0a\u4f20\u56fe\u7247",
+    "Upload": "\u4e0a\u4f20"
 });
