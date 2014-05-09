@@ -37,7 +37,7 @@ module.exports = function () {
                 when = require('when'),
                 model = require('../lib/model.js'),
                 topicId;
-            model.load('user').get(self.req.signedCookies.user || 1).then(function (user) {
+            model.load('user').get(self.req.signedCookies.user).then(function (user) {
                 var deferred = when.defer();
                 if (!user) {
                     return deferred.reject('user not found or no permission');
