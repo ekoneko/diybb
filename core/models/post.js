@@ -2,16 +2,11 @@
 module.exports = function() {
     'use strict';
 
-    this.table = 'topic';
-     var when = require('when');
+    this.table = 'post';
+    var when = require('when');
 
     this.get = function (id) {
         var deferred = when.defer();
-        if (!id) {
-            process.nextTick(function () {
-                return deferred.resolve(null);
-            });
-        }
         this.select({
             id: id
         }, {
@@ -23,25 +18,18 @@ module.exports = function() {
             if (!(data = data[0])) {
                 return deferred.resolve(null);
             }
-            require('../lib/model.js').load('post').select({
-                topic_id: id,
-                first: 1
-            }, {
-                limit: 1
-            }, function (err, post) {
-                if (err || !post || !post[0]) {
-                    data.content = '';
-                } else {
-                    data.content = post[0].content;
-                }
-                deferred.resolve(data);
-            });
+            if (data && typeof data.created === 'number') {
+                data.created = require('../lib/function.js').smartDate(data.created);
+            }
+            deferred.resolve(data);
         });
         return deferred.promise;
     }
 
     this.add = function (data) {
-        var deferred = when.defer();
+        var xss = require('node-xss').clean,
+            deferred = when.defer();
+        data.content = xss(data.content || '');
         this.insert(data, function (err, data) {
             if (err) {
                 return deferred.reject(err);

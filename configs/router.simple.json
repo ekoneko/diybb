@@ -11,7 +11,9 @@
         "/message/*" : "message/*",
         "/message/:id" : "message/index",
         "/category/ls" : "category/ls",
-        "/system/*" : "system/*"
+        "/system/*" : "system/*",
+        "/comment" : "comment/template",
+        "/comment/data" : "comment/data"
     },
     "post" : {
         "/user/login" : "user/login",
@@ -19,6 +21,7 @@
         "/user/edit" : "user/edit",
         "/topic/add" : "topic/add",
         "/topic/edit" : "topic/edit",
-        "/message/read" : "message/read"
+        "/message/read" : "message/read",
+        "/comment/post" : "comment/post"
     }
 }

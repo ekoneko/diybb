@@ -7,6 +7,12 @@
     -ms-transform: $transform
     transform: $transform
 
+@mixin linear-gradient($direction, $color-stop1, $color-stop2)
+    background-image: linear-gradient($direction, $color-stop1, $color-stop2)
+    background-image: -webkit-linear-gradient($direction, $color-stop1, $color-stop2)
+    background-image: -moz-linear-gradient($direction, $color-stop1, $color-stop2)
+    background-image: -o-linear-gradient($direction, $color-stop1, $color-stop2)
+
 @mixin panel
     width: 80%
     min-width: 960px
@@ -16,8 +22,10 @@
 .clear
     clear: both
 
+body
+    background-color: #252932
+
 header, footer
-    position: relative
     color: #fff
     background-color: #1b1e24
 
@@ -25,6 +33,7 @@ header a, footer a
     color: #fff
 
 header
+    position: relative
     height: 140px
 
     .account
@@ -94,8 +103,11 @@ header
             @include transform(rotate(45deg))
 
 footer
+    position: absolute
+    left: 0
     bottom: 0
     height: 100px
+    width: 100%
 
     .powerby
         position: absolute
@@ -198,7 +210,7 @@ footer
 .channel-panel
     @include panel
     background: #575b64
-    padding: 40px 0 20px
+    padding: 30px 0 20px
     .item
         margin: 0 2.6em
         padding: 10px 10px 44px
@@ -232,6 +244,18 @@ footer
             max-width: 180px
             font-size: 14px
             line-height: 20px
+    .control
+        margin: 0 2.6em
+        padding: 0 10px 20px
+        border-bottom: 1px solid #71747a
+        button
+            width: 60px
+            height: 32px
+            background-color: #DF796B
+            color: #fff
+            border: none
+            outline: none
+            cursor: pointer
     .pagination
         margin-top: 20px
 
@@ -269,3 +293,16 @@ footer
     .content
         margin: 20px 50px 0
         line-height: 28px
+
+.topic-add-panel
+    @include panel
+    background: #575b64
+    padding: 40px 0
+    .mce-tinymce
+        width: 90%
+        margin: 0 auto
+
+.error-panel
+    @include panel
+    background: #575b64
+    padding: 30px 0 20px

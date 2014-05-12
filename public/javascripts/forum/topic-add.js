@@ -1,5 +1,11 @@
 (function () {
     'use strict';
 
-    $('#editor').editor();
+    $(function () {
+        $('#editor').editor();
+
+        $('#topic-add').bind('submit', function () {
+            //
+        });
+    });
 }());

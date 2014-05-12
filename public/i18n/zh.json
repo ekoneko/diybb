@@ -2,8 +2,11 @@
 	"Login": "登陆",
 	"Register": "注册",
 	"%d Message": "%d 条消息",
-    "See all": "查看全部",
-    "last post at %s": "最后发布于 %s",
-    "unsupport uploader": "暂不支持上传",
-    "user not found or no permission" : "用户不存在或没有权限"
+	"See all": "查看全部",
+	"last post at %s": "最后发布于 %s",
+	"unsupport uploader": "暂不支持上传",
+	"user not found or no permission": "用户不存在或无权访问",
+	"Content not exist or no permission": "内容不存在或无权访问",
+	"Channel not exist or no permission": "频道不存在或无权访问",
+    "Topic nto exis or no permission": "话题不存在或无权访问"
 }

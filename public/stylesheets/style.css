@@ -1407,8 +1407,10 @@ a .icon-rotate-90:before, a .icon-rotate-180:before, a .icon-rotate-270:before, 
 .clear {
   clear: both; }
 
+body {
+  background-color: #252932; }
+
 header, footer {
-  position: relative;
   color: white;
   background-color: #1b1e24; }
 
@@ -1416,6 +1418,7 @@ header a, footer a {
   color: white; }
 
 header {
+  position: relative;
   height: 140px; }
   header .account {
     position: absolute;
@@ -1481,8 +1484,11 @@ header {
       transform: rotate(45deg); }
 
 footer {
+  position: absolute;
+  left: 0;
   bottom: 0;
-  height: 100px; }
+  height: 100px;
+  width: 100%; }
   footer .powerby {
     position: absolute;
     bottom: 10px;
@@ -1590,7 +1596,7 @@ footer {
   max-width: 1200px;
   margin: 0 auto;
   background: #575b64;
-  padding: 40px 0 20px; }
+  padding: 30px 0 20px; }
   .channel-panel .item {
     margin: 0 2.6em;
     padding: 10px 10px 44px;
@@ -1623,6 +1629,18 @@ footer {
       max-width: 180px;
       font-size: 14px;
       line-height: 20px; }
+  .channel-panel .control {
+    margin: 0 2.6em;
+    padding: 0 10px 20px;
+    border-bottom: 1px solid #71747a; }
+    .channel-panel .control button {
+      width: 60px;
+      height: 32px;
+      background-color: #df796b;
+      color: white;
+      border: none;
+      outline: none;
+      cursor: pointer; }
   .channel-panel .pagination {
     margin-top: 20px; }
 
@@ -1663,3 +1681,6 @@ footer {
   .topic-panel .content {
     margin: 20px 50px 0;
     line-height: 28px; }
+  .topic-panel .mce-tinymce {
+    width: 90%;
+    margin: 0 auto; }

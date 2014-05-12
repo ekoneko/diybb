@@ -1,15 +1,29 @@
-<!DOCTYPE html>
-<html>
-<meta charset="utf-8" />
-<head>
-    <title></title>
-</head>
-{{#script}}
-<script src="/libraries/jquery/jquery.min.js"></script>
+{{!< ../layout}}
+{{#content "pageStyles"}}
+{{!-- page css --}}
+{{/content}}
+{{#content "pageScript"}}
 <script src="/libraries/tinymce/js/tinymce/tinymce.jquery.min.js"></script>
-{{/script}}
-<body>
-    <div id="editor"></div>
-
 <script src="/user_libraries/tinymce/editor.js"></script>
 <script src="/javascripts/forum/topic-add.js"></script>
+{{/content}}
+{{!-- content --}}
+<div class="main">
+    <div class="breadcrumbs">
+        <a href="{{siteurl}}">{{sitename}}</a>
+        <i> &gt; </i>
+        <a href="/channel/{{channel.id}}">{{channel.name}}</a>
+        <i> &gt; </i>
+        <a ng-href="/topic/{{post.id}}">{{post.title}}</a>
+    </div>
+    <div class="topic-add-panel">
+        <form id="topic-add" method="post" action="/topic/add">
+            <input type="hidden" name="channel_id" value="{{channel.id}}" />
+            <label>
+                {{__ 'Title'}}
+                <input type="text" name="title" />
+            </label>
+            <div id="editor" class="editor"></div>
+        </form>
+    </div>
+</div>

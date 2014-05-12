@@ -3,12 +3,15 @@
 {{!-- page css --}}
 {{/content}}
 {{#content "pageScript"}}
+<script src="/javascripts/forum/comment.js"></script>
 <script src="/javascripts/forum/topic.js"></script>
 {{/content}}
 {{!-- content --}}
 <div class="main">
     <div class="breadcrumbs">
         <a href="{{siteurl}}">{{sitename}}</a>
+        <i> &gt; </i>
+        <a href="/channel/{{channel.id}}">{{channel.name}}</a>
         <i> &gt; </i>
         <a ng-href="/topic/{{post.id}}">{{post.title}}</a>
     </div>
