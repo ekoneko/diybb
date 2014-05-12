@@ -6,6 +6,7 @@
         "/topic/edit/:id" : "topic/edit",
         "/topic/:id" : "topic/index",
         "/user/:id" : "user/account",
+        "/user/login" : "user/login",
         "/user/register" : "user/register",
         "/message/*" : "message/*",
         "/message/:id" : "message/index",
