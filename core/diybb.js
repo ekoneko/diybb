@@ -71,7 +71,7 @@ module.exports = function (callback) {
             app.use(express.favicon());
             app.use(express.logger('dev'));
             app.use(express.bodyParser());
-            app.use(express.cookieParser('secret'));
+            app.use(express.cookieParser(require('../configs/common.json').secret));
             app.use(express.methodOverride());
             app.use(require('connect-assets')({
                 src: ["../public/javascripts"]

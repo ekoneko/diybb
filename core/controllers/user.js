@@ -5,8 +5,11 @@ module.exports = function () {
     this.get = {
         account : function () {
             var model = require('../lib/model.js'),
-                id = this.req.params.id,
+                id = this.req.params.id >>> 0,
                 self = this;
+            if (!id) {
+                return self.next();
+            }
             model.load('user').get(id).then(function (data) {
                 if (data) {
                     self.res.send(data);
@@ -19,6 +22,9 @@ module.exports = function () {
         },
         register : function () {
 
+        },
+        login : function () {
+            this.res.send('login');
         }
     };
 
