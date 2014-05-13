@@ -1412,13 +1412,13 @@ body {
 
 header, footer {
   color: white;
-  background-color: #1b1e24; }
+  background-color: #1b1e24;
+  position: relative; }
 
 header a, footer a {
   color: white; }
 
 header {
-  position: relative;
   height: 140px; }
   header .account {
     position: absolute;
@@ -1484,7 +1484,6 @@ header {
       transform: rotate(45deg); }
 
 footer {
-  position: absolute;
   left: 0;
   bottom: 0;
   height: 100px;
@@ -1633,9 +1632,13 @@ footer {
     margin: 0 2.6em;
     padding: 0 10px 20px;
     border-bottom: 1px solid #71747a; }
-    .channel-panel .control button {
+    .channel-panel .control .button {
+      display: block;
+      font-size: 12px;
       width: 60px;
       height: 32px;
+      line-height: 32px;
+      text-align: center;
       background-color: #df796b;
       color: white;
       border: none;
@@ -1681,6 +1684,47 @@ footer {
   .topic-panel .content {
     margin: 20px 50px 0;
     line-height: 28px; }
-  .topic-panel .mce-tinymce {
+
+.topic-add-panel {
+  width: 80%;
+  min-width: 960px;
+  max-width: 1200px;
+  margin: 0 auto;
+  background: #575b64;
+  padding: 40px 0; }
+  .topic-add-panel .title {
+    display: block;
+    width: 90%;
+    height: 32px;
+    line-height: 32px;
+    text-indent: 0.8rem;
+    margin: 0 auto 12px;
+    padding: 0; }
+  .topic-add-panel .mce-tinymce {
     width: 90%;
     margin: 0 auto; }
+  .topic-add-panel .layout {
+    width: 90%;
+    margin: 0 auto;
+    margin-top: 12px; }
+    .topic-add-panel .layout button {
+      display: block;
+      font-size: 12px;
+      width: 60px;
+      height: 32px;
+      line-height: 32px;
+      text-align: center;
+      background-color: #df796b;
+      color: white;
+      border: none;
+      outline: none;
+      cursor: pointer;
+      float: right; }
+
+.error-panel {
+  width: 80%;
+  min-width: 960px;
+  max-width: 1200px;
+  margin: 0 auto;
+  background: #575b64;
+  padding: 30px 0 20px; }

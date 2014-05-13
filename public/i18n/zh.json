@@ -8,5 +8,7 @@
 	"user not found or no permission": "用户不存在或无权访问",
 	"Content not exist or no permission": "内容不存在或无权访问",
 	"Channel not exist or no permission": "频道不存在或无权访问",
-    "Topic nto exis or no permission": "话题不存在或无权访问"
+	"Topic nto exis or no permission": "话题不存在或无权访问",
+	"Title": "标题",
+	"Submit": "提交"
 }

@@ -14,7 +14,6 @@ module.exports = function () {
                 channelModel = require('../lib/model.js').load('channel');
 
             channelModel.getFormatList().then(function (channels) {
-                return self.res.send(channels);
                 self.res.render('forum/index.hbs', {
                     siteurl: commonConfig.siteurl,
                     sitename: commonConfig.sitename,

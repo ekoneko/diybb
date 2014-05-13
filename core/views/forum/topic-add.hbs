@@ -19,11 +19,11 @@
     <div class="topic-add-panel">
         <form id="topic-add" method="post" action="/topic/add">
             <input type="hidden" name="channel_id" value="{{channel.id}}" />
-            <label>
-                {{__ 'Title'}}
-                <input type="text" name="title" />
-            </label>
-            <div id="editor" class="editor"></div>
+            <input class="title" type="text" name="title" placeholder="{{__ 'Title'}}" required="required" />
+            <textarea id="editor" class="editor" name="content"></textarea>
+            <div class="layout">
+                <button>{{__ 'Submit'}}</button>
+            </div>
         </form>
     </div>
 </div>

@@ -28,12 +28,12 @@ body
 header, footer
     color: #fff
     background-color: #1b1e24
+    position: relative
 
 header a, footer a
     color: #fff
 
 header
-    position: relative
     height: 140px
 
     .account
@@ -103,7 +103,6 @@ header
             @include transform(rotate(45deg))
 
 footer
-    position: absolute
     left: 0
     bottom: 0
     height: 100px
@@ -248,9 +247,13 @@ footer
         margin: 0 2.6em
         padding: 0 10px 20px
         border-bottom: 1px solid #71747a
-        button
+        .button
+            display: block
+            font-size: 12px
             width: 60px
             height: 32px
+            line-height: 32px
+            text-align: center
             background-color: #DF796B
             color: #fff
             border: none
@@ -298,9 +301,34 @@ footer
     @include panel
     background: #575b64
     padding: 40px 0
+    .title
+        display: block
+        width: 90%
+        height: 32px
+        line-height: 32px
+        text-indent: 0.8rem
+        margin: 0 auto 12px
+        padding: 0
     .mce-tinymce
         width: 90%
         margin: 0 auto
+    .layout
+        width: 90%
+        margin: 0 auto
+        margin-top: 12px
+        button
+            display: block
+            font-size: 12px
+            width: 60px
+            height: 32px
+            line-height: 32px
+            text-align: center
+            background-color: #DF796B
+            color: #fff
+            border: none
+            outline: none
+            cursor: pointer
+            float: right
 
 .error-panel
     @include panel

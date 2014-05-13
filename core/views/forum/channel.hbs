@@ -10,11 +10,11 @@
     <div class="breadcrumbs">
         <a href="{{siteurl}}">{{sitename}}</a>
         <i> &gt; </i>
-        <a href="/channel/{{current.id}}">{{current.name}}</a>
+        <a href="/channel/{{channel.id}}">{{channel.name}}</a>
     </div>
     <div class="channel-panel">
         <div class="control">
-            <button>发布</button>
+            <a class="button" href="/topic/add/{{channel.id}}">发布</a>
         </div>
         {{#each topics}}
         <div class="item">

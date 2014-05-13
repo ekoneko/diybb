@@ -7,7 +7,7 @@ module.exports = function () {
 
     this.get = {
         index : function () {
-            var id = this.req.params.id,
+            var id = this.req.params.id >>> 0,
                 commonConfig = require('../../configs/common.json'),
                 post;
 
@@ -76,6 +76,13 @@ module.exports = function () {
         add : function () {
             var topicId,
                 user;
+
+            if (!self.req.body.channel_id || !self.req.body.title || !self.req.body.content) {
+                self.res.send({
+                    state: false,
+                    error: '信息不完整'
+                });
+            }
             model.load('user').get(self.req.signedCookies.user).then(function (_user) {
                 if (!_user) {
                     return self.res.redirect('/user/login');
@@ -98,7 +105,8 @@ module.exports = function () {
                 });
             }).then(function () {
                 self.res.send({
-                    state : true
+                    state : true,
+                    id: topicId
                 });
             }).otherwise(function (err) {
                 console.error(err);
