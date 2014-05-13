@@ -29,6 +29,7 @@
              * @param {plain} where
              * @param {plain} options
              *  {
+             *      columns
              *      limit
              *      offset
              *      orderby
@@ -40,7 +41,15 @@
                 where = where || {};
                 options = options || {};
                 this._checkField(where);
-                sql = 'SELECT * FROM ?? WHERE ' + this._where(where);
+                if (options.columns) {
+                    options.columns.map(function (field) {
+                        return mysql.format('??', field);
+                    });
+                    sql = 'SELECT ' + options.columns.join(',') ;
+                } else {
+                    sql = 'SELECT *';
+                }
+                sql += ' FROM ?? WHERE ' + this._where(where);
                 data = [this.getTable()];
 
                 if (options.orderby) {

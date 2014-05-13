@@ -13,7 +13,8 @@ module.exports = function () {
                 page = (this.req.params.page >>> 0) || 1,
                 size = 10,
                 commonConfig = require('../../configs/common.json'),
-                channel;
+                channel,
+                topics;
             
             model.load('channel').get(id).then(function (_channel) {
                 channel = _channel;
@@ -24,12 +25,19 @@ module.exports = function () {
                     offset: size * (page - 1),
                     orderby: ['created', 'DESC']
                 });
-            }).then(function(topics) {
+            }).then(function(_topics) {
+                topics = _topics;
+                return model.load('topic').count({
+                    channel_id: id
+                });
+            }).then(function (total) {
                 self.res.render('forum/channel.hbs', {
                     siteurl: commonConfig.siteurl,
                     sitename: commonConfig.sitename,
                     topics: topics,
                     channel: channel,
+                    page: page,
+                    total: total,
                     size: size
                 });
             }).otherwise(function (err) {
