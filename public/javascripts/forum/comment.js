@@ -91,8 +91,6 @@
     $.when(
         $.ajax('/comment'),
         $.ajax('/comment/item'),
-        $.getScript('/libraries/tinymce/js/tinymce/tinymce.jquery.min.js'),
-        $.getScript('/libraries/jquery-tmpl/jquery.tmpl.min.js'),
         $.getScript('/user_libraries/pagination/pagination.js'),
         $.getScript('/user_libraries/tinymce/editor.js')
     ).done(function () {

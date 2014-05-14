@@ -47,7 +47,7 @@
             messageList = messageDialog.find('ul'),
             messageTemplate = $('#message-template').html();
         $.getJSON('/message/new', function (data) {
-            message.html(data.total);
+            message.html(data.total || 0);
             if (data.total) {
                 message.addClass('has-new');
                 $.each(data.data, function (k, item) {

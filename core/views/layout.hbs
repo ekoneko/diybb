@@ -9,36 +9,41 @@
     </head>
     <body>
         <header>
-            <a href="{{siteurl}}" class="logo">
+            <a href="{{site.url}}" class="logo">
                 <img src="/images/logo.png" alt="" />
             </a>
             <div class="account">
-                <!--
-                <a href="/login">{{__ 'Login'}}</a> |
-                <a href="/register">{{__ 'Register'}}</a>
-                -->
-                <div id="message" class="message">3</div>
+                {{#if user}}
+                <div id="message" class="message"></div>
                 <div id="message-dialog" class="message-dialog" style="display:none;">
-                    <div class="count">{{__ '%d Message' 3}}</div>
+                    <div class="count"></div>
                     <ul>
                         
                     </ul>
                     <script id="message-template" type="text/template">
-                        <li><a href="/message/${id}">${title}</a></li>
+                        <li><a href="/message/${id}" target="_blank">${title}</a></li>
                     </script>
-                    <div class="view-all"><a  href="/message">{{__ 'See all'}}</a></div>
+                    <div class="view-all"><a target="_blank" href="/message/list">{{__ 'See all'}}</a></div>
                 </div>
-                <a class="avatar" href="/user/{{user 'id'}}"><img src="{{user 'avatar'}}" width="28" height="28" /></a>
+                <a class="avatar" href="/user/{{user.id}}"><img src="/user/avatar/{{user.id}}" width="28" height="28" /></a>
+                {{else}}
+                <a href="/login">{{__ 'Login'}}</a> |
+                <a href="/register">{{__ 'Register'}}</a>
+                {{/if}}
             </div>
         </header>
         {{{body}}}
-        {{#script}}
-        <script src="/libraries/jquery/jquery.min.js"></script>
-        <script src="/javascripts/config.js"></script>
-        <script src="/javascripts/common.js"></script>
-        {{/script}}
-        {{{block "pageScript"}}}
-        
         <footer>
-            <div class="powerby">power by <a href="{{siteurl}}">{{sitename}}</a></div>
+            <div class="powerby">power by <a href="{{site.url}}">{{site.name}}</a></div>
         </footer>
+    </body>
+</html>
+<script src="/libraries/jquery/jquery.min.js"></script>
+{{#script}}
+<script src="/libraries/jquery-tmpl/jquery.tmpl.min.js"></script>
+<script src="/javascripts/config.js"></script>
+<script src="/javascripts/common.js"></script>
+{{/script}}
+{{#script}}
+{{{block "pageScript"}}}
+{{/script}}

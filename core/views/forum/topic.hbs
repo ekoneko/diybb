@@ -3,15 +3,14 @@
 {{!-- page css --}}
 {{/content}}
 {{#content "pageScript"}}
-{{#script}}
+<script src="/libraries/tinymce/js/tinymce/tinymce.jquery.min.js"></script>
 <script src="/javascripts/forum/topic.js"></script>
 <script src="/javascripts/forum/comment.js"></script>
-{{/script}}
 {{/content}}
 {{!-- content --}}
 <div class="main">
     <div class="breadcrumbs">
-        <a href="{{siteurl}}">{{sitename}}</a>
+        <a href="{{site.url}}">{{site.name}}</a>
         <i> &gt; </i>
         <a href="/channel/{{channel.id}}">{{channel.name}}</a>
         <i> &gt; </i>

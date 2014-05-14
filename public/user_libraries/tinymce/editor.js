@@ -7,6 +7,7 @@
     jQuery.fn.editor = function (mode) {
         var modeOptions,
             options = {
+                document_base_url: "/",
                 selector : '#' + this.attr('id'),
                 language_url : '/user_libraries/tinymce/i18n/zh-CN.js',
                 skin_url : '/user_libraries/tinymce/skin',
