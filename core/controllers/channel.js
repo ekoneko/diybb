@@ -6,34 +6,34 @@ module.exports = function () {
     var self = this,
         model = require('../lib/model.js');
     
-    /* get */
     this.get = {
         index : function () {
-            var id = this.req.params.id >>> 0,
+            var when = require('when'),
+                id = this.req.params.id >>> 0,
                 page = (this.req.params.page >>> 0) || 1,
                 size = 10,
-                commonConfig = require('../../configs/common.json'),
-                channel,
-                topics;
-            
-            model.load('channel').get(id).then(function (_channel) {
-                channel = _channel;
-                return model.load('topic').list({
+                user,
+                where = {
                     channel_id: id
-                }, {
+                }, options = {
                     limit: size,
                     offset: size * (page - 1),
                     orderby: ['created', 'DESC']
-                });
-            }).then(function(_topics) {
-                topics = _topics;
-                return model.load('topic').count({
-                    channel_id: id
-                });
-            }).then(function (total) {
+                };
+            
+            when.all([
+                model.load('user').get(self.req.signedCookies.user),
+                model.load('channel').get(id),
+                model.load('topic').list(where, options),
+                model.load('topic').count(where)
+            ]).then(function (result) {
+                var channel = result[1],
+                    topics = result[2],
+                    total = result[3];
+                user = result[0];
+
                 self.res.render('forum/channel.hbs', {
-                    siteurl: commonConfig.siteurl,
-                    sitename: commonConfig.sitename,
+                    user: user,
                     topics: topics,
                     channel: channel,
                     page: page,
@@ -42,8 +42,9 @@ module.exports = function () {
                 });
             }).otherwise(function (err) {
                 console.error(err);
-                self.res.send('forum/error', {
-                    message: err
+                self.res.render('forum/error.hbs', {
+                    user: user,
+                    message: (typeof err === 'string') ? err : 'Server error, try again'
                 });
             });
         }

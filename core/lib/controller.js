@@ -1,19 +1,37 @@
+/*jslint node: true */
+/*jslint nomen: true */
+
 /**
  * controller
  */
-/*jslint node: true */
-/*jslint nomen: true */
 
 (function () {
     'use strict';
     var fs = require('fs'),
         path = require('path'),
+        _ = require('underscore'),
+        commonConfig = require(path.join(__dirname, '../../configs/common.json')),
         controllers = [],
         Prototype = function (req, res, next) {
+            var aliasRender;
+
             this.__super = this;
             this.req = req;
             this.res = res;
             this.next = next;
+
+            this.res.aliasRender = this.res.render;
+            this.res.render = function (url, params) {
+                params = params || {};
+                _.extend(params, {
+                    site: {
+                        url: commonConfig.siteurl,
+                        name: commonConfig.sitename
+                    }
+                });
+                return this.aliasRender(url, params);
+            };
+
             /**
              * execAction
              * @param {String} action

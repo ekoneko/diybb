@@ -2,11 +2,12 @@
 module.exports = function () {
     'use strict';
 
+    var self = this;
+
     this.get = {
-        account : function () {
+        account: function () {
             var model = require('../lib/model.js'),
-                id = this.req.params.id >>> 0,
-                self = this;
+                id = this.req.params.id >>> 0;
             if (!id) {
                 return self.next();
             }
@@ -20,22 +21,36 @@ module.exports = function () {
                 self.next();
             });
         },
-        register : function () {
+        register: function () {
 
         },
-        login : function () {
+        login: function () {
             this.res.send('login');
+        },
+        avatar: function () {
+            var userId = self.req.params.id >>> 0,
+                path = require('path'),
+                imageUrl,
+                defaultUrl = path.join(__dirname, '../../public/images/avatar.png');
+
+            if (!userId) {
+                return self.res.sendfile(defaultUrl);
+            }
+            imageUrl = path.join(__dirname, '../../public/images/avatar', userId.toString());
+            self.res.sendfile(imageUrl, function (err) {
+                self.res.sendfile(defaultUrl);
+            });
         }
     };
 
     this.post = {
-        login : function () {
+        login: function () {
             //
         },
-        register : function () {
+        register: function () {
             //
         },
-        edit : function () {
+        edit: function () {
             //
         }
     };

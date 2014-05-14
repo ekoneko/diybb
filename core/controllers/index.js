@@ -10,18 +10,25 @@ module.exports = function () {
         index : function () {
             var _ = require('underscore'),
                 when = require('when'),
-                commonConfig = require('../../configs/common.json'),
-                channelModel = require('../lib/model.js').load('channel');
+                model = require('../lib/model.js'),
+                user;
 
-            channelModel.getFormatList().then(function (channels) {
+            when.all([
+                model.load('user').get(self.req.signedCookies.user),
+                model.load('channel').getFormatList()
+            ]).then(function (result) {
+                var channels = result[1];
+                user = result[0];
                 self.res.render('forum/index.hbs', {
-                    siteurl: commonConfig.siteurl,
-                    sitename: commonConfig.sitename,
+                    user: user,
                     channels: channels
                 });
             }).otherwise(function (err) {
                 console.error(err);
-                self.next();
+                self.res.render('forum/error.hbs', {
+                    user: user,
+                    message: (typeof err === 'string') ? err : 'Server error, try again'
+                });
             });
         }
     };

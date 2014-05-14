@@ -64,14 +64,5 @@
             });
         });
 
-        hbs.registerAsyncHelper('user', function (key, callback) {
-            var user = {
-                id: 1,
-                name: "kaze",
-                avatar: "/images/avatar.png"
-            };
-            callback(user[key]);
-        });
-
     };
 }.call(this));

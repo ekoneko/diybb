@@ -8,66 +8,69 @@ module.exports = function () {
     this.get = {
         index : function () {
             var id = this.req.params.id >>> 0,
-                commonConfig = require('../../configs/common.json'),
+                when = require('when'),
+                user,
                 post;
 
-            model.load('topic').get(id).then(function (_post) {
-                post = _post;
+            when.all([
+                model.load('user').get(self.req.signedCookies.user),
+                model.load('topic').get(id)
+            ]).then(function (result) {
+                user = result[0];
+                post = result[1];
                 if (!post) {
-                    return self.res.render('forum/error.hbs', {
-                        message: 'Content not exist or no permission'
-                    });
+                    throw('Content not exist or no permission');
                 }
                 return model.load('channel').get(post.channel_id);
             }).then(function (channel) {
                 if (!channel) {
-                    return self.res.render('forum/error.hbs', {
-                        message: 'Channel not exist or no permission'
-                    });
+                    throw('Channel not exist or no permission');
                 }
                 self.res.render('forum/topic.hbs', {
-                    siteurl: commonConfig.siteurl,
-                    sitename: commonConfig.sitename,
                     channel: channel,
-                    post: post
+                    post: post,
+                    user: user
                 });
             }).otherwise(function (err) {
                 console.error(err);
-                return self.res.render('forum/error.hbs', {
-                    message: err
+                self.res.render('forum/error.hbs', {
+                    user: user,
+                    message: (typeof err === 'string') ? err : 'Server error, try again'
                 });
             });
         },
         add : function () {
-            var commonConfig = require('../../configs/common.json'),
-                channelId = self.req.params.channel >>> 0;
+            var channelId = self.req.params.channel >>> 0,
+                user;
 
             model.load('user').get(self.req.signedCookies.user).then(function (_user) {
                 if (!_user) {
                     return self.res.redirect('/user/login');
                 }
+                user = _user;
                 return model.load('channel').get(channelId);
             }).then(function (channel) {
                 if (!channel) {
-                    return self.res.render('forum/error.hbs', {
-                        message: 'Channel not exist or no permission'
-                    });
+                    throw('Channel not exist or no permission');
                 }
                 self.res.render('forum/topic-add.hbs', {
-                    siteurl: commonConfig.siteurl,
-                    sitename: commonConfig.sitename,
+                    user: user,
                     channel: channel
                 });
             }).otherwise(function (err) {
                 console.error(err);
-                return self.res.render('forum/error.hbs', {
-                    message: err
+                self.res.render('forum/error.hbs', {
+                    user: user,
+                    message: (typeof err === 'string') ? err : 'Server error, try again'
                 });
             });
         },
         edit : function () {
-            return self.res.render('forum/error.hbs', {
-                message: 'Come soon'
+            model.load('user').get(self.req.signedCookies.user).then(function (user) {
+                return self.res.render('forum/error.hbs', {
+                    user: user,
+                    message: 'Come soon'
+                });
             });
         }
     };

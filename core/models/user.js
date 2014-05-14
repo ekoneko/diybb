@@ -20,6 +20,7 @@ module.exports = function() {
                 self.select({
                     id : id
                 }, {
+                    columns: ['id', 'name', 'email'],
                     limit: 1
                 }, function (err, data) {
                     if (err) {

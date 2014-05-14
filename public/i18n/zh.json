@@ -13,5 +13,8 @@
 	"Submit": "提交",
 	"Reply": "回复",
 	"Message is not intact": "信息不完整",
-	"Account expired, login and try again": "用户已过期, 请登陆后重试"
+	"Account expired, login and try again": "用户已过期, 请登陆后重试",
+	"Server error, try again": "服务器异常, 请重试",
+	"Content forbidden": "内容无法显示",
+	"Come soon": "Come soon"
 }

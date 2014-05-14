@@ -47,8 +47,14 @@ module.exports = function() {
             }, {
                 limit: 1
             }).then(function (post) {
-                data.content = post[0].content;
+                if (post && post[0]) {
+                    data.content = post[0].content;
+                } else {
+                    data.content = require('i18n').__('Content forbidden');
+                }
                 deferred.resolve(data);
+            }).otherwise(function (err) {
+                deferred.reject(err);
             });
         });
         return deferred.promise;
