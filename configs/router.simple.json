@@ -12,8 +12,9 @@
         "/message/:id" : "message/index",
         "/category/ls" : "category/ls",
         "/system/*" : "system/*",
-        "/comment" : "comment/template",
-        "/comment/data" : "comment/data"
+        "/comment" : "post/template",
+        "/comment/item" : "post/templateItem",
+        "/comment/data" : "post/data"
     },
     "post" : {
         "/user/login" : "user/login",
@@ -22,6 +23,6 @@
         "/topic/add" : "topic/add",
         "/topic/edit" : "topic/edit",
         "/message/read" : "message/read",
-        "/comment/post" : "comment/post"
+        "/comment/post" : "post/post"
     }
 }

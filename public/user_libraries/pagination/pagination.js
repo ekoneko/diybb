@@ -6,7 +6,7 @@
         var $this = $(this),
             pageArray = [],
             totalSize,
-            i, li, l, t;
+            i, li, l, t, href;
 
         options = options || {};
         options.current = options.current || ($this.attr('data-current') >>> 0) || 1,
@@ -17,7 +17,7 @@
 
         totalSize = Math.ceil(options.total / options.size);
 
-        if (totalSize === 1) {
+        if (totalSize <= 1) {
             return;
         }
 
@@ -43,7 +43,12 @@
             if (pageArray[i].index === options.current) {
                 li.html(pageArray[i].text);
             } else {
-                $('<a></a>').html(pageArray[i].text).attr('href', options.url + pageArray[i].index).appendTo(li);
+                if (options.url) {
+                    href = options.url + pageArray[i].index;
+                } else {
+                    href = 'javascript:;';
+                }
+                $('<a></a>').html(pageArray[i].text).attr('href', href).appendTo(li);
             }
             $this.append(li);
         }

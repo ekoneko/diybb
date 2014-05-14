@@ -3,24 +3,28 @@ module.exports = function() {
     'use strict';
 
     this.table = 'post';
-    var when = require('when');
+    var when = require('when'),
+        filter;
 
-    this.get = function (id) {
+
+    filter = function (data) {
+        var _ = require('underscore'),
+            fn = require('../lib/function.js');
+
+        _.each(data, function (item) {
+            if (item && item.created) {
+                item.created = fn.smartDate(+new Date(item.created));
+            }
+        });
+    };
+
+    this.list = function (where, options) {
         var deferred = when.defer();
-        this.select({
-            id: id
-        }, {
-            limit: 1
-        }, function (err, data) {
+        this.select(where, options, function (err, data) {
             if (err) {
                 return deferred.reject(err);
             }
-            if (!(data = data[0])) {
-                return deferred.resolve(null);
-            }
-            if (data && typeof data.created === 'number') {
-                data.created = require('../lib/function.js').smartDate(data.created);
-            }
+            filter(data);
             deferred.resolve(data);
         });
         return deferred.promise;

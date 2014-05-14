@@ -3,8 +3,10 @@
 {{!-- page css --}}
 {{/content}}
 {{#content "pageScript"}}
-<script src="/javascripts/forum/comment.js"></script>
+{{#script}}
 <script src="/javascripts/forum/topic.js"></script>
+<script src="/javascripts/forum/comment.js"></script>
+{{/script}}
 {{/content}}
 {{!-- content --}}
 <div class="main">
@@ -24,4 +26,5 @@
         </div>
         <div class="content">{{{post.content}}}</div>
     </div>
+    <div class="comment-panel" data-topic="{{post.id}}"></div>
 </div>

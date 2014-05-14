@@ -13,7 +13,6 @@ module.exports = function () {
             }
             redirectUrl = url.resolve(commonConfig.siteurl, 'system/imageupredirect');
             redirectUrl = encodeURIComponent(redirectUrl);
-            console.log(url.resolve(uploadConfig.apiUrl, '?redirect_url=' + redirectUrl));
             this.res.redirect(301, url.resolve(uploadConfig.apiUrl, '?redirect_url=' + redirectUrl));
         },
         imageupallowed : function () {

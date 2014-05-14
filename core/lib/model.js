@@ -173,7 +173,7 @@
                     var connector = ' AND ';
                     if (typeof item === 'object') {
                         whereString += mysql.format(connector + '?? IN (?)', [key, item]);
-                    } else if (typeof item === 'string') {
+                    } else if (['string', 'number'].indexOf(typeof item) !== -1) {
                         whereString += mysql.format(connector + '?? = ?', [key, item]);
                     }
                 });

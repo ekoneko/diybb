@@ -20,7 +20,7 @@ module.exports = function () {
                     channels: channels
                 });
             }).otherwise(function (err) {
-                console.log(err);
+                console.error(err);
                 self.next();
             });
         }

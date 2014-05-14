@@ -8,3 +8,4 @@ public/stylesheets/src/.sass-cache
 todo.md
 public/javascripts/config.js
 core/controllers/test.js
+core/views/forum/test.hbs

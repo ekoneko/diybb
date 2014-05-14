@@ -24,6 +24,13 @@
                 }
             };
             break;
+        case 'tiny':
+            modeOptions = {
+                toolbar1 : 'bold italic forecolor | link unlink',
+                plugins : 'link textcolor',
+                height : 100
+            };
+            break;
         }
         tinymce.extend(options, modeOptions);
         tinymce.init(options);

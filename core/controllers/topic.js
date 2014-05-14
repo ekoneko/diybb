@@ -80,7 +80,7 @@ module.exports = function () {
             if (!self.req.body.channel_id || !self.req.body.title || !self.req.body.content) {
                 self.res.send({
                     state: false,
-                    error: '信息不完整'
+                    error: 'Message is not intact'
                 });
             }
             model.load('user').get(self.req.signedCookies.user).then(function (_user) {

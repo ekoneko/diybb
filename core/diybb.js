@@ -132,6 +132,6 @@ module.exports = function (callback) {
             callback(app);
         })
         .otherwise(function (err) {
-            console.log(err);
+            console.error(err);
         });
 };

@@ -212,7 +212,7 @@ footer
     padding: 30px 0 20px
     .item
         margin: 0 2.6em
-        padding: 10px 10px 44px
+        padding: 14px 10px 40px
         border-bottom: 1px solid #71747a
         position: relative
 
@@ -234,7 +234,7 @@ footer
             height: 30px
             line-height: 30px
             padding: 0 7px
-            background-color: #4b7ce9
+            background-color: #4F68A0
             border-radius: 4px
         .lastpost
             position: absolute
@@ -297,6 +297,51 @@ footer
         margin: 20px 50px 0
         line-height: 28px
 
+.comment-panel
+    @include panel
+    margin-top: 40px
+    padding-top: 40px
+    background: #575b64
+
+    .comment-list, .comment-add
+        width: 80%
+        margin: 0 auto
+
+    .comment-list
+        .item
+            position: relative
+            min-height: 48px
+            .avatar
+                position: absolute
+                top: 0
+                overflow: hidden
+                border-radius: 8px
+            .user
+                margin-left: 60px
+                color: #fff
+                float: left
+            .time
+                margin-left: 10px
+                float: left
+                font-size: 13px
+                line-height: 16px
+            .content
+                margin: 10px 0 32px 60px
+
+    .comment-add
+        padding-bottom: 48px
+        .button
+            margin-top: 8px
+            float: right
+            width: 60px
+            height: 32px
+            line-height: 32px
+            background-color: #DF796B
+            color: #fff
+            border: none
+            border-radius: 3px
+            cursor: pointer
+
 .topic-add-panel
     @include panel
     background: #575b64
@@ -312,7 +357,7 @@ footer
     .mce-tinymce
         width: 90%
         margin: 0 auto
-    .layout
+    .row
         width: 90%
         margin: 0 auto
         margin-top: 12px
@@ -334,3 +379,4 @@ footer
     @include panel
     background: #575b64
     padding: 30px 0 20px
+    text-align: center

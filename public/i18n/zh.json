@@ -8,7 +8,10 @@
 	"user not found or no permission": "用户不存在或无权访问",
 	"Content not exist or no permission": "内容不存在或无权访问",
 	"Channel not exist or no permission": "频道不存在或无权访问",
-	"Topic nto exis or no permission": "话题不存在或无权访问",
+	"Topic not exis or no permission": "话题不存在或无权访问",
 	"Title": "标题",
-	"Submit": "提交"
+	"Submit": "提交",
+	"Reply": "回复",
+	"Message is not intact": "信息不完整",
+	"Account expired, login and try again": "用户已过期, 请登陆后重试"
 }

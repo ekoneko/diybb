@@ -1598,7 +1598,7 @@ footer {
   padding: 30px 0 20px; }
   .channel-panel .item {
     margin: 0 2.6em;
-    padding: 10px 10px 44px;
+    padding: 14px 10px 40px;
     border-bottom: 1px solid #71747a;
     position: relative; }
     .channel-panel .item a {
@@ -1619,7 +1619,7 @@ footer {
       height: 30px;
       line-height: 30px;
       padding: 0 7px;
-      background-color: #4b7ce9;
+      background-color: #4f68a0;
       border-radius: 4px; }
     .channel-panel .item .lastpost {
       position: absolute;
@@ -1685,6 +1685,50 @@ footer {
     margin: 20px 50px 0;
     line-height: 28px; }
 
+.comment-panel {
+  width: 80%;
+  min-width: 960px;
+  max-width: 1200px;
+  margin: 0 auto;
+  margin-top: 40px;
+  padding-top: 40px;
+  background: #575b64; }
+  .comment-panel .comment-list, .comment-panel .comment-add {
+    width: 80%;
+    margin: 0 auto; }
+  .comment-panel .comment-list .item {
+    position: relative;
+    min-height: 48px; }
+    .comment-panel .comment-list .item .avatar {
+      position: absolute;
+      top: 0;
+      overflow: hidden;
+      border-radius: 8px; }
+    .comment-panel .comment-list .item .user {
+      margin-left: 60px;
+      color: white;
+      float: left; }
+    .comment-panel .comment-list .item .time {
+      margin-left: 10px;
+      float: left;
+      font-size: 13px;
+      line-height: 16px; }
+    .comment-panel .comment-list .item .content {
+      margin: 10px 0 32px 60px; }
+  .comment-panel .comment-add {
+    padding-bottom: 48px; }
+    .comment-panel .comment-add .button {
+      margin-top: 8px;
+      float: right;
+      width: 60px;
+      height: 32px;
+      line-height: 32px;
+      background-color: #df796b;
+      color: white;
+      border: none;
+      border-radius: 3px;
+      cursor: pointer; }
+
 .topic-add-panel {
   width: 80%;
   min-width: 960px;
@@ -1703,11 +1747,11 @@ footer {
   .topic-add-panel .mce-tinymce {
     width: 90%;
     margin: 0 auto; }
-  .topic-add-panel .layout {
+  .topic-add-panel .row {
     width: 90%;
     margin: 0 auto;
     margin-top: 12px; }
-    .topic-add-panel .layout button {
+    .topic-add-panel .row button {
       display: block;
       font-size: 12px;
       width: 60px;
@@ -1727,4 +1771,5 @@ footer {
   max-width: 1200px;
   margin: 0 auto;
   background: #575b64;
-  padding: 30px 0 20px; }
+  padding: 30px 0 20px;
+  text-align: center; }
