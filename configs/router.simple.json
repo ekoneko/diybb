@@ -8,8 +8,8 @@
         "/user/:id" : "user/account",
         "/user/login" : "user/login",
         "/user/register" : "user/register",
-        "/message/*" : "message/*",
         "/message/:id" : "message/index",
+        "/message/*" : "message/*",
         "/category/ls" : "category/ls",
         "/system/*" : "system/*",
         "/comment" : "post/template",
@@ -23,6 +23,8 @@
         "/topic/add" : "topic/add",
         "/topic/edit" : "topic/edit",
         "/message/read" : "message/read",
+        "/message/write" : "message/write",
+        "/message/delete" : "message/rm",
         "/comment/post" : "post/post"
     }
 }

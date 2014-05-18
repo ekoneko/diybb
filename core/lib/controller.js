@@ -13,14 +13,16 @@
         commonConfig = require(path.join(__dirname, '../../configs/common.json')),
         controllers = [],
         Prototype = function (req, res, next) {
-            var aliasRender;
+            var aliasRender,
+                i18n = require('i18n');
 
             this.__super = this;
             this.req = req;
             this.res = res;
             this.next = next;
 
-            this.res.aliasRender = this.res.render;
+            aliasRender = this.res.render;
+            this.res.__ = i18n.__;
             this.res.render = function (url, params) {
                 params = params || {};
                 _.extend(params, {
@@ -29,7 +31,7 @@
                         name: commonConfig.sitename
                     }
                 });
-                return this.aliasRender(url, params);
+                return aliasRender.call(this, url, params);
             };
 
             /**

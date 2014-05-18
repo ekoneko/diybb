@@ -1,0 +1,37 @@
+{{!< ../layout}}
+{{#content "pageStyles"}}
+{{!-- page css --}}
+{{/content}}
+{{#content "pageScript"}}
+<script src="/libraries/tinymce/js/tinymce/tinymce.jquery.min.js"></script>
+<script src="/user_libraries/tinymce/editor.js"></script>
+<script src="/user_libraries/pagination/pagination.js"></script>
+<script src="/javascripts/forum/message.js"></script>
+{{/content}}
+
+<div class="main">
+    <div class="breadcrumbs">
+        <a href="{{site.url}}">{{site.name}}</a>
+        <i> &gt; </i>
+        <a href="javascript:;">{{__ 'Message'}}</a>
+    </div>
+    <div class="message-content-panel">
+        <div class="title">{{message.title}}</div>
+        <div class="from">
+            <img class="avatar" src="/user/avatar/{{message.from_user.id}}" />
+            <a href="{{message.from_user.id}}" target="_blank">{{message.from_user.name}}</a>
+            <div class="created">{{message.created}}</div>
+        </div>
+        <div class="content">{{{message.content}}}</div>
+    </div>
+    <div class="message-reply-panel">
+        <form id="message-post" method="post" action="/">
+            <input type="hidden" name="to_user" value="{{message.from_user.id}}" />
+            <input type="text" class="title" name="title" value="Re:{{message.title}}" />
+            <textarea id="reply" name="content"></textarea>
+            <div class="row">
+                <button type="submit">{{__ 'Reply'}}</button>
+            </div>
+        </form>
+    </div>
+</div>

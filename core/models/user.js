@@ -1,4 +1,5 @@
 /*jslint node: true */
+/*jslint nomen: true */
 module.exports = function() {
     'use strict';
     
@@ -20,7 +21,6 @@ module.exports = function() {
                 self.select({
                     id : id
                 }, {
-                    columns: ['id', 'name', 'email'],
                     limit: 1
                 }, function (err, data) {
                     if (err) {
@@ -34,4 +34,37 @@ module.exports = function() {
         }
         return deferred.promise;
     };
+
+    this.getIn = function (ids) {
+        var self = this,
+            _ = require('underscore'),
+            deferreds = [],
+            deferred = when.defer();
+        ids = _.uniq(ids);
+        _.each(ids, function (id) {
+            deferreds.push(self.get(id));
+        });
+        when.all(deferreds).then(function (result) {
+            var data = {};
+            _.each(ids, function (id, i) {
+                data[id] = result[i];
+            });
+            deferred.resolve(data);
+        }).otherwise(function (err) {
+            deferred.reject(err);
+        });
+        return deferred.promise;
+    };
+
+    this.list = function (where, options) {
+        var self = this,
+            deferred = when.defer();
+        this.select(where, options, function (err, data) {
+            if (err) {
+                deferred.reject(err);
+            }
+            return deferred.resolve(data);
+        });
+        return deferred.promise;
+    }
 };

@@ -9,7 +9,8 @@
      * @return {String}
      */
     this.smartDate = function (timestamp) {
-        var now, date, deltaTime, modify, dateString;
+        var now, date, deltaTime, modify, dateString,
+            i18n = require('i18n');
         if (!timestamp) {
             return '';
         }
@@ -18,20 +19,18 @@
         date = new Date(timestamp);
         deltaTime = date.getTime() - now.getTime();
         modify = deltaTime > 0 ? 'later' : 'ago';
+        modify = i18n.__(modify);
         deltaTime = Math.abs(deltaTime) / 1000;
         if (deltaTime < 60) {
-            return 'a moment ' + modify;
+            return i18n.__('a moment %s', modify);
         }
         if (deltaTime < 3600) {
-            return parseInt(deltaTime / 60, 10) + ' minutes ' + modify;
+            return i18n.__('%d minutes %s', parseInt(deltaTime / 60, 10), modify);
         }
         if (deltaTime < 86400) {
-            return parseInt(deltaTime / 3600, 10) + ' hours ' + modify;
+            return i18n.__('%d hours %s', parseInt(deltaTime / 3600, 10), modify);
         }
         dateString = (date.getMonth() + 1) + '-' + date.getDate() + ' ' + date.getHours() + ':' + date.getMinutes();
-        if (date.getFullYear() === now.getFullYear()) {
-            return dateString;
-        }
         return date.getFullYear() + '-' + dateString;
     };
 }.call(this));

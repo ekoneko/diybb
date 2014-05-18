@@ -13,6 +13,7 @@
         options.total = options.total || ($this.attr('data-total') >>> 0);
         options.size = options.size || ($this.attr('data-size') >>> 0) || 10;
         options.url = options.url || $this.attr('data-url');
+        options.trigger = typeof options.trigger === 'function' ? options.trigger : new Function();
         options.length = 7;
 
         totalSize = Math.ceil(options.total / options.size);
@@ -50,6 +51,11 @@
                 }
                 $('<a></a>').html(pageArray[i].text).attr('href', href).appendTo(li);
             }
+            li.bind('click', {
+                index: pageArray[i].index
+            }, function (event) {
+                options.trigger(event.data.index)
+            });
             $this.append(li);
         }
     };

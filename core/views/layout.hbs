@@ -14,16 +14,16 @@
             </a>
             <div class="account">
                 {{#if user}}
-                <div id="message" class="message"></div>
-                <div id="message-dialog" class="message-dialog" style="display:none;">
-                    <div class="count"></div>
+                <a id="message" class="message" href="javascript:;" target="_blank"></a>
+                <div id="message-dialog" class="dialog message-dialog" style="display:none;">
+                    <div class="count"><span></span> {{__ 'Message'}}</div>
                     <ul>
                         
                     </ul>
                     <script id="message-template" type="text/template">
                         <li><a href="/message/${id}" target="_blank">${title}</a></li>
                     </script>
-                    <div class="view-all"><a target="_blank" href="/message/list">{{__ 'See all'}}</a></div>
+                    <div class="view-all"><a target="_blank" href="/message/all">{{__ 'See all'}}</a></div>
                 </div>
                 <a class="avatar" href="/user/{{user.id}}"><img src="/user/avatar/{{user.id}}" width="28" height="28" /></a>
                 {{else}}

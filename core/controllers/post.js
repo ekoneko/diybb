@@ -63,7 +63,7 @@ module.exports = function () {
                 if (!_user) {
                     return self.res.send({
                         state: false,
-                        error: 'Account expired, login and try again'
+                        error: 'Account expired, log in and try again'
                     });
                 }
                 user = _user;

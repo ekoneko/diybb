@@ -50,19 +50,17 @@
             message.html(data.total || 0);
             if (data.total) {
                 message.addClass('has-new');
+                messageDialog.find('.count > span').html(data.total);
+                message.attr('href', 'javascript:;');
                 $.each(data.data, function (k, item) {
                     $.tmpl(messageTemplate, item).appendTo(messageList);
                 });
+            } else {
+                message.attr('href', '/message/all');
             }
             if (data.total > 0) {
-                message.one('read', function () {
-                    $.post('/message/read', function () {
-                        message.removeClass('has-new');
-                        message.html(0);
-                    });
-                }).bind('click', function () {
+                message.bind('click', function () {
                     messageDialog.trigger('open');
-                    message.trigger('read');
                 });
                 messageDialog.bind('open', function () {
                     if (messageDialog.is(':visible')) {
