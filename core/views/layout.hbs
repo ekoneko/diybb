@@ -25,10 +25,17 @@
                     </script>
                     <div class="view-all"><a target="_blank" href="/message/all">{{__ 'See all'}}</a></div>
                 </div>
-                <a class="avatar" href="/user/{{user.id}}"><img src="/user/avatar/{{user.id}}" width="28" height="28" /></a>
+                <a id="account" class="avatar" href="javascript:;"><img src="/user/avatar/{{user.id}}" width="28" height="28" /></a>
+                <div id="account-dialog" class="dialog account-dialog" style="display:none;">
+                    <ul>
+                        <li><a href="/user/setting"><i class="icon-cog"></i>{{__ 'Setting'}}</a></li>
+                        <li><a href="/user/{{user.id}}"><i class="icon-user"></i>{{__ 'Profile'}}</a></li>
+                        <li><a href="/user/logout"><i class="icon-off"></i>{{__ 'Logout'}}</a></li>
+                    </ul>
+                </div>
                 {{else}}
-                <a href="/login">{{__ 'Login'}}</a> |
-                <a href="/register">{{__ 'Register'}}</a>
+                <a href="/user/login">{{__ 'Login'}}</a> |
+                <a href="/user/register">{{__ 'Register'}}</a>
                 {{/if}}
             </div>
         </header>

@@ -35,7 +35,20 @@
                 return dateString;
             }
             return date.getFullYear() + '-' + dateString;
-        }
+        },
+        countCharacters: function (str) {
+            var totalCount = 0;
+            for (var i=0; i<str.length; i++)
+            {
+                var c = str.charCodeAt(i);
+                if ((c >= 0x0001 && c <= 0x007e) || (0xff60<=c && c<=0xff9f)) {
+                     totalCount++;
+                } else {
+                     totalCount+=2;
+                }
+             }
+            return totalCount;
+        } 
     };
 
     /**
@@ -46,6 +59,9 @@
             messageDialog = $('#message-dialog'),
             messageList = messageDialog.find('ul'),
             messageTemplate = $('#message-template').html();
+        if (!message.length) {
+            return;
+        }
         $.getJSON('/message/new', function (data) {
             message.html(data.total || 0);
             if (data.total) {
@@ -83,4 +99,25 @@
         });
     };
     new Message();
+
+    /**
+     * account
+     */
+    var Account = function () {
+        var account = $('#account'),
+            accountDialog = $('#account-dialog');
+        account.bind('click', function () {
+            accountDialog.show();
+            setTimeout(function () {
+                $(window).bind('click.account', function (event) {
+                    if (event.target.id !== 'account-dialog' &&
+                            $(event.target).parents('#account-dialog').length === 0) {
+                        accountDialog.hide();
+                        $(window).unbind('.account');
+                    }
+                });
+            }, 1);
+        });
+    };
+    new Account();
 }());

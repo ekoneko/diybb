@@ -66,5 +66,59 @@ module.exports = function() {
             return deferred.resolve(data);
         });
         return deferred.promise;
+    };
+
+    this.login = function (username, password) {
+        var self = this,
+            deferred = when.defer(),
+            where = {};
+
+        if (username.indexOf('@') !== -1) {
+            where.email = username;
+        } else {
+            where.name = username;
+        }
+        self.list(where, {
+            limit: 1
+        }).then(function (data) {
+            if (!data || data.length === 0) {
+                return deferred.resolve();
+            }
+            console.log(data[0]);
+            if (require('MD5')(password + data[0].salt) === data[0].password) {
+                return deferred.resolve(data[0]);
+            } else {
+                return deferred.resolve();
+            }
+        }).otherwise(function (err) {
+            deferred.reject(err);
+        });
+        return deferred.promise;
+    };
+
+    this.add = function (data) {
+        var self = this,
+            deferred = when.defer(),
+            salt = Math.random().toString(36).substr(2,6);
+        data.password = require('MD5')(data.password + salt);
+        self.insert(data, function (err, result) {
+            if (err) {
+                return deferred.reject(err);
+            }
+            deferred.resolve(result);
+        });
+        return deferred.promise;
+    };
+
+    this.edit = function (where, data, options) {
+        var self = this,
+            deferred = when.defer();
+        self.update(where, data, options, function (err) {
+            if (err) {
+                return deferred.reject(err);
+            }
+            deferred.resolve();
+        });
+        return deferred.promise;
     }
 };

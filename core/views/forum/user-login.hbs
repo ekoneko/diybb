@@ -1,0 +1,31 @@
+{{!< ../layout}}
+{{#content "pageStyles"}}
+{{!-- page css --}}
+{{/content}}
+{{#content "pageScript"}}
+<script src="/libraries/js-md5/js/md5.min.js"></script>
+<script src="/javascripts/forum/user-login.js"></script>
+{{/content}}
+
+<div class="main">
+    <div class="breadcrumbs">
+        <a href="{{site.url}}">{{site.name}}</a>
+        <i> &gt; </i>
+        <a href="javascript:;">{{__ 'Login'}}</a>
+    </div>
+    <div class="user-panel">
+        <form method="post" action="/user/login">
+            <div class="row">
+                <label for="username">{{__ 'Username'}}</label>
+                <input id="username" class="txt" type="text" name="username" value="" placeholder="{{__ 'Nickname or Email'}}" required="required" />
+            </div>
+            <div class="row">
+                <label for="password">{{__ 'Password'}}</label>
+                <input id="password" class="txt" type="password" name="password" value="" required="required" />
+            </div>
+            <div class="row">
+                <button type="submit">{{__ 'Login'}}</button>
+            </div>
+        </form>
+    </div>
+</div>

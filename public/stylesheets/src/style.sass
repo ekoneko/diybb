@@ -105,6 +105,18 @@ header
             ul li a
                 color: #666
 
+        .account-dialog
+            width: 100px
+            top: 50px
+            right: -16px
+            ul li a
+                color: #666
+                [class^="icon-"]
+                    font-size: 100%
+                    float: normal
+        .account-dialog:before
+            right: 24px
+
 footer
     left: 0
     bottom: 0
@@ -447,8 +459,49 @@ footer
 .message-reply-panel
     margin-top: 40px
 
+.user-panel
+    @include panel
+    background: #575b64
+    padding: 40px 0
+    form
+        width: 300px
+        margin: 0 auto
+    .row
+        margin: 0 auto
+        width: 80%
+        position: relative
+        label
+            font-size: 13px
+            display: block
+            padding: 8px 0 4px 4px
+        .txt
+            width: 240px
+            line-height: 28px
+            text-indent: 4px
+        em
+            position: absolute
+            top: 32px
+            left: 260px
+            width: 100%
+            color: #FF9191
+
+    button
+        margin-top: 8px
+        width: 60px
+        height: 32px
+        line-height: 32px
+        background-color: #DF796B
+        color: #fff
+        border: none
+        border-radius: 3px
+        cursor: pointer
+
 .error-panel
     @include panel
     background: #575b64
     padding: 30px 0 20px
     text-align: center
+    p
+        line-height: 22px
+    a
+        color: #fff

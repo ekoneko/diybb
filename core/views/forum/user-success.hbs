@@ -1,0 +1,31 @@
+{{!< ../layout}}
+{{#content "pageStyles"}}
+{{!-- page css --}}
+{{/content}}
+{{#content "pageScript"}}
+
+{{/content}}
+
+<div class="main">
+    <div class="breadcrumbs">
+        <a href="{{site.url}}">{{site.name}}</a>
+        <i> &gt; </i>
+        <a href="javascript:;">{{__ 'Login'}}</a>
+    </div>
+    <div class="error-panel">
+        <p>{{__ action}} {{__ 'success, jump to home page %d second later' 3}}</p>
+        <p>
+            [<a href="/">{{__ 'Jump now'}}</a>]
+            {{#if register}}
+            &nbsp;
+            [<a href="/user/setting">{{__ 'Add account info'}}</a>]
+            {{/if}}
+        </p>
+    </div>
+</div>
+
+<script>
+    setTimeout(function () {
+        location.href = '{{site.url}}';
+    }, 3000);
+</script>

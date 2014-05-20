@@ -54,7 +54,11 @@ module.exports = function () {
             model.load('user').get(self.req.signedCookies.user).then(function (user) {
                 var where, options;
                 if (!user) {
-                    throw('Account expired, log in and try again');
+                    return self.res.send({
+                        state: true,
+                        total: 0,
+                        data: []
+                    });
                 }
                 where = {
                     to_user: user.id,
@@ -202,7 +206,7 @@ module.exports = function () {
             if (!toUser || !title || !content) {
                 return self.res.send({
                     state: false,
-                    error: self.res.__('Message is not intact')
+                    error: self.res.__('Form is incomplete')
                 });
             }
             model.load('user').get(toUser).then(function (user) {
