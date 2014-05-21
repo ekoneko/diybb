@@ -1,0 +1,19 @@
+{{!< ../layout}}
+{{#content "pageStyles"}}
+{{!-- page css --}}
+{{/content}}
+{{#content "pageScript"}}
+<script src="/javascripts/forum/user-setting.js"></script>
+{{/content}}
+
+<div class="main">
+    <div class="breadcrumbs">
+        <a href="{{site.url}}">{{site.name}}</a>
+        <i> &gt; </i>
+        <a href="javascript:;">{{__ 'User setting'}}</a>
+    </div>
+    <div class="user-panel">
+        <form method="post" action="/user/setting">
+        </form>
+    </div>
+</div>

@@ -3,14 +3,8 @@
 {{!-- page css --}}
 {{/content}}
 {{#content "pageScript"}}
-<script src="/libraries/jquery-i18n/jquery.i18n.min.js"></script>
 <script src="/libraries/js-md5/js/md5.min.js"></script>
 <script src="/javascripts/forum/user-register.js"></script>
-<script>
-    $.getJSON('/i18n/{{__ 'lang'}}.json', function (data) {
-        $.i18n.load(data);
-    });
-</script>
 {{/content}}
 
 <div class="main">

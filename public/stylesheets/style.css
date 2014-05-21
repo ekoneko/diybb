@@ -1866,6 +1866,9 @@ footer {
   .user-panel form {
     width: 300px;
     margin: 0 auto; }
+  .user-panel hr {
+    margin: 20px 10px;
+    border-color: #cccccc; }
   .user-panel .row {
     margin: 0 auto;
     width: 80%;
@@ -1884,6 +1887,14 @@ footer {
       left: 260px;
       width: 100%;
       color: #ff9191; }
+    .user-panel .row .info {
+      position: absolute;
+      top: 0;
+      left: 100px; }
+      .user-panel .row .info li {
+        line-height: 22px; }
+  .user-panel .center {
+    text-align: center; }
   .user-panel button {
     margin-top: 8px;
     width: 60px;

@@ -11,14 +11,23 @@ module.exports = function () {
             if (!id) {
                 return self.next();
             }
-            model.load('user').get(id).then(function (data) {
+             require('when').all([
+                model.load('user').get(self.req.signedCookies.user),
+                model.load('user').get(id)
+            ]).then(function (result) {
+                var user = result[0],
+                    data = result[1];
+
                 if (data) {
-                    self.res.render('forum/user-profile.hbs');
+                    self.res.render('forum/user-profile.hbs', {
+                        user: user,
+                        data: data
+                    });
                 } else {
                     return self.res.render('forum/error.hbs', {
-                        message: 'user not found or no permission'
+                        user: user,
+                        message: 'user not found or no permission',
                     });
-                    self.res.send('user not exists');
                 }
             }).otherwise(function (err) {
                 self.next();
@@ -55,8 +64,19 @@ module.exports = function () {
             this.res.render('forum/user-login.hbs');
         },
         setting: function () {
-            // TODO
-            this.res.send('setting');
+            var model = require('../lib/model.js');
+            model.load('user').get(self.req.signedCookies.user).then(function (user) {
+                if (!user) {
+                    throw('Account expired, log in and try again');
+                }
+                self.res.render('forum/user-setting.hbs', {
+                    user: user
+                });
+            }).otherwise(function (err) {
+                return self.res.render('forum/error.hbs', {
+                    message: 'Account expired, log in and try again'
+                });
+            });
         },
         logout: function () {
             this.res.clearCookie('user', {
@@ -176,8 +196,19 @@ module.exports = function () {
             });
 
         },
-        edit: function () {
-            //
+        setting: function () {
+            var model = require('../lib/model.js');
+            model.load('user').get(self.req.signedCookies.user).then(function (user) {
+                if (!user) {
+                    throw('Account expired, log in and try again');
+                }
+                // TODO: save
+            }).otherwise(function (err) {
+                self.res.send({
+                    state: false,
+                    error: (typeof err === 'string') ? self.res.__(err) : 'Server error, try again'
+                });
+            });
         }
     };
 };

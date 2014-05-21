@@ -48,5 +48,7 @@
 	"Length of password is not fit": "密码长度不合适",
 	"Email format error": "邮箱格式错误",
 	" has been exists": "已存在",
-	"Email or username has been exists": "邮箱或用户名已存在"
+	"Email or username has been exists": "邮箱或用户名已存在",
+	"Perfect later...": "Perfect later...",
+	"User setting": "用户设置"
 }

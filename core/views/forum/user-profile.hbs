@@ -11,8 +11,23 @@
     <div class="breadcrumbs">
         <a href="{{site.url}}">{{site.name}}</a>
         <i> &gt; </i>
-        <a href="javascript:;">{{__ 'Register'}}</a>
+        <a href="javascript:;">{{__ 'Profile'}}</a>
     </div>
     <div class="user-panel">
+        <div class="row">
+            <div class="avatar">
+                <img src="/user/avatar/{{data.id}}" width="60" height="60" />
+            </div>
+            <div class="info">
+                <ul>
+                    <li>{{data.name}}</li>
+                    <li>id: {{data.id}}</li>
+                </ul>
+            </div>
+        </div>
+        <hr />
+        <div class="row center">
+            {{__ 'Perfect later...'}}
+        </div>
     </div>
 </div>
