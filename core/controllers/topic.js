@@ -115,7 +115,7 @@ module.exports = function () {
                 console.error(err);
                 self.res.send({
                     state : false,
-                    error : err
+                    error : typeof err === 'string' ? err : self.res.__('Server error, try again')
                 });
             });
 

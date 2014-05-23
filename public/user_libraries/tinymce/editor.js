@@ -7,10 +7,10 @@
     jQuery.fn.editor = function (mode) {
         var modeOptions,
             options = {
-                document_base_url: "/",
                 selector : '#' + this.attr('id'),
                 language_url : '/user_libraries/tinymce/i18n/zh-CN.js',
                 skin_url : '/user_libraries/tinymce/skin',
+                theme_url : '/libraries/tinymce/js/tinymce/themes/modern/theme.min.js',
                 menubar : false,
                 height : 400
             };

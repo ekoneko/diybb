@@ -4,6 +4,8 @@
     $(function () {
         var editor = $('#editor'),
             submitting = false;
+
+        tinyMCE.baseURL = '/libraries/tinymce/js/tinymce';
         editor.editor();
 
         $('#topic-add').bind('submit', function (event) {

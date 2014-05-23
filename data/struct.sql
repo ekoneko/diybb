@@ -80,7 +80,7 @@ CREATE TABLE `topic` (
   `user_name` varchar(80) NOT NULL,
   `channel_id` int(10) unsigned NOT NULL,
   `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `lastpost_user` varchar(110) NOT NULL,
+  `lastpost_user` varchar(110) NOT NULL DEFAULT '',
   `lastpost_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `state` enum('enable','disable') NOT NULL DEFAULT 'enable',
   `count` int(8) unsigned NOT NULL DEFAULT '0',
