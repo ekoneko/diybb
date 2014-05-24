@@ -84,7 +84,6 @@ module.exports = function() {
             if (!data || data.length === 0) {
                 return deferred.resolve();
             }
-            console.log(data[0]);
             if (require('MD5')(password + data[0].salt) === data[0].password) {
                 return deferred.resolve(data[0]);
             } else {
@@ -99,8 +98,8 @@ module.exports = function() {
     this.add = function (data) {
         var self = this,
             deferred = when.defer(),
-            salt = Math.random().toString(36).substr(2,6);
-        data.password = require('MD5')(data.password + salt);
+            data.salt = Math.random().toString(36).substr(2,6);
+        data.password = require('MD5')(data.password + data.salt);
         self.insert(data, function (err, result) {
             if (err) {
                 return deferred.reject(err);
