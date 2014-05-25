@@ -29,7 +29,7 @@
                 return;
             }
             data.password = md5(data.password);
-            $('#password').val(md5(data.password));
+            $('#password').val(data.password);
         });
 
         $('#email').bind('change', function () {
