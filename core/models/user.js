@@ -97,8 +97,8 @@ module.exports = function() {
 
     this.add = function (data) {
         var self = this,
-            deferred = when.defer(),
-            data.salt = Math.random().toString(36).substr(2,6);
+            deferred = when.defer();
+        data.salt = Math.random().toString(36).substr(2,6);
         data.password = require('MD5')(data.password + data.salt);
         self.insert(data, function (err, result) {
             if (err) {
