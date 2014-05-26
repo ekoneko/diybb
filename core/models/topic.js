@@ -17,6 +17,14 @@ module.exports = function() {
             if (item && item.lastpost_time) {
                 item.lastpost_time = fn.smartDate(+new Date(item.lastpost_time));
             }
+            if (item && item.lastpost_user) {
+                item.lastpost_user = JSON.parse(item.lastpost_user);
+            } else {
+                item.lastpost_user = {
+                    id: item.user_id,
+                    name: item.user_name
+                }
+            }
         });
     };
 
