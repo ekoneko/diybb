@@ -20,7 +20,7 @@ module.exports = function () {
                 if (err) {
                     return deferred.reject(err);
                 }
-                redis.set('category', JSON.stringify(data));
+                redis.set('category', JSON.stringify(data), 120);
                 deferred.resolve(data);
             });
         });

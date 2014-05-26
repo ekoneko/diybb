@@ -25,11 +25,20 @@
         return __prefix;
     };
 
-    this.set = function (key, value, callback) {
-        return __client.set(__prefix + key, value, callback);
+    this.set = function (key, value, expires, callback) {
+        var ret;
+        ret = __client.set(__prefix + key, value, callback);
+        if (ret && expires) {
+            __client.expire(__prefix + key, expires);
+        }
+        return ret;
     };
 
     this.get = function (key, callback) {
         return __client.get(__prefix + key, callback);
     };
+
+    this.remove = function (key) {
+        return __client.expire(__prefix + key, -1);
+    }
 }.call(this));

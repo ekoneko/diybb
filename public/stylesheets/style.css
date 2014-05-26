@@ -1434,6 +1434,9 @@ a .icon-rotate-90:before, a .icon-rotate-180:before, a .icon-rotate-270:before, 
   -ms-transform: rotate(45deg);
   transform: rotate(45deg); }
 
+textarea.editor {
+  display: none !important; }
+
 body {
   background-color: #252932; }
 

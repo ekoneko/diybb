@@ -27,7 +27,7 @@ module.exports = function() {
                         return deferred.reject(err);
                     }
                     data = data[0];
-                    redis.set('user:' + id, JSON.stringify(data));
+                    redis.set('user:' + id, JSON.stringify(data), 60);
                     deferred.resolve(data);
                 });
             });

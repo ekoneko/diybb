@@ -20,7 +20,7 @@ module.exports = function () {
                 if (err) {
                     return deferred.reject(err);
                 }
-                redis.set('channel', JSON.stringify(data));
+                redis.set('channel', JSON.stringify(data), 30);
                 deferred.resolve(data);
             });
         });
@@ -63,6 +63,7 @@ module.exports = function () {
                 item.channels = [];
             });
             _.each(channels, function (item) {
+                console.log(item);
                 categorys[categorysIndex[item.category_id]].channels.push(item);
             });
             deferred.resolve(categorys);
