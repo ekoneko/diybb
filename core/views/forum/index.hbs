@@ -6,7 +6,7 @@
 <script src="/javascripts/forum/index.js"></script>
 {{/content}}
 
-<div class="main">
+<div id="main" class="main">
     {{!-- category --}}
     {{#each channels}}
     <div class="forum-category">
@@ -17,18 +17,18 @@
             <div class="item" style="background:{{bcolor}};">
                 <a class="name" href="/channel/{{id}}">{{name}}</a>
                 <div class="count">{{count}}</div>
-                <div>
+                <div class="icon-panel">
                     <div class="icon"></div>
                 </div>
-                <div class="lastpost" style="display:none;">
+                <div class="lastpost-panel">
                     <a class="lastpost-title" href="/topic/{{lastpost.id}}">
                         {{lastpost.title}}
                     </a>
-                    <a class="lastpost-author" href="/user/{{channel.lastpost.author.id}}">
-                        {{lastpost.author.name}}
+                    <a class="lastpost-author" href="/user/{{lastpost_user.id}}">
+                        {{lastpost_user.name}}
                     </a>
                     <div class="lastpost-time">
-                        {{lasttime}}
+                        {{lastpost_time}}
                     </div>
                 </div>
             </div>

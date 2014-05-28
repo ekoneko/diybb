@@ -11,19 +11,19 @@ module.exports = function() {
             fn = require('../lib/function.js');
 
         _.each(data, function (item) {
-            if (item && item.created) {
+            if (item.created) {
                 item.created = fn.smartDate(+new Date(item.created));
             }
-            if (item && item.lastpost_time) {
+            if (item.lastpost_time) {
                 item.lastpost_time = fn.smartDate(+new Date(item.lastpost_time));
             }
-            if (item && item.lastpost_user) {
+            if (item.lastpost_user) {
                 item.lastpost_user = JSON.parse(item.lastpost_user);
             } else {
                 item.lastpost_user = {
                     id: item.user_id,
                     name: item.user_name
-                }
+                };
             }
         });
     };
@@ -94,7 +94,7 @@ module.exports = function() {
             deferred.resolve(data[0]['count(*)']);
         });
         return deferred.promise;
-    }
+    };
 
     this.add = function (data) {
         var deferred = when.defer();

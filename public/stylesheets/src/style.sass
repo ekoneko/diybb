@@ -19,6 +19,33 @@
     max-width: 1200px
     margin: 0 auto
 
+// animation
+@keyframes moveup
+    from
+        margin-top: 100px
+    to
+        margin-top: 0
+@-webkit-keyframes moveup
+    from
+        margin-top: 100px
+    to
+        margin-top: 0
+@keyframes moveright
+    from
+        margin-left: 0
+    to
+        margin-left: 400px
+        margin-right: -400px
+        display: none
+@-webkit-keyframes moveright
+    from
+        margin-left: 0
+    to
+        margin-left: 400px
+        margin-right: -400px
+        display: none
+// end animation
+
 .clear
     clear: both
 
@@ -195,6 +222,7 @@ footer
         float: left
         margin: 0 11px 32px
         position: relative
+        overflow: hidden
         a
             color: #fff
         .name
@@ -221,8 +249,25 @@ footer
             top: 118px
         .lastpost-time
             position: absolute
-            right: 5%
+            right: 15%
             top: 118px
+            font-size: 14px
+        .icon-panel
+            display: block
+        .lastpost-panel
+            display: none
+    .item.enter
+        .icon-panel
+            display: none
+        .lastpost-panel
+            position: relative
+            display: block
+            animation: moveup 0.3s
+            -webkit-animation: moveup 0.3s
+    .item.leave
+        .lastpost-panel
+            animation: moveright 0.32s
+            -webkit-animation: moveright 0.32s
 
 .channel-panel
     @include panel

@@ -4,7 +4,24 @@ module.exports = function () {
 
     this.table = 'channel';
     var when = require('when'),
-        redis = require('../lib/redis.js');
+        redis = require('../lib/redis.js'),
+        filter;
+
+    filter = function (data) {
+        var _ = require('underscore'),
+            fn = require('../lib/function.js');
+        _.each(data, function (item) {
+            if (item.lastpost) {
+                item.lastpost = JSON.parse(item.lastpost);
+            }
+            if (item.lastpost_user) {
+                item.lastpost_user = JSON.parse(item.lastpost_user);
+            }
+            if (item.lastpost_time) {
+                item.lastpost_time = fn.smartDate(item.lastpost_time);
+            }
+        });
+    }
 
     this.getAll = function () {
         var self = this,
@@ -20,6 +37,7 @@ module.exports = function () {
                 if (err) {
                     return deferred.reject(err);
                 }
+                filter(data);
                 redis.set('channel', JSON.stringify(data), 30);
                 deferred.resolve(data);
             });
@@ -63,7 +81,6 @@ module.exports = function () {
                 item.channels = [];
             });
             _.each(channels, function (item) {
-                console.log(item);
                 categorys[categorysIndex[item.category_id]].channels.push(item);
             });
             deferred.resolve(categorys);

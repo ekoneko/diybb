@@ -1404,6 +1404,34 @@ a .icon-rotate-90:before, a .icon-rotate-180:before, a .icon-rotate-270:before, 
 .icon-renren:before {
   content: "\f18b"; }
 
+@keyframes moveup {
+  from {
+    margin-top: 100px; }
+
+  to {
+    margin-top: 0; } }
+@-webkit-keyframes moveup {
+  from {
+    margin-top: 100px; }
+
+  to {
+    margin-top: 0; } }
+@keyframes moveright {
+  from {
+    margin-left: 0; }
+
+  to {
+    margin-left: 400px;
+    margin-right: -400px;
+    display: none; } }
+@-webkit-keyframes moveright {
+  from {
+    margin-left: 0; }
+
+  to {
+    margin-left: 400px;
+    margin-right: -400px;
+    display: none; } }
 .clear {
   clear: both; }
 
@@ -1578,7 +1606,8 @@ footer {
     height: 160px;
     float: left;
     margin: 0 11px 32px;
-    position: relative; }
+    position: relative;
+    overflow: hidden; }
     .forum-channel .item a {
       color: white; }
     .forum-channel .item .name {
@@ -1605,8 +1634,23 @@ footer {
       top: 118px; }
     .forum-channel .item .lastpost-time {
       position: absolute;
-      right: 5%;
-      top: 118px; }
+      right: 15%;
+      top: 118px;
+      font-size: 14px; }
+    .forum-channel .item .icon-panel {
+      display: block; }
+    .forum-channel .item .lastpost-panel {
+      display: none; }
+  .forum-channel .item.enter .icon-panel {
+    display: none; }
+  .forum-channel .item.enter .lastpost-panel {
+    position: relative;
+    display: block;
+    animation: moveup 0.3s;
+    -webkit-animation: moveup 0.3s; }
+  .forum-channel .item.leave .lastpost-panel {
+    animation: moveright 0.32s;
+    -webkit-animation: moveright 0.32s; }
 
 .channel-panel {
   width: 80%;
