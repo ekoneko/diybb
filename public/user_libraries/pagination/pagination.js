@@ -43,7 +43,11 @@
             li = $('<li class="page"></li>');
             if (pageArray[i].index === options.current) {
                 li.html(pageArray[i].text);
+                if (pageArray[i].text >>> 0 > 0) {
+                    li.addClass('active');
+                }
             } else {
+                li.removeClass('active');
                 if (options.url) {
                     href = options.url + pageArray[i].index;
                 } else {

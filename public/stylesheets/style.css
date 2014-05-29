@@ -1580,6 +1580,8 @@ footer {
     line-height: 30px;
     background-color: #c2c2c2;
     cursor: pointer; }
+  .pagination .page.active {
+    background-color: #ffb0b0; }
   .pagination .page:hover {
     background-color: #ffb0b0; }
 
