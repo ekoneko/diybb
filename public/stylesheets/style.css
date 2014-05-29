@@ -1749,6 +1749,8 @@ footer {
   .topic-panel .content {
     margin: 20px 50px 0;
     line-height: 28px; }
+    .topic-panel .content img {
+      max-width: 100% !important; }
 
 .comment-panel {
   width: 80%;
