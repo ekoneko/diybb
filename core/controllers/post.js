@@ -13,30 +13,36 @@ module.exports = function () {
         },
         data: function () {
             var model = require('../lib/model.js'),
+                when = require('when'),
                 topicId = self.req.query.topic >>> 0,
                 page = self.req.query.page >>> 0,
-                size;
+                size, where;
 
             if (!topicId) {
                 return self.res.send({
                     state: false,
-                    error: 'Topic not exis or no permission'
+                    error: self.res.__('Topic not exis or no permission')
                 });
             }
             page = page || 1;
             size = 5;
 
-            model.load('post').list({
+            where = {
                 topic_id: topicId,
                 first: 0
-            }, {
-                limit: size,
-                offset: (page - 1) * size,
-                orderby: ['created', 'DESC']
-            }).then(function (posts) {
+            };
+            when.all([
+                model.load('post').list(where, {
+                    limit: size,
+                    offset: (page - 1) * size,
+                    orderby: ['created', 'DESC']
+                }),
+                model.load('post').count(where)
+            ]).then(function (result) {
                 self.res.send({
                     state: true,
-                    data: posts
+                    data: result[0],
+                    total: result[1]
                 });
             }).otherwise(function (err) {
                 self.res.send({

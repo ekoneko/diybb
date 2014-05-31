@@ -30,6 +30,20 @@ module.exports = function() {
         return deferred.promise;
     }
 
+    this.count = function (where) {
+        var deferred = when.defer();
+        this.select(where, {
+            columns: ['count(*)'],
+            limit: 1
+        }, function (err, data) {
+            if (err) {
+                return deferred.reject(err);
+            }
+            deferred.resolve(data[0]['count(*)']);
+        });
+        return deferred.promise;
+    };
+
     this.add = function (data) {
         var xss = require('node-xss').clean,
             deferred = when.defer();

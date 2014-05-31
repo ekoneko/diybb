@@ -2,7 +2,8 @@
 (function ($) {
     'use strict';
 
-    var ready, panelTemplate, itemTemplate, comment;
+    var ready, panelTemplate, itemTemplate, comment,
+        SIZE = 5;
 
     /**
      * @param {Object} options {
@@ -11,7 +12,7 @@
      * }
      */
     comment = function (options) {
-        var element;
+        var element, pagination;
 
         element = $(panelTemplate).appendTo(options.element.empty());
         element.find('[name="topic_id"]').val(options.topic);
@@ -19,7 +20,12 @@
             'id',
             'editor'+ Math.round(Math.random()*10000)
         ).editor('tiny');
-        element.find('.pagination').pagination();
+        pagination = element.find('.pagination');
+        pagination.pagination({
+            trigger: function (page) {
+                options.element.trigger('load', page);
+            }
+        });
 
         element.find('form').bind('submit', {
             element: element.eq(0)
@@ -55,13 +61,20 @@
             var panel = $(this);
             $.get('/comment/data', {
                 topic: event.data.topic,
-                page: page
+                page: page,
+                size: SIZE
             }).success(function (res) {
                 var list = panel.find('.comment-list');
                 list.children('.item').remove();
                 if (!res.state) {
+                    alert(res.error);
                     return;
                 }
+                pagination.trigger('update', {
+                    current: page,
+                    total: res.total || 100,
+                    size: SIZE
+                });
                 for (var item, i = res.data.length; i > 0; i--) {
                     item = res.data[i - 1];
                     $.tmpl(itemTemplate, res.data[i - 1])
@@ -91,9 +104,9 @@
     $.when(
         $.ajax('/comment'),
         $.ajax('/comment/item'),
-        $.getScript('/user_libraries/pagination/pagination.js'),
-        $.getScript('/user_libraries/tinymce/editor.js'),
-        $.getScript('/libraries/tinymce/js/tinymce/tinymce.jquery.min.js')
+        $.ajax('/user_libraries/pagination/pagination.js'),
+        $.ajax('/user_libraries/tinymce/editor.js'),
+        $.ajax('/libraries/tinymce/js/tinymce/tinymce.jquery.min.js')
     ).done(function () {
         if (arguments[0][1] === 'success' && arguments[1][1] === 'success') {
             tinyMCE.baseURL = '/libraries/tinymce/js/tinymce';

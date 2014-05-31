@@ -3,10 +3,7 @@
     'use strict';
 
     $.fn.pagination = function (options) {
-        var $this = $(this),
-            pageArray = [],
-            totalSize,
-            i, li, l, t, href;
+        var $this = $(this), page;
 
         options = options || {};
         options.current = options.current || ($this.attr('data-current') >>> 0) || 1,
@@ -16,51 +13,65 @@
         options.trigger = typeof options.trigger === 'function' ? options.trigger : new Function();
         options.length = 7;
 
-        totalSize = Math.ceil(options.total / options.size);
+        page = function () {
+            var pageArray = [],
+                totalSize,
+                i, li, l, t, href;
 
-        if (totalSize <= 1) {
-            return;
-        }
+            $this.empty();
 
-        pageArray.push({
-            index: 1,
-            text: '<i class="icon-double-angle-left"></i>'
-        });
-        for (i = Math.max(1, options.current - (options.length - 3) / 2), t = options.length - 2;
-                t > 0 && i <= totalSize;
-                t--, i++) {
-            pageArray.push({
-                index: i,
-                text: i
-            });
-        }
-        pageArray.push({
-            index: totalSize,
-            text: '<i class="icon-double-angle-right"></i>'
-        });
-
-        for (li, i = 0, l = pageArray.length; i < l; i++) {
-            li = $('<li class="page"></li>');
-            if (pageArray[i].index === options.current) {
-                li.html(pageArray[i].text);
-                if (pageArray[i].text >>> 0 > 0) {
-                    li.addClass('active');
-                }
-            } else {
-                li.removeClass('active');
-                if (options.url) {
-                    href = options.url + pageArray[i].index;
-                } else {
-                    href = 'javascript:;';
-                }
-                $('<a></a>').html(pageArray[i].text).attr('href', href).appendTo(li);
+            totalSize = Math.ceil(options.total / options.size);
+            if (totalSize <= 1) {
+                return;
             }
-            li.bind('click', {
-                index: pageArray[i].index
-            }, function (event) {
-                options.trigger(event.data.index)
+
+            pageArray.push({
+                index: 1,
+                text: '<i class="icon-double-angle-left"></i>'
             });
-            $this.append(li);
+            for (i = Math.max(1, options.current - (options.length - 3) / 2), t = options.length - 2;
+                    t > 0 && i <= totalSize;
+                    t--, i++) {
+                pageArray.push({
+                    index: i,
+                    text: i
+                });
+            }
+            pageArray.push({
+                index: totalSize,
+                text: '<i class="icon-double-angle-right"></i>'
+            });
+
+            for (li, i = 0, l = pageArray.length; i < l; i++) {
+                li = $('<li class="page"></li>');
+                if (pageArray[i].index === options.current) {
+                    li.html(pageArray[i].text);
+                    if (pageArray[i].text >>> 0 > 0) {
+                        li.addClass('active');
+                    }
+                } else {
+                    li.removeClass('active');
+                    if (options.url) {
+                        href = options.url + pageArray[i].index;
+                    } else {
+                        href = 'javascript:;';
+                    }
+                    $('<a></a>').html(pageArray[i].text).attr('href', href).appendTo(li);
+                }
+                li.bind('click', {
+                    index: pageArray[i].index
+                }, function (event) {
+                    options.trigger(event.data.index)
+                });
+                $this.append(li);
+            }
         }
+
+        $this.bind('update.pagination', function (event, _options) {
+            $.extend(options, _options || {});
+            page();
+        });
+
+        $this.trigger('update.pagination');
     };
 }(jQuery));
