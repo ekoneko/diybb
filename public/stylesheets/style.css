@@ -1914,6 +1914,8 @@ footer {
   margin: 0 auto;
   background: #575b64;
   padding: 40px 0; }
+  .user-panel a {
+    color: white; }
   .user-panel form {
     width: 300px;
     margin: 0 auto; }
@@ -1956,6 +1958,33 @@ footer {
     border: none;
     border-radius: 3px;
     cursor: pointer; }
+  .user-panel label {
+    font-size: 14px; }
+  .user-panel .setting-panel {
+    margin-top: 50px;
+    width: 60%; }
+    .user-panel .setting-panel input {
+      width: 180px;
+      line-height: 22px;
+      height: 22px; }
+  .user-panel .avatar-panel {
+    margin-top: 50px;
+    width: 60%; }
+    .user-panel .avatar-panel .file-upload {
+      height: 30px;
+      line-height: 30px;
+      color: white;
+      font-size: 16px;
+      font-weight: bold;
+      width: 60px;
+      background-color: #df796b;
+      display: block;
+      position: absolute;
+      text-align: center;
+      top: 0;
+      right: 0;
+      cursor: pointer;
+      margin: 0; }
 
 .error-panel {
   width: 80%;

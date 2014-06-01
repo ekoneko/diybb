@@ -97,7 +97,10 @@ module.exports = function () {
             }
             imageUrl = path.join(__dirname, '../../public/images/avatar', userId.toString());
             self.res.sendfile(imageUrl, function (err) {
-                self.res.sendfile(defaultUrl);
+                if (err) {
+                    console.error(err);
+                    self.res.sendfile(defaultUrl);
+                }
             });
         }
     };
@@ -151,13 +154,13 @@ module.exports = function () {
                 err = 'Length of password is not fit';
             }
             if (nameLength < 3 || nameLength > 15) {
-                err = 'Length of username is not fit'
+                err = 'Length of username is not fit';
             }
 
             if (err) {
                 return self.res.render('forum/error.hbs', {
                     message: err
-                })
+                });
             }
             model.load('user').list({
                 email: email,
@@ -197,16 +200,78 @@ module.exports = function () {
 
         },
         setting: function () {
-            var model = require('../lib/model.js');
+            var model = require('../lib/model.js'),
+                data = {};
+            if (self.req.body.password) {
+                data.password = self.req.body.password;
+            }
             model.load('user').get(self.req.signedCookies.user).then(function (user) {
                 if (!user) {
                     throw('Account expired, log in and try again');
                 }
-                // TODO: save
+                return model.load('user').edit({
+                    'id': user.id
+                }, data);
+            }).then(function () {
+                self.res.send({
+                    state: true
+                });
             }).otherwise(function (err) {
                 self.res.send({
                     state: false,
                     error: (typeof err === 'string') ? self.res.__(err) : 'Server error, try again'
+                });
+            });
+        },
+        avatar: function () {
+            var tmpPath = self.req.files.avatar.path,
+                path = require('path'),
+                fs = require('fs'),
+                gm = require('gm').subClass({imageMagick: true}),
+                image,
+                dest,
+                user = self.req.signedCookies.user >>> 0;
+            if (!user) {
+                return self.res.send({
+                    state: false,
+                    error: self.res.__('Account expired, log in and try again')
+                });
+            }
+            dest = path.join(__dirname, '../../public/images/avatar', user.toString());
+            if (self.req.files.avatar.size > 1024000) {
+                return self.res.send({
+                    state: false,
+                    error: self.res.__('Upload file is too large')
+                });
+            }
+            image = gm(tmpPath).size(function (err, size) {
+                if (err) {
+                    console.error(err);
+                    fs.unlink(tmpPath);
+                    return self.res.send({
+                        state: false,
+                        error: self.res.__('Server error, try again')
+                    });
+                }
+                var width, height;
+                if (size.width > size.height) {
+                    height = 100;
+                    width = size.width / size.height * 100;
+                } else {
+                    width = 100;
+                    height = size.height / size.width * 100;
+                }
+                image.resize(width, height).crop(0, 0, 100, 100).write(dest, function (err) {
+                    fs.unlink(tmpPath);
+                    if (err) {
+                        return self.res.send({
+                            state: false,
+                            error: self.res.__('Server error, try again')
+                        });
+                    }
+                    self.res.send({
+                        state: true
+                    });
                 });
             });
         }

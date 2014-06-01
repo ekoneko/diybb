@@ -30,6 +30,7 @@
         "/message/read" : "message/read",
         "/message/write" : "message/write",
         "/message/delete" : "message/rm",
-        "/comment/post" : "post/post"
+        "/comment/post" : "post/post",
+        "/user/avatar": "user/avatar"
     }
 }

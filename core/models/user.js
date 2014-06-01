@@ -112,6 +112,10 @@ module.exports = function() {
     this.edit = function (where, data, options) {
         var self = this,
             deferred = when.defer();
+        if (data.password) {
+            data.salt = Math.random().toString(36).substr(2,6);
+            data.password = require('MD5')(data.password + data.salt);
+        }
         self.update(where, data, options, function (err) {
             if (err) {
                 return deferred.reject(err);

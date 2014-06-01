@@ -3,6 +3,8 @@
 {{!-- page css --}}
 {{/content}}
 {{#content "pageScript"}}
+<script src="/user_libraries/uploader/uploader.js"></script>
+<script src="/libraries/js-md5/js/md5.min.js"></script>
 <script src="/javascripts/forum/user-setting.js"></script>
 {{/content}}
 
@@ -13,7 +15,28 @@
         <a href="javascript:;">{{__ 'User setting'}}</a>
     </div>
     <div class="user-panel">
-        <form method="post" action="/user/setting">
-        </form>
+        <div id="tab" class="row">
+            <a for="avatar-panel" href="javascript:;">修改头像</a> | <a for="setting-panel" href="javascript:;">资料编辑</a>
+        </div>
+        <div id="avatar-panel" class="avatar-panel row">
+            <img id="avatar" src="/user/avatar/{{user.id}}" width="100" height="100" />
+            <div id="file-upload" class="file-upload">更新</div>
+        </div>
+        <div id="setting-panel" class="setting-panel row" style="display:none;">
+            <form id="setting-form" method="post" action="/user/setting">
+                <div class="row">
+                    <label>重置密码</label>
+                    <input type="password" name="password" />
+                    <em id="password-warning" style="display:none;">{{__ 'Twice password not match'}}</em>
+                </div>
+                <div class="row">
+                    <label>重复输入</label>
+                    <input type="password" name="repassword" />
+                </div>
+                <div class="row">
+                    <button type="submit">确定</button>
+                </div>
+            </form>
+        </div>
     </div>
 </div>

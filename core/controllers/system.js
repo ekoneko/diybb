@@ -3,7 +3,7 @@ module.exports = function () {
     'use strict';
 
     this.get = {
-        imageuploader : function () {
+        imageuploader: function () {
             var commonConfig = require('../../configs/common.json'),
                 uploadConfig = require('../../configs/imageuploader.json'),
                 url = require('url'),
@@ -15,13 +15,13 @@ module.exports = function () {
             redirectUrl = encodeURIComponent(redirectUrl);
             this.res.redirect(301, url.resolve(uploadConfig.apiUrl, '?redirect_url=' + redirectUrl));
         },
-        imageupallowed : function () {
+        imageupallowed: function () {
             var uploadConfig = require('../../configs/imageuploader.json');
             this.res.send({
                 state : !!uploadConfig.apiUrl
             });
         },
-        imageupredirect : function () {
+        imageupredirect: function () {
             var data = {};
             if (this.req.query.err) {
                 data.err = this.req.query.err;
@@ -33,7 +33,5 @@ module.exports = function () {
         }
     };
 
-    this.post = {
-        //
-    };
+    this.post = {};
 };

@@ -50,5 +50,7 @@
 	" has been exists": "已存在",
 	"Email or username has been exists": "邮箱或用户名已存在",
 	"Perfect later...": "Perfect later...",
-	"User setting": "用户设置"
+	"User setting": "用户设置",
+	"Upload file is too large": "上传文件太大",
+	"Image is too small": "图片尺寸太小"
 }
