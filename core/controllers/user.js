@@ -98,7 +98,6 @@ module.exports = function () {
             imageUrl = path.join(__dirname, '../../public/images/avatar', userId.toString());
             self.res.sendfile(imageUrl, function (err) {
                 if (err) {
-                    console.error(err);
                     self.res.sendfile(defaultUrl);
                 }
             });

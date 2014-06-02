@@ -1962,13 +1962,17 @@ footer {
     font-size: 14px; }
   .user-panel .setting-panel {
     margin-top: 50px;
+    margin-left: 10%;
     width: 60%; }
+    .user-panel .setting-panel form {
+      margin: 0; }
     .user-panel .setting-panel input {
       width: 180px;
       line-height: 22px;
       height: 22px; }
   .user-panel .avatar-panel {
     margin-top: 50px;
+    margin-left: 10%;
     width: 60%; }
     .user-panel .avatar-panel .file-upload {
       height: 30px;
