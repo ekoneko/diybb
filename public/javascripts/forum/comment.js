@@ -72,7 +72,7 @@
                 }
                 pagination.trigger('update', {
                     current: page,
-                    total: res.total || 100,
+                    total: res.total || 0,
                     size: SIZE
                 });
                 for (var item, i = res.data.length; i > 0; i--) {
