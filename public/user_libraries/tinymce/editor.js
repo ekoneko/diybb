@@ -14,6 +14,9 @@
                 menubar : false,
                 height : 400
             };
+
+        tinymce.baseURL = '/libraries/tinymce/js/tinymce';
+        
         mode = mode || 'standard';
         switch (mode) {
         case 'standard':

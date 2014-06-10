@@ -109,7 +109,6 @@
         $.ajax('/libraries/tinymce/js/tinymce/tinymce.jquery.min.js')
     ).done(function () {
         if (arguments[0][1] === 'success' && arguments[1][1] === 'success') {
-            tinyMCE.baseURL = '/libraries/tinymce/js/tinymce';
             panelTemplate = arguments[0][0];
             itemTemplate = arguments[1][0];
             ready();
