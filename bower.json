@@ -20,6 +20,7 @@
     "jquery-tmpl": "https://github.com/BorisMoore/jquery-tmpl.git",
     "tinymce": "http://download.moxiecode.com/tinymce/tinymce_4.0.25_dev.zip",
     "jquery.cookie": "~1.4.1",
-    "js-md5": "~1.1.0"
+    "js-md5": "~1.1.0",
+    "tinymce-yentext": "https://github.com/ekoneko/tinymce-yentext.git"
   }
 }
