@@ -105,8 +105,8 @@
         $.ajax('/comment'),
         $.ajax('/comment/item'),
         $.ajax('/user_libraries/pagination/pagination.js'),
-        $.ajax('/user_libraries/tinymce/editor.js'),
-        $.ajax('/libraries/tinymce/js/tinymce/tinymce.jquery.min.js')
+        $.ajax('/libraries/tinymce/tinymce.jquery.min.js'),
+        $.ajax('/user_libraries/tinymce/editor.js')
     ).done(function () {
         if (arguments[0][1] === 'success' && arguments[1][1] === 'success') {
             panelTemplate = arguments[0][0];

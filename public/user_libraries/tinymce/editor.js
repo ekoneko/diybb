@@ -7,37 +7,44 @@
     jQuery.fn.editor = function (mode) {
         var modeOptions,
             options = {
-                selector : '#' + this.attr('id'),
-                language_url : '/user_libraries/tinymce/i18n/zh-CN.js',
-                skin_url : '/user_libraries/tinymce/skin',
-                theme_url : '/libraries/tinymce/js/tinymce/themes/modern/theme.min.js',
-                menubar : false,
-                height : 400
+                selector: '#' + this.attr('id'),
+                language_url: '/user_libraries/tinymce/i18n/zh-CN.js',
+                skin_url: '/user_libraries/tinymce/skin',
+                theme_url: '/libraries/tinymce/themes/modern/theme.min.js',
+                menubar: false,
+                statusbar: true,
+                height: 400
             };
 
-        tinymce.baseURL = '/libraries/tinymce/js/tinymce';
+        tinymce.baseURL = '/libraries/tinymce';
 
         mode = mode || 'standard';
         switch (mode) {
         case 'standard':
             modeOptions = {
-                toolbar1 : 'undo redo | styleselect bold italic forecolor outdent indent | link unlink | image code yen',
-                plugins : 'link code textcolor',
-                external_plugins : {
-                    image : '/user_libraries/tinymce/plugins/image/plugin.js',
-                    yen : '/libraries/tinymce-yentext/plugin.min.js'
+                toolbar1: 'undo redo | styleselect bold italic forecolor | link unlink | image code yen',
+                plugins: 'link code textcolor',
+                external_plugins: {
+                    link: '/libraries/tinymce/plugins/link/plugin.min.js',
+                    code: '/libraries/tinymce/plugins/code/plugin.min.js',
+                    textcolor: '/libraries/tinymce/plugins/textcolor/plugin.min.js',
+                    image: '/user_libraries/tinymce/plugins/image/plugin.js',
+                    yen: '/libraries/tinymce-yentext/plugin.min.js'
                 }
             };
             tinymce.DOM.loadCSS('/libraries/tinymce-yentext/style.css');
             break;
         case 'tiny':
             modeOptions = {
-                toolbar1 : 'bold italic forecolor | link unlink | yen',
-                plugins : 'link textcolor',
+                toolbar1: 'bold italic forecolor | link unlink | yen',
+                plugins: 'link textcolor',
                 statusbar: false,
-                height : 100,
-                external_plugins : {
-                    yen : '/libraries/tinymce-yentext/plugin.min.js'
+                width: '100%',
+                height: 100,
+                external_plugins: {
+                    link: '/libraries/tinymce/plugins/link/plugin.min.js',
+                    textcolor: '/libraries/tinymce/plugins/textcolor/plugin.min.js',
+                    yen: '/libraries/tinymce-yentext/plugin.min.js'
                 }
             };
             tinymce.DOM.loadCSS('/libraries/tinymce-yentext/style.css');
