@@ -14,7 +14,8 @@ module.exports = function () {
                 size = 10,
                 user,
                 where = {
-                    channel_id: id
+                    channel_id: id,
+                    state: 'enable'
                 }, options = {
                     limit: size,
                     offset: size * (page - 1),
