@@ -17,6 +17,7 @@
             };
 
         tinymce.baseURL = '/libraries/tinymce';
+        tinymce.suffix = '.min';
 
         mode = mode || 'standard';
         switch (mode) {
@@ -25,9 +26,6 @@
                 toolbar1: 'undo redo | styleselect bold italic forecolor | link unlink | image code yen',
                 plugins: 'link code textcolor',
                 external_plugins: {
-                    link: '/libraries/tinymce/plugins/link/plugin.min.js',
-                    code: '/libraries/tinymce/plugins/code/plugin.min.js',
-                    textcolor: '/libraries/tinymce/plugins/textcolor/plugin.min.js',
                     image: '/user_libraries/tinymce/plugins/image/plugin.js',
                     yen: '/libraries/tinymce-yentext/plugin.min.js'
                 }
@@ -42,8 +40,6 @@
                 width: '100%',
                 height: 100,
                 external_plugins: {
-                    link: '/libraries/tinymce/plugins/link/plugin.min.js',
-                    textcolor: '/libraries/tinymce/plugins/textcolor/plugin.min.js',
                     yen: '/libraries/tinymce-yentext/plugin.min.js'
                 }
             };
