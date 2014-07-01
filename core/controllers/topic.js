@@ -6,12 +6,15 @@ module.exports = function () {
         model = require('../lib/model.js');
 
     this.get = {
-        index : function () {
+        index: function () {
             var id = this.req.params.id >>> 0,
                 when = require('when'),
                 user,
                 post;
 
+            if (!id) {
+                this.next();
+            }
             when.all([
                 model.load('user').get(self.req.signedCookies.user),
                 model.load('topic').get(id)
@@ -35,11 +38,11 @@ module.exports = function () {
                 console.error(err);
                 self.res.render('forum/error.hbs', {
                     user: user,
-                    message: (typeof err === 'string') ? err : 'Server error, try again'
+                    message: (typeof err === 'string') ? err: 'Server error, try again'
                 });
             });
         },
-        add : function () {
+        add: function () {
             var channelId = self.req.params.channel >>> 0,
                 user;
 
@@ -61,22 +64,37 @@ module.exports = function () {
                 console.error(err);
                 self.res.render('forum/error.hbs', {
                     user: user,
-                    message: (typeof err === 'string') ? err : 'Server error, try again'
+                    message: (typeof err === 'string') ? err: 'Server error, try again'
                 });
             });
         },
-        edit : function () {
+        edit: function () {
             model.load('user').get(self.req.signedCookies.user).then(function (user) {
                 return self.res.render('forum/error.hbs', {
                     user: user,
                     message: 'Come soon'
                 });
             });
+        },
+        newlist: function () {
+            // TODO: get channels scope by user profile
+            model.load('topic').list({
+                state: 'enable'
+            }, {
+                limit: 10
+            }).then(function (topics) {
+                self.res.send(topics);
+            }).otherwise(function (err) {
+                console.error(err);
+                self.res.send({
+                    state: false
+                });
+            });
         }
     };
 
     this.post = {
-        add : function () {
+        add: function () {
             var topicId,
                 user;
 
@@ -92,30 +110,30 @@ module.exports = function () {
                 }
                 user = _user;
                 return model.load('topic').add({
-                    channel_id : self.req.body.channel_id,
-                    title : self.req.body.title,
-                    user_id : user.id,
-                    user_name : user.name
+                    channel_id: self.req.body.channel_id,
+                    title: self.req.body.title,
+                    user_id: user.id,
+                    user_name: user.name
                 });
             }).then(function (topic) {
                 topicId = topic.insertId;
                 return model.load('post').add({
-                    topic_id : topicId,
-                    first : 1,
-                    user_id : user.id,
-                    user_name : user.name,
-                    content : self.req.body.content
+                    topic_id: topicId,
+                    first: 1,
+                    user_id: user.id,
+                    user_name: user.name,
+                    content: self.req.body.content
                 });
             }).then(function () {
                 self.res.send({
-                    state : true,
+                    state: true,
                     id: topicId
                 });
             }).otherwise(function (err) {
                 console.error(err);
                 self.res.send({
-                    state : false,
-                    error : typeof err === 'string' ? err : self.res.__('Server error, try again')
+                    state: false,
+                    error: typeof err === 'string' ? err: self.res.__('Server error, try again')
                 });
             });
 

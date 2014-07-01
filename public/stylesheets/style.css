@@ -1482,7 +1482,7 @@ header {
     position: absolute;
     right: 30px;
     top: 10px; }
-    header .account [class^="icon-"] {
+    header .account [class^="icon-"], header .account [class*="icon-"] {
       font-size: 200%;
       float: left;
       line-height: 32px; }
@@ -1524,7 +1524,7 @@ header {
       right: -16px; }
       header .account .account-dialog ul li a {
         color: #666666; }
-        header .account .account-dialog ul li a [class^="icon-"] {
+        header .account .account-dialog ul li a [class^="icon-"], header .account .account-dialog ul li a [class*="icon-"] {
           font-size: 100%;
           float: normal; }
     header .account .account-dialog:before {

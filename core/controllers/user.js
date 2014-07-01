@@ -7,16 +7,24 @@ module.exports = function () {
     this.get = {
         account: function () {
             var model = require('../lib/model.js'),
-                id = this.req.params.id >>> 0;
+                when = require('when'),
+                id = this.req.params.id >>> 0,
+                user;
+
             if (!id) {
                 return self.next();
             }
-             require('when').all([
-                model.load('user').get(self.req.signedCookies.user),
-                model.load('user').get(id)
-            ]).then(function (result) {
-                var user = result[0],
-                    data = result[1];
+            model.load('user').get(self.req.signedCookies.user)
+            .then(function (_user) {
+                user = _user;
+                if (!user) {
+                    throw 'Account expired, log in and try again';
+                }
+                return when.all([
+                    model.load('user').get(id)
+                ]);
+            }).then(function (result) {
+                var data = result[0];
 
                 if (data) {
                     self.res.render('forum/user-profile.hbs', {
@@ -30,7 +38,11 @@ module.exports = function () {
                     });
                 }
             }).otherwise(function (err) {
-                self.next();
+                err = typeof err === 'string' ? err : 'user not found or no permission';
+                return self.res.render('forum/error.hbs', {
+                    user: user,
+                    message: err,
+                });
             });
         },
         exists: function () {
