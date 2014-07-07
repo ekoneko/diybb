@@ -14,22 +14,32 @@ module.exports = function () {
             if (!id) {
                 return self.next();
             }
+            // get login uesr info
             model.load('user').get(self.req.signedCookies.user)
             .then(function (_user) {
                 user = _user;
                 if (!user) {
                     throw 'Account expired, log in and try again';
                 }
+                // get destination user info
                 return when.all([
-                    model.load('user').get(id)
+                    model.load('user').get(id),
+                    model.load('topic').list({
+                        user_id: id
+                    }, {
+                        orderby: ['created', 'DESC'],
+                        limit: 20
+                    })
                 ]);
             }).then(function (result) {
-                var data = result[0];
+                var data = result[0],
+                    topics = result[1];
 
                 if (data) {
                     self.res.render('forum/user-profile.hbs', {
                         user: user,
-                        data: data
+                        data: data,
+                        topics: topics
                     });
                 } else {
                     return self.res.render('forum/error.hbs', {
@@ -38,6 +48,7 @@ module.exports = function () {
                     });
                 }
             }).otherwise(function (err) {
+                console.error(err);
                 err = typeof err === 'string' ? err : 'user not found or no permission';
                 return self.res.render('forum/error.hbs', {
                     user: user,
@@ -59,7 +70,6 @@ module.exports = function () {
                 limit: 1
             }).then(function (data) {
                 var ret = !!(data && data[0] && data[0].id);
-                console.log(ret);
                 self.res.send({
                     state: ret
                 });

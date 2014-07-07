@@ -26,8 +26,14 @@
             </div>
         </div>
         <hr />
-        <div class="row center">
-            {{__ 'Perfect later...'}}
+        <div class="row center channel-panel">
+            {{#each topics}}
+            <div class="item">
+                <a class="title pull-left" href="/topic/{{id}}">{{title}}</a>
+                <div class="lastpost">{{created}}</div>
+                <div class="count{{#if count}} has-new{{/if}} pull-right">{{count}}</div>
+            </div>
+            {{/each}}
         </div>
     </div>
 </div>
