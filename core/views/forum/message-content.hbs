@@ -5,7 +5,6 @@
 {{#content "pageScript"}}
 <script src="/libraries/tinymce/tinymce.jquery.min.js"></script>
 <script src="/user_libraries/tinymce/editor.js"></script>
-<script src="/user_libraries/pagination/pagination.js"></script>
 <script src="/javascripts/forum/message.js"></script>
 {{/content}}
 
@@ -24,11 +23,13 @@
         </div>
         <div class="content">{{{message.content}}}</div>
     </div>
-    <div class="message-reply-panel">
+    <div class="message-post-panel">
         <form id="message-post" method="post" action="/">
             <input type="hidden" name="to_user" value="{{message.from_user.id}}" />
             <input type="text" class="title" name="title" value="Re:{{message.title}}" />
-            <textarea id="reply" name="content"></textarea>
+            <div class="message-editor">
+                <textarea id="reply" name="content"></textarea>
+            </div>
             <div class="row">
                 <button type="submit">{{__ 'Reply'}}</button>
             </div>

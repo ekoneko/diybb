@@ -1798,14 +1798,14 @@ footer {
       border-radius: 3px;
       cursor: pointer; }
 
-.topic-add-panel, .message-reply-panel {
+.topic-add-panel, .message-post-panel {
   width: 80%;
   min-width: 960px;
   max-width: 1200px;
   margin: 0 auto;
   background: #575b64;
   padding: 40px 0; }
-  .topic-add-panel .title, .message-reply-panel .title {
+  .topic-add-panel .title, .message-post-panel .title {
     display: block;
     width: 90%;
     height: 32px;
@@ -1813,14 +1813,14 @@ footer {
     text-indent: 0.8rem;
     margin: 0 auto 12px;
     padding: 0; }
-  .topic-add-panel .mce-tinymce, .message-reply-panel .mce-tinymce {
+  .topic-add-panel .mce-tinymce, .message-post-panel .mce-tinymce {
     width: 90%;
     margin: 0 auto; }
-  .topic-add-panel .row, .message-reply-panel .row {
+  .topic-add-panel .row, .message-post-panel .row {
     width: 90%;
     margin: 0 auto;
     margin-top: 12px; }
-    .topic-add-panel .row button, .message-reply-panel .row button {
+    .topic-add-panel .row button, .message-post-panel .row button {
       display: block;
       font-size: 12px;
       width: 60px;
@@ -1904,8 +1904,11 @@ footer {
     margin: 20px 50px 0;
     line-height: 28px; }
 
-.message-reply-panel {
+.message-post-panel {
   margin-top: 40px; }
+  .message-post-panel .message-editor {
+    width: 90%;
+    margin: 0 auto; }
 
 .user-panel {
   width: 80%;

@@ -52,5 +52,8 @@
 	"Perfect later...": "Perfect later...",
 	"User setting": "用户设置",
 	"Upload file is too large": "上传文件太大",
-	"Image is too small": "图片尺寸太小"
+	"Image is too small": "图片尺寸太小",
+	"Message to": "发送信息",
+	"Target does not exist": "目标不存在",
+	"No title": "无题"
 }

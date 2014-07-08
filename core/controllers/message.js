@@ -153,14 +153,20 @@ module.exports = function () {
             });
         },
         add: function () {
-            var user;
+            var user, targetId = self.req.query.id >>> 0;
             model.load('user').get(self.req.signedCookies.user).then(function (_user) {
                 if (!_user) {
                     throw('Account expired, log in and try again');
                 }
+                if (!targetId) {
+                    throw('Target does not exist');
+                }
                 user = _user;
+                return model.load('user').get(targetId);
+            }).then(function (target) {
                 self.res.render('forum/message-post.hbs', {
-                    user: user
+                    user: user,
+                    target: target
                 });
             }).otherwise(function (err) {
                 console.error(err);
