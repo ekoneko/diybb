@@ -73,12 +73,14 @@ module.exports = function () {
                     });
                 }
                 user = _user;
-                model.load('post').add({
+                return model.load('post').add({
                     topic_id: topic,
                     user_id: user.id,
                     user_name : user.name,
                     content : content
                 });
+            }).then(function () {
+                model.load('user_score').add(user.id, 1);
                 self.res.send({
                     state: true,
                     user: {

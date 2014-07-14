@@ -125,6 +125,7 @@ module.exports = function () {
                     content: self.req.body.content
                 });
             }).then(function () {
+                model.load('user_score').add(user.id, 3);
                 self.res.send({
                     state: true,
                     id: topicId

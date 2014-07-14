@@ -29,13 +29,16 @@ module.exports = function () {
                     }, {
                         orderby: ['created', 'DESC'],
                         limit: 20
-                    })
+                    }),
+                    model.load('user_score').get(id)
                 ]);
             }).then(function (result) {
                 var data = result[0],
-                    topics = result[1];
+                    topics = result[1],
+                    score = result[2];
 
                 if (data) {
+                    data.score = score;
                     self.res.render('forum/user-profile.hbs', {
                         user: user,
                         data: data,

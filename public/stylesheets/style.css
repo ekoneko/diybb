@@ -1946,9 +1946,12 @@ footer {
     .user-panel .row .info {
       position: absolute;
       top: 0;
-      left: 100px; }
+      left: 100px;
+      width: 300px; }
       .user-panel .row .info li {
-        line-height: 22px; }
+        line-height: 22px;
+        width: 120px;
+        float: left; }
   .user-panel .center {
     text-align: center; }
   .user-panel button {

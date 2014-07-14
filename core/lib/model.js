@@ -105,6 +105,49 @@
                 __db.query(sql, data, callback);
 
             };
+
+            /**
+             * setField
+             * @param {plain}   where
+             * @param {string}   field
+             * @param {number}   detla
+             * @param {number}   direction  1-add   0-sub
+             * @param {plain}   options
+             *  {
+             *      limit
+             *      orderby
+             *  }
+             * @param {function} callback
+             */
+            this.setField = function (where, field, detla, direction, options, callback) {
+                var sql, limit, data;
+                if (direction === '+') {
+                    direction = 1;
+                }
+                if (direction === '-') {
+                    direction = 0;
+                }
+                where = where || {};
+                options = options || {};
+                this._checkField(where);
+                data = [this.getTable(), field, field];
+                sql = 'UPDATE ?? SET ?? = ?? ';
+                if (direction) {
+                    sql += '+ ' + detla;
+                } else {
+                    sql -= '- ' + detla;
+                }
+                if (options.orderby) {
+                    sql += ' ORDER BY ?? ' + options.orderby[1];
+                    data.push(options.orderby[0]);
+                }
+                limit = options.limit || 500;
+                limit = Math.min(limit, 500);
+                sql += ' LIMIT ?';
+                data.push(limit);
+                __db.query(sql, data, callback);
+
+            }
             /**
              * delete
              *

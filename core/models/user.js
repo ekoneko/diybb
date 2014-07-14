@@ -123,5 +123,5 @@ module.exports = function() {
             deferred.resolve();
         });
         return deferred.promise;
-    }
+    };
 };
