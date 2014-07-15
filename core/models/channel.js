@@ -11,6 +11,9 @@ module.exports = function () {
         var _ = require('underscore'),
             fn = require('../lib/function.js');
         _.each(data, function (item) {
+            if (item.password) {
+                return;
+            }
             if (item.lastpost) {
                 item.lastpost = JSON.parse(item.lastpost);
             }
@@ -29,6 +32,7 @@ module.exports = function () {
         redis.get('channel', function (err, data) {
             if (!err && data) {
                 data = JSON.parse(data);
+                filter(data);
                 return deferred.resolve(data);
             }
             self.select({}, {
@@ -37,8 +41,8 @@ module.exports = function () {
                 if (err) {
                     return deferred.reject(err);
                 }
-                filter(data);
                 redis.set('channel', JSON.stringify(data), 30);
+                filter(data);
                 deferred.resolve(data);
             });
         });

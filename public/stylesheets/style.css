@@ -1661,6 +1661,26 @@ footer {
   margin: 0 auto;
   background: #575b64;
   padding: 30px 0 20px; }
+  .channel-panel .channel-password {
+    width: 80%;
+    margin: 0 auto; }
+    .channel-panel .channel-password input {
+      display: block;
+      margin: 12px 0;
+      padding: 8px;
+      width: 300px; }
+    .channel-panel .channel-password button {
+      display: block;
+      font-size: 12px;
+      width: 60px;
+      height: 32px;
+      line-height: 32px;
+      text-align: center;
+      background-color: #df796b;
+      color: white;
+      border: none;
+      outline: none;
+      cursor: pointer; }
   .channel-panel .item {
     margin: 0 2.6em;
     padding: 14px 10px 40px;

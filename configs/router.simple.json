@@ -23,6 +23,7 @@
         "/comment/data" : "post/data"
     },
     "post" : {
+        "/channel/verfify" : "channel/verfify",
         "/user/login" : "user/login",
         "/user/register" : "user/register",
         "/user/setting" : "user/setting",

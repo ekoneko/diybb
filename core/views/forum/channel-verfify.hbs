@@ -1,0 +1,25 @@
+{{!< ../layout}}
+{{#content "pageStyles"}}
+{{!-- page css --}}
+{{/content}}
+{{#content "pageScript"}}
+<script src="/user_libraries/pagination/pagination.js"></script>
+<script src="/javascripts/forum/channel.js"></script>
+{{/content}}
+
+<div class="main">
+    <div class="breadcrumbs">
+        <a href="{{site.url}}">{{site.name}}</a>
+        <i> &gt; </i>
+        <a href="/channel/{{channel.id}}">{{channel.name}}</a>
+    </div>
+    <div class="channel-panel">
+         <form id="channel-password" class="channel-password">
+            <input type="hidden" name="channelId" value="{{channel.id}}" />
+            <label>输入密码:
+                <input type="text" name="password" />
+            </label>
+            <button>提交</button>
+        </form>
+    </div>
+</div>
