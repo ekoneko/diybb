@@ -36,7 +36,7 @@ module.exports = function () {
 
                 if (channel.password) {
                     try {
-                        channelspassword = JSON.parse(self.req.cookies.channelspassword)
+                        channelspassword = JSON.parse(self.req.cookies.channelspassword);
                         if (!channelspassword[channel.id] || channelspassword[channel.id] !== channel.password) {
                             throw 'need verfify';
                         }
