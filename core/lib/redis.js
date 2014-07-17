@@ -39,6 +39,6 @@
     };
 
     this.remove = function (key) {
-        return __client.expire(__prefix + key, -1);
+        return __client.del(__prefix + key);
     }
 }.call(this));

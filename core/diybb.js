@@ -60,6 +60,11 @@ module.exports = function (callback) {
             var redis = require('./lib/redis'),
                 deferred = when.defer();
             redis.init(require('../configs/redis.json'), function () {
+                redis.getInstance().keys(redis.getPrefix()+'*', function (err, keys) {
+                    _.each(keys, function (key) {
+                        redis.remove(key.replace(redis.getPrefix(), ''));
+                    });
+                });
                 deferred.resolve();
             });
             return deferred.promise;
