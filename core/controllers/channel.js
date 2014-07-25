@@ -19,7 +19,7 @@ module.exports = function () {
                 }, options = {
                     limit: size,
                     offset: size * (page - 1),
-                    orderby: ['created', 'DESC']
+                    orderby: [['top', 'DESC'], ['created', 'DESC']]
                 };
             
             when.all([

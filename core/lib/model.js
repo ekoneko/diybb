@@ -53,8 +53,7 @@
                 data = [this.getTable()];
 
                 if (options.orderby) {
-                    sql += ' ORDER BY ?? ' + options.orderby[1];
-                    data.push(options.orderby[0]);
+                    sql += ' ORDER BY' + this._orderby(options.orderby);
                 }
                 limit = options.limit || 500;
                 limit = Math.min(limit, 500);
@@ -95,8 +94,7 @@
                 sql = 'UPDATE ?? SET ? WHERE ' + this._where(where);
                 data = [this.getTable(), data];
                 if (options.orderby) {
-                    sql += ' ORDER BY ?? ' + options.orderby[1];
-                    data.push(options.orderby[0]);
+                    sql += ' ORDER BY' + this._orderby(options.orderby);
                 }
                 limit = options.limit || 500;
                 limit = Math.min(limit, 500);
@@ -138,8 +136,7 @@
                     sql -= '- ' + detla;
                 }
                 if (options.orderby) {
-                    sql += ' ORDER BY ?? ' + options.orderby[1];
-                    data.push(options.orderby[0]);
+                    sql += ' ORDER BY' + this._orderby(options.orderby);
                 }
                 limit = options.limit || 500;
                 limit = Math.min(limit, 500);
@@ -167,8 +164,7 @@
                 sql = 'DELETE FROM ?? WHERE ' + this._where(where);
                 data = [this.getTable()];
                 if (options.orderby) {
-                    sql += ' ORDER BY ?? ' + options.orderby[1];
-                    data.push(options.orderby[0]);
+                    sql += ' ORDER BY' + this._orderby(options.orderby);
                 }
                 limit = options.limit || 500;
                 limit = Math.min(limit, 500);
@@ -221,6 +217,22 @@
                     }
                 });
                 return whereString;
+            };
+
+            /**
+             * generate orderby string
+             * @param  {array}  order
+             * @return {string}
+             */
+            this._orderby = function (order) {
+                var orders = [];
+                if (typeof order[0] === 'string') {
+                    order = [order];
+                }
+                for (var i = 0, l = order.length; i < l; i++) {
+                    orders.push(mysql.format('?? ', [order[i][0]]) + order[i][1]);
+                }
+                return orders.join(',');
             };
         };
 
