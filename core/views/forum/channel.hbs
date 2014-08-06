@@ -10,25 +10,30 @@
 <div class="main">
     <div class="breadcrumbs">
         <a href="{{site.url}}">{{site.name}}</a>
-        <i> &gt; </i>
+        <i class="icon-chevron-right"></i>
         <a href="/channel/{{channel.id}}">{{channel.name}}</a>
     </div>
     <div class="channel-panel">
-        <div class="control">
+        <div class="item control">
             <a class="button" href="/topic/add/{{channel.id}}">发布</a>
         </div>
         {{#each topics}}
         <div class="item">
-            <a class="title" href="/topic/{{id}}">{{title}}</a>
-            <div class="count{{#if count}} has-new{{/if}}">{{count}}</div>
-            <div class="author">
-                <a href="/user/{{user_id}}" target="_blank">{{user_name}}</a>
-                <span class="created">{{created}}</span>
+            <div class="left-panel">
+                <a class="title" href="/topic/{{id}}">{{title}}</a>
+                <div class="author">
+                    <a href="/user/{{user_id}}" target="_blank">{{user_name}}</a>
+                    <span class="created">{{created}}</span>
+                </div>
             </div>
-            <div class="lastpost">
-                <a href="/user/{{lastpost_user.id}}" target="_blank">{{lastpost_user.name}}</a>
-                <div class="created">{{__ 'last post at %s' lastpost_time}}</div>
+            <div class="right-panel">
+                <div class="count{{#if count}} has-new{{/if}}">{{count}}</div>
+                <div class="lastpost">
+                    <a href="/user/{{lastpost_user.id}}" target="_blank">{{lastpost_user.name}}</a>{{__ 'last reply at'}}
+                    <p>{{lastpost_time}}</p>
+                </div>
             </div>
+            <div class="clear"></div>
         </div>
         {{/each}}
         <ul id="pagination" class="pagination" data-current="{{page}}" data-total="{{total}}" data-size="{{size}}" data-url="/channel/{{channel.id}}/"></ul>

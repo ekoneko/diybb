@@ -1,4 +1,4 @@
-@import reset
+@import reset.sass
 @import font.scss
 
 @mixin transform($transform)
@@ -13,39 +13,6 @@
     background-image: -moz-linear-gradient($direction, $color-stop1, $color-stop2)
     background-image: -o-linear-gradient($direction, $color-stop1, $color-stop2)
 
-@mixin panel
-    width: 80%
-    min-width: 960px
-    max-width: 1200px
-    margin: 0 auto
-
-// animation
-@keyframes moveup
-    from
-        margin-top: 100px
-    to
-        margin-top: 0
-@-webkit-keyframes moveup
-    from
-        margin-top: 100px
-    to
-        margin-top: 0
-@keyframes moveright
-    from
-        margin-left: 0
-    to
-        margin-left: 400px
-        margin-right: -400px
-        display: none
-@-webkit-keyframes moveright
-    from
-        margin-left: 0
-    to
-        margin-left: 400px
-        margin-right: -400px
-        display: none
-// end animation
-
 .clear
     clear: both
 
@@ -56,13 +23,13 @@
     line-height: 32px
     text-indent: 8px
     border: 1px solid #9D9D9E
-    border-top: none
     color: #000
     a
         color: #348fd5
         margin-right: 8px
         font-size: 14px
-
+    *
+        background-color: #fff
 .dialog:before
     content: ''
     position: absolute
@@ -71,29 +38,31 @@
     background-color: #fff
     right: 46px
     top: -6px
+    border: 1px solid #aaa
+    z-index: -10
     @include transform(rotate(45deg))
 
-textarea.editor
-    display: none!important
-
-body
-    background-color: #252932
-
-header, footer
-    color: #fff
-    background-color: #1b1e24
+header
+    height: 60px
+    margin-bottom: 20px
+    line-height: 60px
+    background-color: #e3e3e3
     position: relative
 
-header a, footer a
-    color: #fff
-
-header
-    height: 140px
+    .logo
+        font-size: 26px
+        font-weight: bold
+        color: #b81313
+        float: left
+        margin-left: 0.5em
 
     .account
         position: absolute
-        right: 30px
         top: 10px
+        right: 30px
+
+        img
+            display: block
 
         [class^="icon-"], [class*="icon-"]
             font-size: 200%
@@ -101,7 +70,7 @@ header
             line-height: 32px
 
         .avatar
-            margin: 4px 0 0 10px
+            margin: 2px 0 0 10px
             width: 28px
             height: 28px
             float: left
@@ -115,10 +84,11 @@ header
             color: #fff
             text-align: center
             padding: 0 4px
-            border-radius: 6px
+            border-radius: 3px
             float: left
             margin: 3px 8px 0 8px
             cursor: pointer
+
         .message.has-new
             background-color: #e93636
 
@@ -150,34 +120,48 @@ header
 footer
     left: 0
     bottom: 0
-    height: 100px
     width: 100%
+    height: 60px
+    line-height: 60px
+    background-color: #e3e3e3
+    position: relative
 
     .powerby
         position: absolute
-        bottom: 10px
+        height: 20px
+        bottom: 20px
         right: 10px
+        color: #999
+        font-size: 16px
+        a
+            color: #666
+            font-weight: bold
 
 .main
-    background-color: #252932
-    color: #fff
+    background-color: #fff
+    color: #999
     overflow: hidden
     padding: 22px 0 30px
+    min-width: 790px
+    width: 84%
+    margin: 0 auto
 
-.breadcrumbs
-    @include panel
-    margin-bottom: 18px
-    text-indent: 1rem
+.button
+    display: block
+    font-size: 12px
+    width: 60px
+    height: 32px
+    line-height: 32px
+    text-align: center
+    background-color: #DF796B
     color: #fff
-    font-size: 14px
-    a
-        color: #fff
-    i
-        text-align: center
-        margin: 0 3px
+    border: none
+    outline: none
+    cursor: pointer
 
 .pagination
     text-align: center
+    margin-top: 10px
     li
         display: inline-block
         margin: 8px 6px
@@ -200,204 +184,144 @@ footer
     .page:hover
         background-color: #FFB0B0
 
-
+.breadcrumbs
+    margin-bottom: 18px
+    color: #666
+    font-size: 18px
+    a
+        color: #666
+    i
+        text-align: center
+        margin: 0 3px
 
 .forum-category
-    @include panel
     h4
-        height: 44px
-        line-height: 44px
-        color: #fff
-        font-weight: bold
-        text-indent: 1rem
-        width: 100%
-        margin: 0 auto 22px
+        height: 36px
+        line-height: 36px
+        font-size: 18px
+        background-color: #e3e3e3
+        border-left: 6px solid #b81313
+        text-indent: 18px
 
-.forum-channel
-    width: 100%
-    margin: 0 auto
+    .forum-channel
+        margin: 18px 0 2px 0
+        padding-left: 14px
+        .item
+            width: 31%
+            height: 54px
+            padding: 24px 0
+            margin-right: 16px
+            margin-bottom: 24px
+            float: left
+            border: 1px solid #e3e3e3
+            box-shadow: 1px 1px 10px rgba(80, 80, 80, 0.4)
+            .name
+                font-size: 18px
+                color: #999
+                margin-left: 18px
+            .description
+                font-size: 13px
+                margin-top: 22px
+                margin-left: 18px
+                margin-right: 18px
+                .count
+                    float: left
+                    width: 40%
+                    overflow: hidden
+                .lasttime
+                    float: left
+                    width: 40%
+                    overflow: hidden
+                    display: inline-block
+                    white-space: nowrap
 
-    .item
-        width: 31%
-        max-width: 400px
-        height: 160px
-        float: left
-        margin: 0 11px 32px
-        position: relative
-        overflow: hidden
-        a
-            color: #fff
-        .name
-            position: absolute
-            top: 20px
-            left: 20px
-        .count
-            position: absolute
-            top: 20px
-            right: 5%
-        .icon
-            position: absolute
-            width: 320px
-            height: 120px
-            bottom: 0
-            background-image: url(/images/default-channel.png)
-        .lastpost-title
-            position: absolute
-            left: 26px
-            top: 86px
-        .lastpost-author
-            position: absolute
-            left: 26px
-            top: 118px
-        .lastpost-time
-            position: absolute
-            right: 15%
-            top: 118px
-            font-size: 14px
-        .icon-panel
-            display: block
-        .lastpost-panel
-            display: none
-    .item.enter
-        .icon-panel
-            display: none
-        .lastpost-panel
-            position: relative
-            display: block
-            animation: moveup 0.3s
-            -webkit-animation: moveup 0.3s
-    .item.leave
-        .lastpost-panel
-            animation: moveright 0.32s
-            -webkit-animation: moveright 0.32s
+
 
 .channel-panel
-    @include panel
-    background: #575b64
-    padding: 30px 0 20px
-    .channel-password
-        width: 80%
-        margin: 0 auto
-        input
-            display: block
-            margin: 12px 0
-            padding: 8px
-            width: 300px
-        button
-            display: block
-            font-size: 12px
-            width: 60px
-            height: 32px
-            line-height: 32px
-            text-align: center
-            background-color: #DF796B
-            color: #fff
-            border: none
-            outline: none
-            cursor: pointer
-
     .item
-        margin: 0 2.6em
-        padding: 14px 10px 40px
-        border-bottom: 1px solid #71747a
-        position: relative
-
-        a
-            color: #fff
-        .title
-            font-size: 18px
-        .author
-            position: absolute
-            top: 42px
-            left: 10px
-            font-size: 14px
-            span
-                margin-left: 8px
-        .count
-            position: absolute
-            top: 18px
-            right: 240px
-            height: 30px
-            line-height: 30px
-            padding: 0 7px
-            background-color: #62656B
-            border-radius: 4px
-        .count.has-new
-            background-color: #6B8FDF
-        .lastpost
-            position: absolute
-            right: 30px
-            top: 14px
-            width: 180px
-            font-size: 14px
-            line-height: 20px
-    .control
-        margin: 0 2.6em
-        padding: 0 10px 20px
-        border-bottom: 1px solid #71747a
-        .button
-            display: block
-            font-size: 12px
-            width: 60px
-            height: 32px
+        width: 100%
+        height: 72px
+        line-height: 72px
+        border-bottom: 1px dashed #999
+        .left-panel
+            float: left
+            width: 50%
+            white-space: nowrap
+            overflow: hidden
             line-height: 32px
-            text-align: center
-            background-color: #DF796B
-            color: #fff
-            border: none
-            outline: none
-            cursor: pointer
-    .pagination
-        margin-top: 20px
+            text-indent: 10px
+            margin-top: 8px
+            .author
+                color: #666
+                font-size: 13px
+                a
+                    min-width: 80px
+                    display: inline-block
+                    float: left
+                span
+                    margin-left: 8px
+        .right-panel
+            float: right
+            width: 200px
+            margin-right: 20px
+            white-space: nowrap
+            overflow: hidden
+            .count
+                float: left
+            .author
+                float: left
+                margin-left: 16px
+            .lastpost
+                float: right
+                font-size: 14px
+                height: 72px
+                line-height: 18px
+                overflow: hidden
+                a
+                    margin: 12px 6px 0 0
+                    line-height: 32px
+                    display: inline-block
+                .created
+                    font-size: 13px
+                    line-height: 13px
+                    overflow: hidden
+    .control
+        height: 40px
+        line-height: 40px
 
 .topic-panel
-    @include panel
-    background: #575b64
-    padding: 40px 0
+    padding: 18px 24px
+    border: 1px solid #e3e3e3
+    box-shadow: 1px 1px 10px rgba(80, 80, 80, 0.4)
+    width: 92%
     .title
-        margin: 0 50px
-        font-size: 24px
-    .auth
+        font-size: 20px
+        font-weight: bold
+    .author
+        margin: 12px 0 8px
         position: relative
-        margin: 20px 50px 0
-        padding-bottom: 10px
-        height: 40px
-        font-size: 14px
-        border-bottom: 1px solid #b4b4b4
+        height: 46px
+        border-bottom: 1px solid #ccc
         .avatar
             position: absolute
-            width: 32px
-            height: 32px
-            border-radius: 8px
-            overflow: hidden
-        .created
-            position: absolute
-            left: 46px
-            top: 20px
         .name
             position: absolute
-            left: 46px
-        a
+            left: 40px
+        .created
             position: absolute
             left: 40px
-            color: #fff
+            bottom: 12px
     .content
         margin: 20px 50px 0
         line-height: 28px
         img
             max-width: 100%!important
-
-
 .comment-panel
-    @include panel
-    margin-top: 40px
-    padding-top: 40px
-    background: #575b64
-
-    .comment-list, .comment-add
-        width: 80%
-        margin: 0 auto
-
+    margin-top: 12px
+    padding: 24px 24px
+    border: 1px solid #e3e3e3
+    box-shadow: 1px 1px 10px rgba(80, 80, 80, 0.4)
+    width: 92%
     .comment-list
         .item
             position: relative
@@ -409,7 +333,6 @@ footer
                 border-radius: 8px
             .user
                 margin-left: 60px
-                color: #fff
                 float: left
             .time
                 margin-left: 10px
@@ -418,216 +341,5 @@ footer
                 line-height: 16px
             .content
                 margin: 10px 0 32px 60px
-
-    .comment-add
-        padding-bottom: 48px
-        .button
-            margin-top: 8px
-            float: right
-            width: 60px
-            height: 32px
-            line-height: 32px
-            background-color: #DF796B
-            color: #fff
-            border: none
-            border-radius: 3px
-            cursor: pointer
-
-.topic-add-panel,.message-post-panel
-    @include panel
-    background: #575b64
-    padding: 40px 0
-    .title
-        display: block
-        width: 90%
-        height: 32px
-        line-height: 32px
-        text-indent: 0.8rem
-        margin: 0 auto 12px
-        padding: 0
-    .mce-tinymce
-        width: 90%
-        margin: 0 auto
-    .row
-        width: 90%
-        margin: 0 auto
-        margin-top: 12px
-        button
-            display: block
-            font-size: 12px
-            width: 60px
-            height: 32px
-            line-height: 32px
-            text-align: center
-            background-color: #DF796B
-            color: #fff
-            border: none
-            outline: none
-            cursor: pointer
-            float: right
-
-.message-panel
-    @include panel
-    background: #575b64
-    padding: 30px 0 20px
-    .item
-        margin: 0 2.6em
-        padding: 14px 10px 10px
-        border-bottom: 1px solid #71747a
-        position: relative
-        a
-            color: #fff
-        .title
-            font-size: 16px
-            display: inline-block
-            width: 40%
-        .from
-            display: inline-block
-            width: 20%
-        .created
-            display: inline-block
-            width: 10%
-            min-width: 140px
-        .setting
-            display: inline-block
-            width: 20%
-            text-align: right
-            a
-                font-size: 120%
-
-.message-content-panel
-    @include panel
-    background: #575b64
-    padding: 40px 0
-    .title
-        margin: 0 50px
-        font-size: 18px
-    .from
-        position: relative
-        margin: 20px 50px 0
-        padding-bottom: 10px
-        height: 40px
-        font-size: 14px
-        border-bottom: 1px solid #b4b4b4
-        .avatar
-            position: absolute
-            width: 32px
-            height: 32px
-            border-radius: 8px
-            overflow: hidden
-        .created
-            position: absolute
-            left: 40px
-            top: 20px
-        .name
-            position: absolute
-            left: 46px
-        a
-            position: absolute
-            left: 40px
-            color: #fff
-    .content
-        margin: 20px 50px 0
-        line-height: 28px
-
-.message-post-panel
-    margin-top: 40px
-    .message-editor
-        width: 90%
-        margin: 0 auto
-
-.user-panel
-    @include panel
-    background: #575b64
-    padding: 40px 0
-    a
-        color: #fff
-    form
-        width: 300px
-        margin: 0 auto
-    hr
-        margin: 20px 10px
-        border-color: #ccc
-    .row
-        margin: 0 auto
-        width: 80%
-        position: relative
-        label
-            font-size: 13px
-            display: block
-            padding: 8px 0 4px 4px
-        .txt
-            width: 240px
-            line-height: 28px
-            text-indent: 4px
-        em
-            position: absolute
-            top: 32px
-            left: 260px
-            width: 100%
-            color: #FF9191
-        .info
-            position: absolute
-            top: 0
-            left: 100px
-            width: 300px
-            li
-                line-height: 22px
-                width: 120px
-                float: left
-    .center
-        text-align: center
-
-    button
-        margin-top: 8px
-        width: 60px
-        height: 32px
-        line-height: 32px
-        background-color: #DF796B
-        color: #fff
-        border: none
-        border-radius: 3px
-        cursor: pointer
-
-    label
-        font-size: 14px
-
-    .setting-panel
-        margin-top: 50px
-        margin-left: 10%
-        width: 60%
-        form
-            margin: 0
-        input
-            width: 180px
-            line-height: 22px
-            height: 22px
-    .avatar-panel
-        margin-top: 50px
-        margin-left: 10%
-        width: 60%
-        .file-upload
-            height: 30px
-            line-height: 30px
-            color: #fff
-            font-size: 16px
-            font-weight: bold
-            width: 60px
-            background-color: #df796b
-            display: block
-            position: absolute
-            text-align: center
-            top: 0
-            right: 0
-            cursor: pointer
-            margin: 0
-
-.error-panel
-    @include panel
-    background: #575b64
-    padding: 30px 0 20px
-    text-align: center
-    p
-        line-height: 22px
-    a
-        color: #fff
+    .button
+        margin-left: 10px

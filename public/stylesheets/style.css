@@ -51,7 +51,8 @@ body {
   min-height: 100%; }
 
 a {
-  text-decoration: none; }
+  text-decoration: none;
+  color: #666666; }
 
 @font-face {
   font-family: 'FontAwesome';
@@ -1404,34 +1405,6 @@ a .icon-rotate-90:before, a .icon-rotate-180:before, a .icon-rotate-270:before, 
 .icon-renren:before {
   content: "\f18b"; }
 
-@keyframes moveup {
-  from {
-    margin-top: 100px; }
-
-  to {
-    margin-top: 0; } }
-@-webkit-keyframes moveup {
-  from {
-    margin-top: 100px; }
-
-  to {
-    margin-top: 0; } }
-@keyframes moveright {
-  from {
-    margin-left: 0; }
-
-  to {
-    margin-left: 400px;
-    margin-right: -400px;
-    display: none; } }
-@-webkit-keyframes moveright {
-  from {
-    margin-left: 0; }
-
-  to {
-    margin-left: 400px;
-    margin-right: -400px;
-    display: none; } }
 .clear {
   clear: both; }
 
@@ -1442,12 +1415,13 @@ a .icon-rotate-90:before, a .icon-rotate-180:before, a .icon-rotate-270:before, 
   line-height: 32px;
   text-indent: 8px;
   border: 1px solid #9d9d9e;
-  border-top: none;
   color: black; }
   .dialog a {
     color: #348fd5;
     margin-right: 8px;
     font-size: 14px; }
+  .dialog * {
+    background-color: white; }
 
 .dialog:before {
   content: "";
@@ -1457,37 +1431,37 @@ a .icon-rotate-90:before, a .icon-rotate-180:before, a .icon-rotate-270:before, 
   background-color: white;
   right: 46px;
   top: -6px;
+  border: 1px solid #aaaaaa;
+  z-index: -10;
   -moz-transform: rotate(45deg);
   -webkit-transform: rotate(45deg);
   -ms-transform: rotate(45deg);
   transform: rotate(45deg); }
 
-textarea.editor {
-  display: none !important; }
-
-body {
-  background-color: #252932; }
-
-header, footer {
-  color: white;
-  background-color: #1b1e24;
-  position: relative; }
-
-header a, footer a {
-  color: white; }
-
 header {
-  height: 140px; }
+  height: 60px;
+  margin-bottom: 20px;
+  line-height: 60px;
+  background-color: #e3e3e3;
+  position: relative; }
+  header .logo {
+    font-size: 26px;
+    font-weight: bold;
+    color: #b81313;
+    float: left;
+    margin-left: 0.5em; }
   header .account {
     position: absolute;
-    right: 30px;
-    top: 10px; }
+    top: 10px;
+    right: 30px; }
+    header .account img {
+      display: block; }
     header .account [class^="icon-"], header .account [class*="icon-"] {
       font-size: 200%;
       float: left;
       line-height: 32px; }
     header .account .avatar {
-      margin: 4px 0 0 10px;
+      margin: 2px 0 0 10px;
       width: 28px;
       height: 28px;
       float: left;
@@ -1500,7 +1474,7 @@ header {
       color: white;
       text-align: center;
       padding: 0 4px;
-      border-radius: 6px;
+      border-radius: 3px;
       float: left;
       margin: 3px 8px 0 8px;
       cursor: pointer; }
@@ -1533,36 +1507,47 @@ header {
 footer {
   left: 0;
   bottom: 0;
-  height: 100px;
-  width: 100%; }
+  width: 100%;
+  height: 60px;
+  line-height: 60px;
+  background-color: #e3e3e3;
+  position: relative; }
   footer .powerby {
     position: absolute;
-    bottom: 10px;
-    right: 10px; }
+    height: 20px;
+    bottom: 20px;
+    right: 10px;
+    color: #999999;
+    font-size: 16px; }
+    footer .powerby a {
+      color: #666666;
+      font-weight: bold; }
 
 .main {
-  background-color: #252932;
-  color: white;
+  background-color: white;
+  color: #999999;
   overflow: hidden;
-  padding: 22px 0 30px; }
+  padding: 22px 0 30px;
+  min-width: 790px;
+  width: 84%;
+  margin: 0 auto; }
 
-.breadcrumbs {
-  width: 80%;
-  min-width: 960px;
-  max-width: 1200px;
-  margin: 0 auto;
-  margin-bottom: 18px;
-  text-indent: 1rem;
+.button {
+  display: block;
+  font-size: 12px;
+  width: 60px;
+  height: 32px;
+  line-height: 32px;
+  text-align: center;
+  background-color: #df796b;
   color: white;
-  font-size: 14px; }
-  .breadcrumbs a {
-    color: white; }
-  .breadcrumbs i {
-    text-align: center;
-    margin: 0 3px; }
+  border: none;
+  outline: none;
+  cursor: pointer; }
 
 .pagination {
-  text-align: center; }
+  text-align: center;
+  margin-top: 10px; }
   .pagination li {
     display: inline-block;
     margin: 8px 6px;
@@ -1585,189 +1570,128 @@ footer {
   .pagination .page:hover {
     background-color: #ffb0b0; }
 
-.forum-category {
-  width: 80%;
-  min-width: 960px;
-  max-width: 1200px;
-  margin: 0 auto; }
-  .forum-category h4 {
-    height: 44px;
-    line-height: 44px;
-    color: white;
-    font-weight: bold;
-    text-indent: 1rem;
-    width: 100%;
-    margin: 0 auto 22px; }
+.breadcrumbs {
+  margin-bottom: 18px;
+  color: #666666;
+  font-size: 18px; }
+  .breadcrumbs a {
+    color: #666666; }
+  .breadcrumbs i {
+    text-align: center;
+    margin: 0 3px; }
 
-.forum-channel {
-  width: 100%;
-  margin: 0 auto; }
-  .forum-channel .item {
+.forum-category h4 {
+  height: 36px;
+  line-height: 36px;
+  font-size: 18px;
+  background-color: #e3e3e3;
+  border-left: 6px solid #b81313;
+  text-indent: 18px; }
+.forum-category .forum-channel {
+  margin: 18px 0 2px 0;
+  padding-left: 14px; }
+  .forum-category .forum-channel .item {
     width: 31%;
-    max-width: 400px;
-    height: 160px;
+    height: 54px;
+    padding: 24px 0;
+    margin-right: 16px;
+    margin-bottom: 24px;
     float: left;
-    margin: 0 11px 32px;
-    position: relative;
-    overflow: hidden; }
-    .forum-channel .item a {
-      color: white; }
-    .forum-channel .item .name {
-      position: absolute;
-      top: 20px;
-      left: 20px; }
-    .forum-channel .item .count {
-      position: absolute;
-      top: 20px;
-      right: 5%; }
-    .forum-channel .item .icon {
-      position: absolute;
-      width: 320px;
-      height: 120px;
-      bottom: 0;
-      background-image: url(/images/default-channel.png); }
-    .forum-channel .item .lastpost-title {
-      position: absolute;
-      left: 26px;
-      top: 86px; }
-    .forum-channel .item .lastpost-author {
-      position: absolute;
-      left: 26px;
-      top: 118px; }
-    .forum-channel .item .lastpost-time {
-      position: absolute;
-      right: 15%;
-      top: 118px;
-      font-size: 14px; }
-    .forum-channel .item .icon-panel {
-      display: block; }
-    .forum-channel .item .lastpost-panel {
-      display: none; }
-  .forum-channel .item.enter .icon-panel {
-    display: none; }
-  .forum-channel .item.enter .lastpost-panel {
-    position: relative;
-    display: block;
-    animation: moveup 0.3s;
-    -webkit-animation: moveup 0.3s; }
-  .forum-channel .item.leave .lastpost-panel {
-    animation: moveright 0.32s;
-    -webkit-animation: moveright 0.32s; }
+    border: 1px solid #e3e3e3;
+    box-shadow: 1px 1px 10px rgba(80, 80, 80, 0.4); }
+    .forum-category .forum-channel .item .name {
+      font-size: 18px;
+      color: #999999;
+      margin-left: 18px; }
+    .forum-category .forum-channel .item .description {
+      font-size: 13px;
+      margin-top: 22px;
+      margin-left: 18px;
+      margin-right: 18px; }
+      .forum-category .forum-channel .item .description .count {
+        float: left;
+        width: 40%;
+        overflow: hidden; }
+      .forum-category .forum-channel .item .description .lasttime {
+        float: left;
+        width: 40%;
+        overflow: hidden;
+        display: inline-block;
+        white-space: nowrap; }
 
-.channel-panel {
-  width: 80%;
-  min-width: 960px;
-  max-width: 1200px;
-  margin: 0 auto;
-  background: #575b64;
-  padding: 30px 0 20px; }
-  .channel-panel .channel-password {
-    width: 80%;
-    margin: 0 auto; }
-    .channel-panel .channel-password input {
-      display: block;
-      margin: 12px 0;
-      padding: 8px;
-      width: 300px; }
-    .channel-panel .channel-password button {
-      display: block;
-      font-size: 12px;
-      width: 60px;
-      height: 32px;
-      line-height: 32px;
-      text-align: center;
-      background-color: #df796b;
-      color: white;
-      border: none;
-      outline: none;
-      cursor: pointer; }
-  .channel-panel .item {
-    margin: 0 2.6em;
-    padding: 14px 10px 40px;
-    border-bottom: 1px solid #71747a;
-    position: relative; }
-    .channel-panel .item a {
-      color: white; }
-    .channel-panel .item .title {
-      font-size: 18px; }
-    .channel-panel .item .author {
-      position: absolute;
-      top: 42px;
-      left: 10px;
-      font-size: 14px; }
-      .channel-panel .item .author span {
+.channel-panel .item {
+  width: 100%;
+  height: 72px;
+  line-height: 72px;
+  border-bottom: 1px dashed #999999; }
+  .channel-panel .item .left-panel {
+    float: left;
+    width: 50%;
+    white-space: nowrap;
+    overflow: hidden;
+    line-height: 32px;
+    text-indent: 10px;
+    margin-top: 8px; }
+    .channel-panel .item .left-panel .author {
+      color: #666666;
+      font-size: 13px; }
+      .channel-panel .item .left-panel .author a {
+        min-width: 80px;
+        display: inline-block;
+        float: left; }
+      .channel-panel .item .left-panel .author span {
         margin-left: 8px; }
-    .channel-panel .item .count {
-      position: absolute;
-      top: 18px;
-      right: 240px;
-      height: 30px;
-      line-height: 30px;
-      padding: 0 7px;
-      background-color: #62656b;
-      border-radius: 4px; }
-    .channel-panel .item .count.has-new {
-      background-color: #6b8fdf; }
-    .channel-panel .item .lastpost {
-      position: absolute;
-      right: 30px;
-      top: 14px;
-      width: 180px;
+  .channel-panel .item .right-panel {
+    float: right;
+    width: 200px;
+    margin-right: 20px;
+    white-space: nowrap;
+    overflow: hidden; }
+    .channel-panel .item .right-panel .count {
+      float: left; }
+    .channel-panel .item .right-panel .author {
+      float: left;
+      margin-left: 16px; }
+    .channel-panel .item .right-panel .lastpost {
+      float: right;
       font-size: 14px;
-      line-height: 20px; }
-  .channel-panel .control {
-    margin: 0 2.6em;
-    padding: 0 10px 20px;
-    border-bottom: 1px solid #71747a; }
-    .channel-panel .control .button {
-      display: block;
-      font-size: 12px;
-      width: 60px;
-      height: 32px;
-      line-height: 32px;
-      text-align: center;
-      background-color: #df796b;
-      color: white;
-      border: none;
-      outline: none;
-      cursor: pointer; }
-  .channel-panel .pagination {
-    margin-top: 20px; }
+      height: 72px;
+      line-height: 18px;
+      overflow: hidden; }
+      .channel-panel .item .right-panel .lastpost a {
+        margin: 12px 6px 0 0;
+        line-height: 32px;
+        display: inline-block; }
+      .channel-panel .item .right-panel .lastpost .created {
+        font-size: 13px;
+        line-height: 13px;
+        overflow: hidden; }
+.channel-panel .control {
+  height: 40px;
+  line-height: 40px; }
 
 .topic-panel {
-  width: 80%;
-  min-width: 960px;
-  max-width: 1200px;
-  margin: 0 auto;
-  background: #575b64;
-  padding: 40px 0; }
+  padding: 18px 24px;
+  border: 1px solid #e3e3e3;
+  box-shadow: 1px 1px 10px rgba(80, 80, 80, 0.4);
+  width: 92%; }
   .topic-panel .title {
-    margin: 0 50px;
-    font-size: 24px; }
-  .topic-panel .auth {
+    font-size: 20px;
+    font-weight: bold; }
+  .topic-panel .author {
+    margin: 12px 0 8px;
     position: relative;
-    margin: 20px 50px 0;
-    padding-bottom: 10px;
-    height: 40px;
-    font-size: 14px;
-    border-bottom: 1px solid #b4b4b4; }
-    .topic-panel .auth .avatar {
+    height: 46px;
+    border-bottom: 1px solid #cccccc; }
+    .topic-panel .author .avatar {
+      position: absolute; }
+    .topic-panel .author .name {
       position: absolute;
-      width: 32px;
-      height: 32px;
-      border-radius: 8px;
-      overflow: hidden; }
-    .topic-panel .auth .created {
-      position: absolute;
-      left: 46px;
-      top: 20px; }
-    .topic-panel .auth .name {
-      position: absolute;
-      left: 46px; }
-    .topic-panel .auth a {
+      left: 40px; }
+    .topic-panel .author .created {
       position: absolute;
       left: 40px;
-      color: white; }
+      bottom: 12px; }
   .topic-panel .content {
     margin: 20px 50px 0;
     line-height: 28px; }
@@ -1775,16 +1699,11 @@ footer {
       max-width: 100% !important; }
 
 .comment-panel {
-  width: 80%;
-  min-width: 960px;
-  max-width: 1200px;
-  margin: 0 auto;
-  margin-top: 40px;
-  padding-top: 40px;
-  background: #575b64; }
-  .comment-panel .comment-list, .comment-panel .comment-add {
-    width: 80%;
-    margin: 0 auto; }
+  margin-top: 12px;
+  padding: 24px 24px;
+  border: 1px solid #e3e3e3;
+  box-shadow: 1px 1px 10px rgba(80, 80, 80, 0.4);
+  width: 92%; }
   .comment-panel .comment-list .item {
     position: relative;
     min-height: 48px; }
@@ -1795,7 +1714,6 @@ footer {
       border-radius: 8px; }
     .comment-panel .comment-list .item .user {
       margin-left: 60px;
-      color: white;
       float: left; }
     .comment-panel .comment-list .item .time {
       margin-left: 10px;
@@ -1804,227 +1722,5 @@ footer {
       line-height: 16px; }
     .comment-panel .comment-list .item .content {
       margin: 10px 0 32px 60px; }
-  .comment-panel .comment-add {
-    padding-bottom: 48px; }
-    .comment-panel .comment-add .button {
-      margin-top: 8px;
-      float: right;
-      width: 60px;
-      height: 32px;
-      line-height: 32px;
-      background-color: #df796b;
-      color: white;
-      border: none;
-      border-radius: 3px;
-      cursor: pointer; }
-
-.topic-add-panel, .message-post-panel {
-  width: 80%;
-  min-width: 960px;
-  max-width: 1200px;
-  margin: 0 auto;
-  background: #575b64;
-  padding: 40px 0; }
-  .topic-add-panel .title, .message-post-panel .title {
-    display: block;
-    width: 90%;
-    height: 32px;
-    line-height: 32px;
-    text-indent: 0.8rem;
-    margin: 0 auto 12px;
-    padding: 0; }
-  .topic-add-panel .mce-tinymce, .message-post-panel .mce-tinymce {
-    width: 90%;
-    margin: 0 auto; }
-  .topic-add-panel .row, .message-post-panel .row {
-    width: 90%;
-    margin: 0 auto;
-    margin-top: 12px; }
-    .topic-add-panel .row button, .message-post-panel .row button {
-      display: block;
-      font-size: 12px;
-      width: 60px;
-      height: 32px;
-      line-height: 32px;
-      text-align: center;
-      background-color: #df796b;
-      color: white;
-      border: none;
-      outline: none;
-      cursor: pointer;
-      float: right; }
-
-.message-panel {
-  width: 80%;
-  min-width: 960px;
-  max-width: 1200px;
-  margin: 0 auto;
-  background: #575b64;
-  padding: 30px 0 20px; }
-  .message-panel .item {
-    margin: 0 2.6em;
-    padding: 14px 10px 10px;
-    border-bottom: 1px solid #71747a;
-    position: relative; }
-    .message-panel .item a {
-      color: white; }
-    .message-panel .item .title {
-      font-size: 16px;
-      display: inline-block;
-      width: 40%; }
-    .message-panel .item .from {
-      display: inline-block;
-      width: 20%; }
-    .message-panel .item .created {
-      display: inline-block;
-      width: 10%;
-      min-width: 140px; }
-    .message-panel .item .setting {
-      display: inline-block;
-      width: 20%;
-      text-align: right; }
-      .message-panel .item .setting a {
-        font-size: 120%; }
-
-.message-content-panel {
-  width: 80%;
-  min-width: 960px;
-  max-width: 1200px;
-  margin: 0 auto;
-  background: #575b64;
-  padding: 40px 0; }
-  .message-content-panel .title {
-    margin: 0 50px;
-    font-size: 18px; }
-  .message-content-panel .from {
-    position: relative;
-    margin: 20px 50px 0;
-    padding-bottom: 10px;
-    height: 40px;
-    font-size: 14px;
-    border-bottom: 1px solid #b4b4b4; }
-    .message-content-panel .from .avatar {
-      position: absolute;
-      width: 32px;
-      height: 32px;
-      border-radius: 8px;
-      overflow: hidden; }
-    .message-content-panel .from .created {
-      position: absolute;
-      left: 40px;
-      top: 20px; }
-    .message-content-panel .from .name {
-      position: absolute;
-      left: 46px; }
-    .message-content-panel .from a {
-      position: absolute;
-      left: 40px;
-      color: white; }
-  .message-content-panel .content {
-    margin: 20px 50px 0;
-    line-height: 28px; }
-
-.message-post-panel {
-  margin-top: 40px; }
-  .message-post-panel .message-editor {
-    width: 90%;
-    margin: 0 auto; }
-
-.user-panel {
-  width: 80%;
-  min-width: 960px;
-  max-width: 1200px;
-  margin: 0 auto;
-  background: #575b64;
-  padding: 40px 0; }
-  .user-panel a {
-    color: white; }
-  .user-panel form {
-    width: 300px;
-    margin: 0 auto; }
-  .user-panel hr {
-    margin: 20px 10px;
-    border-color: #cccccc; }
-  .user-panel .row {
-    margin: 0 auto;
-    width: 80%;
-    position: relative; }
-    .user-panel .row label {
-      font-size: 13px;
-      display: block;
-      padding: 8px 0 4px 4px; }
-    .user-panel .row .txt {
-      width: 240px;
-      line-height: 28px;
-      text-indent: 4px; }
-    .user-panel .row em {
-      position: absolute;
-      top: 32px;
-      left: 260px;
-      width: 100%;
-      color: #ff9191; }
-    .user-panel .row .info {
-      position: absolute;
-      top: 0;
-      left: 100px;
-      width: 300px; }
-      .user-panel .row .info li {
-        line-height: 22px;
-        width: 120px;
-        float: left; }
-  .user-panel .center {
-    text-align: center; }
-  .user-panel button {
-    margin-top: 8px;
-    width: 60px;
-    height: 32px;
-    line-height: 32px;
-    background-color: #df796b;
-    color: white;
-    border: none;
-    border-radius: 3px;
-    cursor: pointer; }
-  .user-panel label {
-    font-size: 14px; }
-  .user-panel .setting-panel {
-    margin-top: 50px;
-    margin-left: 10%;
-    width: 60%; }
-    .user-panel .setting-panel form {
-      margin: 0; }
-    .user-panel .setting-panel input {
-      width: 180px;
-      line-height: 22px;
-      height: 22px; }
-  .user-panel .avatar-panel {
-    margin-top: 50px;
-    margin-left: 10%;
-    width: 60%; }
-    .user-panel .avatar-panel .file-upload {
-      height: 30px;
-      line-height: 30px;
-      color: white;
-      font-size: 16px;
-      font-weight: bold;
-      width: 60px;
-      background-color: #df796b;
-      display: block;
-      position: absolute;
-      text-align: center;
-      top: 0;
-      right: 0;
-      cursor: pointer;
-      margin: 0; }
-
-.error-panel {
-  width: 80%;
-  min-width: 960px;
-  max-width: 1200px;
-  margin: 0 auto;
-  background: #575b64;
-  padding: 30px 0 20px;
-  text-align: center; }
-  .error-panel p {
-    line-height: 22px; }
-  .error-panel a {
-    color: white; }
+  .comment-panel .button {
+    margin-left: 10px; }

@@ -10,31 +10,21 @@
     {{!-- category --}}
     {{#each channels}}
     <div class="forum-category">
-        <h4 style="background:{{bcolor}}">{{name}}</h4>
+        <h4>{{name}}</h4>
         {{!-- channel --}}
         <div class="forum-channel">
             {{#each channels}}
-            <div class="item" style="background:{{bcolor}};">
+            <div class="item">
                 <a class="name" href="/channel/{{id}}">{{name}}</a>
-                <div class="count">{{count}}</div>
-                <div class="icon-panel">
-                    <div class="icon"></div>
-                </div>
-                <div class="lastpost-panel">
-                    <a class="lastpost-title" href="/topic/{{lastpost.id}}">
-                        {{lastpost.title}}
-                    </a>
-                    <a class="lastpost-author" href="/user/{{lastpost_user.id}}">
-                        {{lastpost_user.name}}
-                    </a>
-                    <div class="lastpost-time">
-                        {{lastpost_time}}
-                    </div>
+                <div class="description">
+                    <span class="count">{{count}} 主题</span>
+                    <span class="lasttime">{{lastpost_time}}</span>
+                    <div class="clear"></div>
                 </div>
             </div>
             {{/each}}
+            <div class="clear"></div>
         </div>
-        <div class="clear"></div>
     </div>
     {{/each}}
 </div>

@@ -44,6 +44,7 @@
             textarea.val(content);
             $.post('/comment/post', form.serialize()).success(function (res) {
                 if (!res.state) {
+                    alert(res.error);
                     return;
                 }
                 $.tmpl(itemTemplate, {

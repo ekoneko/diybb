@@ -6,6 +6,7 @@
 	"Register": "注册",
 	"%d Message": "%d 条消息",
 	"See all": "查看全部",
+	"last reply at": "最后回复于",
 	"last post at %s": "最后发布于 %s",
 	"unsupport uploader": "暂不支持上传",
 	"user not found or no permission": "用户不存在或无权访问",
