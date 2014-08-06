@@ -12,6 +12,7 @@ module.exports = function () {
             fn = require('../lib/function.js');
         _.each(data, function (item) {
             if (item.password) {
+                item.lastpost = item.lastpost_user = item.lastpost_time = null;
                 return;
             }
             if (item.lastpost) {
@@ -21,7 +22,7 @@ module.exports = function () {
                 item.lastpost_user = JSON.parse(item.lastpost_user);
             }
             if (item.lastpost_time) {
-                item.lastpost_time = fn.smartDate(item.lastpost_time);
+                item.lastpost_time = fn.smartDate(+new Date(item.lastpost_time));
             }
         });
     }
