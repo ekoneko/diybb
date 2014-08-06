@@ -3,7 +3,7 @@ configs/*.json
 node_modules/
 public/libraries/*
 public/javascripts/cache/
-public/stylesheets/src/.sass-cache 
+public/stylesheets/src/.sass-cache/*
 *.sassc
 public/javascripts/config.js
 core/controllers/test.js

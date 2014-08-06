@@ -1724,3 +1724,22 @@ footer {
       margin: 10px 0 32px 60px; }
   .comment-panel .button {
     margin-left: 10px; }
+
+.topic-add-panel, .message-post-panel {
+  padding: 40px 0; }
+  .topic-add-panel .title, .message-post-panel .title {
+    display: block;
+    width: 99%;
+    height: 32px;
+    line-height: 32px;
+    text-indent: 0.8rem;
+    margin: 0 auto 12px;
+    padding: 0;
+    border: 1px solid #dddddd; }
+  .topic-add-panel .mce-tinymce, .message-post-panel .mce-tinymce {
+    width: 99%;
+    margin: 0 auto; }
+  .topic-add-panel .row, .message-post-panel .row {
+    width: 99%;
+    margin: 0 auto;
+    margin-top: 12px; }

@@ -14,7 +14,7 @@
         <i> &gt; </i>
         <a href="/channel/{{channel.id}}">{{channel.name}}</a>
         <i> &gt; </i>
-        <a ng-href="/topic/{{post.id}}">{{post.title}}</a>
+        <a href="javascript:;">{{__ 'Add'}}</a>
     </div>
     <div class="topic-add-panel">
         <form id="topic-add" method="post" action="/topic/add">
@@ -22,7 +22,7 @@
             <input class="title" type="text" name="title" placeholder="{{__ 'Title'}}" required="required" />
             <textarea id="editor" class="editor" name="content"></textarea>
             <div class="row">
-                <button type="submit">{{__ 'Submit'}}</button>
+                <button class="button" type="submit">{{__ 'Submit'}}</button>
             </div>
         </form>
     </div>
