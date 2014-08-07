@@ -1701,32 +1701,32 @@ footer {
     float: left;
     margin-left: 20px; }
 
-.topic-panel {
+.topic-panel, .message-content-panel {
   padding: 18px 24px;
   border: 1px solid #e3e3e3;
   box-shadow: 1px 1px 10px rgba(80, 80, 80, 0.4);
   width: 92%; }
-  .topic-panel .title {
+  .topic-panel .title, .message-content-panel .title {
     font-size: 20px;
     font-weight: bold; }
-  .topic-panel .author {
+  .topic-panel .author, .message-content-panel .author {
     margin: 12px 0 8px;
     position: relative;
     height: 46px;
     border-bottom: 1px solid #cccccc; }
-    .topic-panel .author .avatar {
+    .topic-panel .author .avatar, .message-content-panel .author .avatar {
       position: absolute; }
-    .topic-panel .author .name {
+    .topic-panel .author .name, .message-content-panel .author .name {
       position: absolute;
       left: 40px; }
-    .topic-panel .author .created {
+    .topic-panel .author .created, .message-content-panel .author .created {
       position: absolute;
       left: 40px;
       bottom: 12px; }
-  .topic-panel .content {
+  .topic-panel .content, .message-content-panel .content {
     margin: 20px 50px 0;
     line-height: 28px; }
-    .topic-panel .content img {
+    .topic-panel .content img, .message-content-panel .content img {
       max-width: 100% !important; }
 
 .comment-panel {
@@ -1764,12 +1764,12 @@ footer {
     height: 32px;
     line-height: 32px;
     text-indent: 0.8rem;
-    margin: 0 auto 12px;
+    margin: 0 0 12px;
     padding: 0;
     border: 1px solid #dddddd; }
-  .topic-add-panel .mce-tinymce, .message-post-panel .mce-tinymce {
+  .topic-add-panel .mce-tinymce, .topic-add-panel .message-editor, .message-post-panel .mce-tinymce, .message-post-panel .message-editor {
     width: 99%;
-    margin: 0 auto; }
+    margin: 0; }
   .topic-add-panel .row, .message-post-panel .row {
     width: 99%;
     margin: 0 auto;

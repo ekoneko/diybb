@@ -11,14 +11,14 @@
 <div class="main">
     <div class="breadcrumbs">
         <a href="{{site.url}}">{{site.name}}</a>
-        <i> &gt; </i>
-        <a href="javascript:;">{{__ 'Message'}}</a>
+        <i class="icon-chevron-right"></i>
+        <a href="/message/all">{{__ 'Message'}}</a>
     </div>
     <div class="message-content-panel">
         <div class="title">{{message.title}}</div>
-        <div class="from">
-            <img class="avatar" src="/user/avatar/{{message.from_user.id}}" />
-            <a href="{{message.from_user.id}}" target="_blank">{{message.from_user.name}}</a>
+        <div class="author">
+            <div class="avatar"><img src="/user/avatar/{{message.from_user.id}}" width="32" height="32"></div>
+            <a class="name" href="{{message.from_user.id}}" target="_blank">{{message.from_user.name}}</a>
             <div class="created">{{message.created}}</div>
         </div>
         <div class="content">{{{message.content}}}</div>
@@ -31,7 +31,7 @@
                 <textarea id="reply" name="content"></textarea>
             </div>
             <div class="row">
-                <button type="submit">{{__ 'Reply'}}</button>
+                <button class="button" type="submit">{{__ 'Reply'}}</button>
             </div>
         </form>
     </div>
