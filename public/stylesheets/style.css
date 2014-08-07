@@ -1622,64 +1622,84 @@ footer {
         display: inline-block;
         white-space: nowrap; }
 
-.channel-panel .item {
+.channel-panel .item, .message-panel .item {
   width: 100%;
   height: 72px;
   line-height: 72px;
   border-bottom: 1px dashed #999999;
   position: relative; }
-  .channel-panel .item .left-panel {
+  .channel-panel .item .left-panel, .message-panel .item .left-panel {
     float: left;
     width: 50%;
     white-space: nowrap;
-    overflow: hidden;
-    line-height: 32px;
     text-indent: 10px;
     margin-top: 8px; }
-    .channel-panel .item .left-panel .author {
-      color: #666666;
-      font-size: 13px; }
-      .channel-panel .item .left-panel .author a {
-        min-width: 80px;
-        display: inline-block;
-        float: left; }
-      .channel-panel .item .left-panel .author span {
-        margin-left: 8px; }
-  .channel-panel .item .right-panel {
+  .channel-panel .item .right-panel, .message-panel .item .right-panel {
     float: right;
-    width: 200px;
     margin-right: 20px;
     white-space: nowrap;
     overflow: hidden; }
-    .channel-panel .item .right-panel .count {
+
+.channel-panel .item .left-panel {
+  overflow: hidden;
+  line-height: 32px; }
+  .channel-panel .item .left-panel .author {
+    color: #666666;
+    font-size: 13px; }
+    .channel-panel .item .left-panel .author a {
+      min-width: 80px;
+      display: inline-block;
       float: left; }
-    .channel-panel .item .right-panel .author {
-      float: left;
-      margin-left: 16px; }
-    .channel-panel .item .right-panel .lastpost {
-      float: right;
-      font-size: 14px;
-      height: 72px;
-      line-height: 18px;
-      overflow: hidden; }
-      .channel-panel .item .right-panel .lastpost a {
-        margin: 12px 6px 0 0;
-        line-height: 32px;
-        display: inline-block; }
-      .channel-panel .item .right-panel .lastpost .created {
-        font-size: 13px;
-        line-height: 13px;
-        overflow: hidden; }
-  .channel-panel .item .lastpost {
-    position: absolute;
-    right: 30px;
-    top: 26px;
-    width: 180px;
+    .channel-panel .item .left-panel .author span {
+      margin-left: 8px; }
+.channel-panel .item .right-panel {
+  width: 200px; }
+  .channel-panel .item .right-panel .count {
+    float: left; }
+  .channel-panel .item .right-panel .author {
+    float: left;
+    margin-left: 16px; }
+  .channel-panel .item .right-panel .lastpost {
+    float: right;
     font-size: 14px;
-    line-height: 20px; }
+    height: 72px;
+    line-height: 18px;
+    overflow: hidden; }
+    .channel-panel .item .right-panel .lastpost a {
+      margin: 12px 6px 0 0;
+      line-height: 32px;
+      display: inline-block; }
+    .channel-panel .item .right-panel .lastpost .created {
+      font-size: 13px;
+      line-height: 13px;
+      overflow: hidden; }
+.channel-panel .item .lastpost-time {
+  position: absolute;
+  right: 30px;
+  top: 26px;
+  width: 180px;
+  font-size: 14px;
+  line-height: 20px; }
 .channel-panel .control {
   height: 40px;
   line-height: 40px; }
+
+.message-panel .item .left-panel {
+  margin-top: 0; }
+.message-panel .item .right-panel {
+  width: 320px; }
+  .message-panel .item .right-panel .from {
+    float: left;
+    width: 100px;
+    white-space: nowrap;
+    overflow: hidden; }
+  .message-panel .item .right-panel .created {
+    float: left;
+    margin-left: 20px;
+    width: 140px; }
+  .message-panel .item .right-panel .setting {
+    float: left;
+    margin-left: 20px; }
 
 .topic-panel {
   padding: 18px 24px;

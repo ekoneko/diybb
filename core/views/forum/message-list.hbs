@@ -19,11 +19,16 @@
 </div>
 <script id="message-list-template" type="text/template">
     <div class="item" data-id="${id}">
-        <a class="title" href="/message/${id}">${title}</a>
-        <a class="from" href="/user/${from_user.id}" target="_blank">${from_user.name}</a>
-        <span class="created">${created}</span>
-        <div class="setting">
-            <a href="javascript:;" class="delete icon-trash"></a>
+        <div class="left-panel">
+            <a class="title" href="/message/${id}">${title}</a>
         </div>
+        <div class="right-panel">
+            <a class="from" href="/user/${from_user.id}" target="_blank">${from_user.name}</a>
+            <span class="created">${created}</span>
+            <div class="setting">
+                <a href="javascript:;" class="delete icon-trash"></a>
+            </div>
+        </div>
+        <div class="clear"></div>
     </div>
 </script>

@@ -235,9 +235,7 @@ footer
                     display: inline-block
                     white-space: nowrap
 
-
-
-.channel-panel
+.channel-panel, .message-panel
     .item
         width: 100%
         height: 72px
@@ -248,10 +246,18 @@ footer
             float: left
             width: 50%
             white-space: nowrap
-            overflow: hidden
-            line-height: 32px
             text-indent: 10px
             margin-top: 8px
+        .right-panel
+            float: right
+            margin-right: 20px
+            white-space: nowrap
+            overflow: hidden
+.channel-panel
+    .item
+        .left-panel
+            overflow: hidden
+            line-height: 32px
             .author
                 color: #666
                 font-size: 13px
@@ -262,11 +268,7 @@ footer
                 span
                     margin-left: 8px
         .right-panel
-            float: right
             width: 200px
-            margin-right: 20px
-            white-space: nowrap
-            overflow: hidden
             .count
                 float: left
             .author
@@ -286,7 +288,7 @@ footer
                     font-size: 13px
                     line-height: 13px
                     overflow: hidden
-        .lastpost
+        .lastpost-time
             position: absolute
             right: 30px
             top: 26px
@@ -296,6 +298,24 @@ footer
     .control
         height: 40px
         line-height: 40px
+.message-panel
+    .item
+        .left-panel
+            margin-top: 0
+        .right-panel
+            width: 320px
+            .from
+                float: left
+                width: 100px
+                white-space: nowrap
+                overflow: hidden
+            .created
+                float: left
+                margin-left: 20px
+                width: 140px
+            .setting
+                float: left
+                margin-left: 20px
 
 .topic-panel
     padding: 18px 24px
