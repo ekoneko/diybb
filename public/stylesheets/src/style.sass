@@ -243,6 +243,7 @@ footer
         height: 72px
         line-height: 72px
         border-bottom: 1px dashed #999
+        position: relative
         .left-panel
             float: left
             width: 50%
@@ -285,6 +286,13 @@ footer
                     font-size: 13px
                     line-height: 13px
                     overflow: hidden
+        .lastpost
+            position: absolute
+            right: 30px
+            top: 26px
+            width: 180px
+            font-size: 14px
+            line-height: 20px
     .control
         height: 40px
         line-height: 40px
@@ -362,3 +370,91 @@ footer
         width: 99%
         margin: 0 auto
         margin-top: 12px
+
+.user-panel
+    padding: 40px 0
+    form
+        width: 300px
+        margin: 0 auto
+    hr
+        margin: 20px 10px
+        border-color: #ccc
+    .row
+        margin: 0 auto
+        width: 90%
+        position: relative
+        label
+            font-size: 13px
+            display: block
+            padding: 8px 0 4px 4px
+        .txt
+            width: 240px
+            line-height: 28px
+            text-indent: 4px
+        em
+            position: absolute
+            top: 32px
+            left: 260px
+            width: 100%
+            color: #FF9191
+        .info
+            position: absolute
+            top: 0
+            left: 100px
+            width: 300px
+            li
+                line-height: 22px
+                width: 120px
+                float: left
+    .center
+        text-align: center
+
+    button
+        margin-top: 8px
+        width: 60px
+        height: 32px
+        line-height: 32px
+        background-color: #DF796B
+        color: #fff
+        border: none
+        border-radius: 3px
+        cursor: pointer
+
+    label
+        font-size: 14px
+
+    .setting-panel
+        margin-top: 50px
+        margin-left: 10%
+        width: 60%
+        form
+            margin: 0
+        input
+            width: 180px
+            line-height: 22px
+            height: 22px
+    .avatar-panel
+        margin-top: 50px
+        margin-left: 10%
+        width: 60%
+        .file-upload
+            height: 30px
+            line-height: 30px
+            color: #fff
+            font-size: 16px
+            font-weight: bold
+            width: 60px
+            background-color: #df796b
+            display: block
+            position: absolute
+            text-align: center
+            top: 0
+            right: 0
+            cursor: pointer
+            margin: 0
+.error-panel
+    background: #ddd
+    padding: 30px 0 20px
+    text-align: center
+    p
+        line-height: 22px
