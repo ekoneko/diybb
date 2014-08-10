@@ -13,6 +13,9 @@
     background-image: -moz-linear-gradient($direction, $color-stop1, $color-stop2)
     background-image: -o-linear-gradient($direction, $color-stop1, $color-stop2)
 
+*
+    font-family: "Lucida Grande", "Lucida Sans Unicode", mircosoft yahei, Helvetica, Arial, Verdana, sans-serif
+
 .clear
     clear: both
 
@@ -60,7 +63,8 @@ header
         position: absolute
         top: 10px
         right: 30px
-
+        a
+            color: #666
         img
             display: block
 
@@ -143,6 +147,7 @@ footer
     overflow: hidden
     padding: 22px 0 30px
     min-width: 790px
+    max-width: 1000px
     width: 84%
     margin: 0 auto
 
@@ -200,21 +205,22 @@ footer
         line-height: 36px
         font-size: 18px
         background-color: #e3e3e3
-        border-left: 6px solid #b81313
+        box-shadow: 2px 1px 4px rgba(160, 160, 160, 0.4)
         text-indent: 18px
+        @include linear-gradient(left, #e3e3e3, #efefef)
 
     .forum-channel
         margin: 18px 0 2px 0
         padding-left: 14px
         .item
-            width: 31%
+            width: 30%
             height: 54px
-            padding: 24px 0
-            margin-right: 16px
+            padding: 24px 1px
+            margin-right: 3%
             margin-bottom: 24px
             float: left
-            border: 1px solid #e3e3e3
-            box-shadow: 1px 1px 10px rgba(80, 80, 80, 0.4)
+            border-top: 4px solid #ff6666
+            box-shadow: 1px 1px 4px rgba(80, 80, 80, 0.4)
             .name
                 font-size: 18px
                 color: #999
@@ -228,6 +234,7 @@ footer
                     float: left
                     width: 40%
                     overflow: hidden
+                    font-size: 14px
                 .lasttime
                     float: left
                     width: 40%
@@ -258,9 +265,18 @@ footer
         .left-panel
             overflow: hidden
             line-height: 32px
-            .author
+            .title
+                font-size: 18px
                 color: #666
+            .author
+                color: #999
                 font-size: 13px
+                margin-top: -4px
+                i
+                    display: inline-block
+                    line-height: 32px
+                    float: left
+                    color: #ff8080
                 a
                     min-width: 80px
                     display: inline-block
@@ -473,7 +489,7 @@ footer
             cursor: pointer
             margin: 0
 .error-panel
-    background: #ddd
+    background: #eeeeee
     padding: 30px 0 20px
     text-align: center
     p

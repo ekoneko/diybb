@@ -1408,6 +1408,9 @@ a .icon-rotate-90:before, a .icon-rotate-180:before, a .icon-rotate-270:before, 
 .icon-renren:before {
   content: "\f18b"; }
 
+* {
+  font-family: "Lucida Grande", "Lucida Sans Unicode", mircosoft yahei, Helvetica, Arial, Verdana, sans-serif; }
+
 .clear {
   clear: both; }
 
@@ -1457,6 +1460,8 @@ header {
     position: absolute;
     top: 10px;
     right: 30px; }
+    header .account a {
+      color: #666666; }
     header .account img {
       display: block; }
     header .account [class^="icon-"], header .account [class*="icon-"] {
@@ -1532,6 +1537,7 @@ footer {
   overflow: hidden;
   padding: 22px 0 30px;
   min-width: 790px;
+  max-width: 1000px;
   width: 84%;
   margin: 0 auto; }
 
@@ -1588,20 +1594,24 @@ footer {
   line-height: 36px;
   font-size: 18px;
   background-color: #e3e3e3;
-  border-left: 6px solid #b81313;
-  text-indent: 18px; }
+  box-shadow: 2px 1px 4px rgba(160, 160, 160, 0.4);
+  text-indent: 18px;
+  background-image: linear-gradient(left, #e3e3e3, #efefef);
+  background-image: -webkit-linear-gradient(left, #e3e3e3, #efefef);
+  background-image: -moz-linear-gradient(left, #e3e3e3, #efefef);
+  background-image: -o-linear-gradient(left, #e3e3e3, #efefef); }
 .forum-category .forum-channel {
   margin: 18px 0 2px 0;
   padding-left: 14px; }
   .forum-category .forum-channel .item {
-    width: 31%;
+    width: 30%;
     height: 54px;
-    padding: 24px 0;
-    margin-right: 16px;
+    padding: 24px 1px;
+    margin-right: 3%;
     margin-bottom: 24px;
     float: left;
-    border: 1px solid #e3e3e3;
-    box-shadow: 1px 1px 10px rgba(80, 80, 80, 0.4); }
+    border-top: 4px solid #ff6666;
+    box-shadow: 1px 1px 4px rgba(80, 80, 80, 0.4); }
     .forum-category .forum-channel .item .name {
       font-size: 18px;
       color: #999999;
@@ -1614,7 +1624,8 @@ footer {
       .forum-category .forum-channel .item .description .count {
         float: left;
         width: 40%;
-        overflow: hidden; }
+        overflow: hidden;
+        font-size: 14px; }
       .forum-category .forum-channel .item .description .lasttime {
         float: left;
         width: 40%;
@@ -1643,9 +1654,18 @@ footer {
 .channel-panel .item .left-panel {
   overflow: hidden;
   line-height: 32px; }
+  .channel-panel .item .left-panel .title {
+    font-size: 18px;
+    color: #666666; }
   .channel-panel .item .left-panel .author {
-    color: #666666;
-    font-size: 13px; }
+    color: #999999;
+    font-size: 13px;
+    margin-top: -4px; }
+    .channel-panel .item .left-panel .author i {
+      display: inline-block;
+      line-height: 32px;
+      float: left;
+      color: #ff8080; }
     .channel-panel .item .left-panel .author a {
       min-width: 80px;
       display: inline-block;
@@ -1855,7 +1875,7 @@ footer {
       margin: 0; }
 
 .error-panel {
-  background: #dddddd;
+  background: #eeeeee;
   padding: 30px 0 20px;
   text-align: center; }
   .error-panel p {
