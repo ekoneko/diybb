@@ -1448,7 +1448,7 @@ header {
   height: 60px;
   margin-bottom: 20px;
   line-height: 60px;
-  background-color: #ff6666;
+  background-color: #444444;
   position: relative; }
   header .logo {
     font-size: 26px;
@@ -1519,17 +1519,17 @@ footer {
   width: 100%;
   height: 60px;
   line-height: 60px;
-  background-color: #ffdddd;
+  background-color: #444444;
   position: relative; }
   footer .powerby {
     position: absolute;
     height: 20px;
     bottom: 20px;
     right: 10px;
-    color: #ff6666;
+    color: white;
     font-size: 16px; }
     footer .powerby a {
-      color: red;
+      color: white;
       font-weight: bold; }
 
 .main {
@@ -1537,7 +1537,6 @@ footer {
   color: #999999;
   overflow: hidden;
   padding: 22px 0 30px;
-  min-width: 790px;
   max-width: 1000px;
   width: 84%;
   margin: 0 auto; }
@@ -1549,11 +1548,14 @@ footer {
   height: 32px;
   line-height: 32px;
   text-align: center;
-  background-color: #df796b;
+  background-color: #ff6666;
   color: white;
   border: none;
   outline: none;
   cursor: pointer; }
+
+.button:hover {
+  color: white !important; }
 
 .pagination {
   text-align: center;
@@ -1594,14 +1596,11 @@ footer {
   height: 36px;
   line-height: 36px;
   font-size: 18px;
-  background-color: #ffdddd;
+  background-color: #e3e3e3;
   box-shadow: 2px 1px 4px rgba(160, 160, 160, 0.4);
   text-indent: 18px;
-  color: white;
-  background-image: linear-gradient(left, #ffcccc, #ffe3e3);
-  background-image: -webkit-linear-gradient(left, #ffcccc, #ffe3e3);
-  background-image: -moz-linear-gradient(left, #ffcccc, #ffe3e3);
-  background-image: -o-linear-gradient(left, #ffcccc, #ffe3e3); }
+  color: #444444;
+  border-left: 3px solid #ff4444; }
 .forum-category .forum-channel {
   margin: 18px 0 2px 0;
   padding-left: 14px; }
@@ -1882,3 +1881,26 @@ footer {
   text-align: center; }
   .error-panel p {
     line-height: 22px; }
+
+@media (min-width: 1420px) {
+  .main {
+    max-width: 1140px; }
+
+  .forum-category .forum-channel .item {
+    width: 21.8%; } }
+@media (min-width: 1600px) {
+  .main {
+    max-width: 1460px; }
+
+  .forum-category .forum-channel .item {
+    width: 16.8%; } }
+@media (max-width: 800px) {
+  .forum-category .forum-channel .item {
+    width: 100%; }
+
+  .channel-panel .item .left-panel {
+    width: 100px !important;
+    overflow: hidden;
+    text-overflow: ellipsis; }
+    .channel-panel .item .left-panel .author span {
+      display: none; } }
