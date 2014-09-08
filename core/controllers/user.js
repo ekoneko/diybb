@@ -86,7 +86,9 @@ module.exports = function () {
             this.res.render('forum/user-register.hbs');
         },
         login: function () {
-            this.res.render('forum/user-login.hbs');
+            this.res.render('forum/user-login.hbs', {
+                redirect: self.req.query.redirect
+            });
         },
         setting: function () {
             var model = require('../lib/model.js');
@@ -140,14 +142,20 @@ module.exports = function () {
                 });
             }
             model.load('user').login(username, password).then(function (user) {
+                var redirect = '/',
+                    xss = require('node-xss').clean;
                 if (user) {
                     self.res.cookie('user', user.id.toString(), {
                         signed: true,
                         httpOnly: true
                     });
+                    if (self.req.body.redirect && self.req.body.redirect.indexOf('://') === -1) {
+                        redirect = xss(self.req.body.redirect);
+                    }
                     return self.res.render('forum/user-success.hbs', {
                         action: 'Login',
-                        user: user
+                        user: user,
+                        redirect: redirect
                     });
                 } else {
                     return self.res.render('forum/error.hbs', {

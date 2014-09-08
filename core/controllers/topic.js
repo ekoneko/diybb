@@ -48,7 +48,7 @@ module.exports = function () {
 
             model.load('user').get(self.req.signedCookies.user).then(function (_user) {
                 if (!_user) {
-                    return self.res.redirect('/user/login');
+                    return self.res.redirect('/user/login?redirect=/topic/add/' + channelId);
                 }
                 user = _user;
                 return model.load('channel').get(channelId);
