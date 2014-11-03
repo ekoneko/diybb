@@ -73,7 +73,7 @@ module.exports = function (callback) {
         initExpress = function () {
             var deferred = when.defer();
             app.set('env', process.env.NODE_ENV);
-            app.use(express.favicon());
+            app.use(express.favicon('../public/images/favicon.ico'));
             app.use(express.logger('dev'));
             app.use(express.bodyParser());
             app.use(express.cookieParser(require('../configs/common.json').secret));
