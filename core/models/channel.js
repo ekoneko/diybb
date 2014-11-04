@@ -36,7 +36,9 @@ module.exports = function () {
                 filter(data);
                 return deferred.resolve(data);
             }
-            self.select({}, {
+            self.select({
+                state: 'enable'
+            }, {
                 "orderby" : ['sort', 'ASC']
             }, function (err, data) {
                 if (err) {
