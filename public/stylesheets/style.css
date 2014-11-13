@@ -1444,11 +1444,14 @@ a .icon-rotate-90:before, a .icon-rotate-180:before, a .icon-rotate-270:before, 
   -ms-transform: rotate(45deg);
   transform: rotate(45deg); }
 
+body {
+  background-color: #e1e1e1; }
+
 header {
   height: 60px;
   margin-bottom: 20px;
   line-height: 60px;
-  background-color: #444444;
+  background-color: #333333;
   position: relative; }
   header .logo {
     font-size: 26px;
@@ -1519,7 +1522,7 @@ footer {
   width: 100%;
   height: 60px;
   line-height: 60px;
-  background-color: #444444;
+  background-color: #333333;
   position: relative; }
   footer .powerby {
     position: absolute;
@@ -1533,26 +1536,24 @@ footer {
       font-weight: bold; }
 
 .main {
-  background-color: white;
   color: #999999;
   overflow: hidden;
-  padding: 22px 0 30px;
   max-width: 1000px;
   width: 84%;
-  margin: 0 auto; }
+  margin: 20px auto; }
 
 .button {
   display: block;
-  font-size: 12px;
-  width: 60px;
-  height: 32px;
-  line-height: 32px;
+  width: 80px;
+  height: 36px;
+  line-height: 36px;
   text-align: center;
-  background-color: #ff6666;
+  background-color: #e84e40;
   color: white;
   border: none;
   outline: none;
-  cursor: pointer; }
+  cursor: pointer;
+  font-size: 14px; }
 
 .button:hover {
   color: white !important; }
@@ -1578,7 +1579,7 @@ footer {
     background-color: #c2c2c2;
     cursor: pointer; }
   .pagination .page.active {
-    background-color: #ffb0b0; }
+    background-color: red !important; }
   .pagination .page:hover {
     background-color: #ffb0b0; }
 
@@ -1590,55 +1591,58 @@ footer {
     color: #666666; }
   .breadcrumbs i {
     text-align: center;
-    margin: 0 3px; }
+    margin: 0 3px;
+    color: #c74f4f; }
 
-.forum-category h4 {
-  height: 36px;
-  line-height: 36px;
-  font-size: 18px;
-  background-color: #e3e3e3;
-  box-shadow: 2px 1px 4px rgba(160, 160, 160, 0.4);
-  text-indent: 18px;
-  color: #444444;
-  border-left: 3px solid #ff4444; }
-.forum-category .forum-channel {
-  margin: 18px 0 2px 0;
-  padding-left: 14px; }
-  .forum-category .forum-channel .item {
-    width: 30%;
-    height: 54px;
-    padding: 24px 1px;
-    margin-right: 3%;
-    margin-bottom: 24px;
-    float: left;
-    border-top: 4px solid #ff6666;
-    box-shadow: 1px 1px 4px rgba(80, 80, 80, 0.4); }
-    .forum-category .forum-channel .item .name {
-      font-size: 18px;
-      color: #666666;
-      margin-left: 18px; }
-    .forum-category .forum-channel .item .description {
-      font-size: 13px;
-      margin-top: 22px;
-      margin-left: 18px;
-      margin-right: 18px; }
-      .forum-category .forum-channel .item .description .count {
-        float: left;
-        width: 40%;
-        overflow: hidden;
-        font-size: 14px; }
-      .forum-category .forum-channel .item .description .lasttime {
-        float: left;
-        width: 40%;
-        overflow: hidden;
-        display: inline-block;
-        white-space: nowrap; }
+.forum-category {
+  background-color: white;
+  margin-bottom: 28px; }
+  .forum-category h4 {
+    height: 36px;
+    line-height: 36px;
+    font-size: 14px;
+    background-color: #e84e40;
+    box-shadow: 0px 2px 7px 1px rgba(0, 0, 0, 0.4);
+    text-indent: 18px;
+    color: white; }
+  .forum-category .forum-channel {
+    margin: 0 0 12px 0;
+    padding: 20px 14px 0 14px; }
+    .forum-category .forum-channel .item {
+      width: 30%;
+      height: 54px;
+      padding: 24px 1px;
+      margin-right: 3%;
+      margin-bottom: 24px;
+      float: left;
+      border-top: 3px solid #ff6666;
+      box-shadow: 0px 1px 3px 3px rgba(80, 80, 80, 0.2); }
+      .forum-category .forum-channel .item .name {
+        font-size: 18px;
+        color: #666666;
+        margin-left: 18px; }
+      .forum-category .forum-channel .item .description {
+        font-size: 13px;
+        margin-top: 22px;
+        margin-left: 18px;
+        margin-right: 18px; }
+        .forum-category .forum-channel .item .description .count {
+          float: left;
+          width: 40%;
+          overflow: hidden;
+          font-size: 14px; }
+        .forum-category .forum-channel .item .description .lasttime {
+          float: left;
+          width: 40%;
+          overflow: hidden;
+          display: inline-block;
+          white-space: nowrap; }
 
 .channel-panel .item, .message-panel .item {
   width: 100%;
   height: 72px;
   line-height: 72px;
-  border-bottom: 1px dashed #999999;
+  border-bottom: 1px dashed #c34d4d;
   position: relative; }
   .channel-panel .item .left-panel, .message-panel .item .left-panel {
     float: left;
@@ -1657,7 +1661,7 @@ footer {
   line-height: 32px; }
   .channel-panel .item .left-panel .title {
     font-size: 18px;
-    color: #666666; }
+    color: #444444; }
   .channel-panel .item .left-panel .author {
     color: #999999;
     font-size: 13px;
@@ -1703,7 +1707,8 @@ footer {
   line-height: 20px; }
 .channel-panel .control {
   height: 40px;
-  line-height: 40px; }
+  line-height: 40px;
+  padding-bottom: 12px; }
 
 .message-panel .item .left-panel {
   margin-top: 0; }
@@ -1725,7 +1730,7 @@ footer {
 .topic-panel, .message-content-panel {
   padding: 18px 24px;
   border: 1px solid #e3e3e3;
-  box-shadow: 1px 1px 10px rgba(80, 80, 80, 0.4);
+  box-shadow: 1px 1px 6px 1px rgba(80, 80, 80, 0.4);
   width: 92%; }
   .topic-panel .title, .message-content-panel .title {
     font-size: 20px;
@@ -1775,7 +1780,7 @@ footer {
     .comment-panel .comment-list .item .content {
       margin: 10px 0 32px 60px; }
   .comment-panel .button {
-    margin-left: 10px; }
+    margin-top: 10px; }
 
 .topic-add-panel, .message-post-panel {
   padding: 40px 0; }
@@ -1838,7 +1843,7 @@ footer {
     width: 60px;
     height: 32px;
     line-height: 32px;
-    background-color: #df796b;
+    background-color: #e84e40;
     color: white;
     border: none;
     border-radius: 3px;
