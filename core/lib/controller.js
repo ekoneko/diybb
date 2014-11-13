@@ -28,7 +28,8 @@
                 _.extend(params, {
                     site: {
                         url: commonConfig.siteurl,
-                        name: commonConfig.sitename
+                        name: commonConfig.sitename,
+                        logo: commonConfig.logo
                     }
                 });
                 return aliasRender.call(this, url, params);

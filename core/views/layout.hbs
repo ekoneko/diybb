@@ -10,7 +10,13 @@
     </head>
     <body>
         <header>
-            <a href="{{site.url}}" class="logo">DIYRPG</a>
+            <a href="{{site.url}}" class="logo">
+            {{#if site.logo}}
+            <img src="{{site.logo}}" />
+            {{else}}
+            {{site.name}}
+            {{/if}}
+            </a>
             <div class="account">
                 {{#if user}}
                 <a id="message" class="message" href="javascript:;" target="_blank"></a>

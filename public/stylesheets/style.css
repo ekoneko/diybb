@@ -1459,6 +1459,9 @@ header {
     color: white;
     float: left;
     margin-left: 0.5em; }
+    header .logo img {
+      max-height: 100%;
+      vertical-align: middle; }
   header .account {
     position: absolute;
     top: 10px;
