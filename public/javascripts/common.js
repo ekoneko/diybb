@@ -121,5 +121,5 @@
     };
     new Account();
 
-    $('.main').css('min-height', $('html').height() - 192 + 'px');
+    $('.main').css('min-height', $('html').height() - 160 + 'px');
 }());
