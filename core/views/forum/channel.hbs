@@ -29,7 +29,12 @@
             <div class="right-panel">
                 <div class="count{{#if count}} has-new{{/if}}">{{count}}</div>
                 <div class="lastpost">
-                    <a href="/user/{{lastpost_user.id}}" target="_blank">{{lastpost_user.name}}</a>{{__ 'last reply at'}}
+                    {{#if lastpost_user.id}}
+                    <a href="/user/{{lastpost_user.id}}" target="_blank">{{lastpost_user.name}}</a>
+                    {{else}}
+                    <a href="javascript:;">--</a>
+                    {{/if}}
+                    {{__ 'last reply at'}}
                     <p>{{lastpost_time}}</p>
                 </div>
             </div>

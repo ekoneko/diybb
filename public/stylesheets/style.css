@@ -1696,6 +1696,7 @@ footer {
     .channel-panel .item .right-panel .lastpost a {
       margin: 12px 6px 0 0;
       line-height: 32px;
+      height: 32px;
       display: inline-block; }
     .channel-panel .item .right-panel .lastpost .created {
       font-size: 13px;
@@ -1793,7 +1794,7 @@ footer {
     display: block;
     width: 99%;
     height: 32px;
-    line-height: 32px;
+    line-height: 100%;
     text-indent: 0.8rem;
     margin: 0 0 12px;
     padding: 0;
@@ -1805,6 +1806,10 @@ footer {
     width: 99%;
     margin: 0 auto;
     margin-top: 12px; }
+  .topic-add-panel .editor, .message-post-panel .editor {
+    width: 99%;
+    border: 1px solid #cccccc;
+    height: 500px; }
 
 .user-panel {
   padding: 40px 0; }
