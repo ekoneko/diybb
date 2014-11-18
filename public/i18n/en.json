@@ -3,5 +3,9 @@
 	"Register": "Register",
 	"%d Message": "%d Message",
 	"See all": "See all",
-	"Content not exist or no permission": "Content not exist or no permission"
+	"Content not exist or no permission": "Content not exist or no permission",
+	"Message": "Message",
+	"Setting": "Setting",
+	"Profile": "Profile",
+	"Logout": "Logout"
 }

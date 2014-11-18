@@ -13,7 +13,7 @@ module.exports = function () {
                 post;
 
             if (!id) {
-                this.next();
+                return this.next();
             }
             when.all([
                 model.load('user').get(self.req.signedCookies.user),
