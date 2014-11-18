@@ -1824,7 +1824,8 @@ footer {
       padding: 8px 0 4px 4px; }
     .user-panel .row .txt {
       width: 240px;
-      line-height: 28px;
+      height: 28px;
+      line-height: 100%;
       text-indent: 4px; }
     .user-panel .row em {
       position: absolute;
