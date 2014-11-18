@@ -146,6 +146,7 @@ module.exports = function () {
                     xss = require('node-xss').clean;
                 if (user) {
                     self.res.cookie('user', user.id.toString(), {
+                        // expires: new Date(Date.now() + 2592000000), // 86400000 * 30
                         signed: true,
                         httpOnly: true
                     });
