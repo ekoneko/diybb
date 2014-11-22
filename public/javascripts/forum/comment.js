@@ -76,11 +76,15 @@
                     total: res.total || 0,
                     size: SIZE
                 });
-                for (var item, i = res.data.length; i > 0; i--) {
+                for (var element, item, i = res.data.length; i > 0; i--) {
                     item = res.data[i - 1];
-                    $.tmpl(itemTemplate, res.data[i - 1])
+                    element = $.tmpl(itemTemplate, item);
+                    element
                         .prependTo(list)
                         .find('.content').html(item.content);
+                    if (item.user_id === userId) {
+                        element.find('.edit').show();
+                    }
                 }
             });
         });

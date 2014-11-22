@@ -13,6 +13,7 @@
 	"Content not exist or no permission": "内容不存在或无权访问",
 	"Channel not exist or no permission": "频道不存在或无权访问",
 	"Topic not exis or no permission": "话题不存在或无权访问",
+	"Post not exis or no permission": "帖子不存在或无权访问",
 	"Message not exist or no permission": "消息不存在或无权访问",
 	"Title": "标题",
 	"Submit": "提交",
@@ -59,7 +60,9 @@
 	"No title": "无题",
 	"Score": "积分",
 	"Add": "添加",
+	"Edit": "编辑",
 	"Input channel password": "输入频道密码",
 	"Topics Count": "话题数",
-	"Publish": "发布"
+	"Publish": "发布",
+	"Can not edit other's post": "不能编辑别人的内容"
 }

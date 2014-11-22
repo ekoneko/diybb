@@ -56,6 +56,7 @@ module.exports = function() {
                 limit: 1
             }).then(function (post) {
                 if (post && post[0]) {
+                    data.postId = post[0].id;
                     data.content = post[0].content;
                 } else {
                     data.content = require('i18n').__('Content forbidden');
@@ -103,6 +104,18 @@ module.exports = function() {
                 return deferred.reject(err);
             }
             deferred.resolve(data);
+        });
+        return deferred.promise;
+    };
+
+    this.edit = function (where, data, options) {
+        console.log(where, data, options);
+        var deferred = when.defer();
+        this.update(where, data, options, function (err) {
+            if (err) {
+                return deferred.reject(err);
+            }
+            deferred.resolve();
         });
         return deferred.promise;
     };

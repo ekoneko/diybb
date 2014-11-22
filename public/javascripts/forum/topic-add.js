@@ -3,11 +3,12 @@
 
     $(function () {
         var editor = $('#editor'),
-            submitting = false;
+            submitting = false,
+            form = $('#topic-add');
 
         editor.editor();
 
-        $('#topic-add').bind('submit', function (event) {
+        form.bind('submit', function (event) {
             event.preventDefault();
             var content = tinymce.activeEditor.getContent();
             if (!content) {
@@ -15,7 +16,7 @@
                 return false;
             }
             editor.val(content);
-            $.post('/topic/add', $(this).serialize()).success(function (res) {
+            $.post(form.attr('action'), $(this).serialize()).success(function (res) {
                 if (res.state) {
                     location.href = '/topic/' + res.id;
                 } else {

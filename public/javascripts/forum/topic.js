@@ -6,5 +6,8 @@
             var $item = $(item),
                 id = $item.attr('data-topic') >>> 0;
         });
+        if (TopicUserId === userId) {
+            $('#topic-id > .edit').show();
+        }
     });
 }());

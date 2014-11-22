@@ -1740,6 +1740,9 @@ footer {
   .topic-panel .title, .message-content-panel .title {
     font-size: 20px;
     font-weight: bold; }
+    .topic-panel .title .small, .message-content-panel .title .small {
+      font-size: 13px;
+      font-weight: normal; }
   .topic-panel .author, .message-content-panel .author {
     margin: 12px 0 8px;
     position: relative;
@@ -1785,6 +1788,8 @@ footer {
       line-height: 16px; }
     .comment-panel .comment-list .item .content {
       margin: 10px 0 32px 60px; }
+    .comment-panel .comment-list .item .edit {
+      margin-left: 8px; }
   .comment-panel .button {
     margin-top: 10px; }
 

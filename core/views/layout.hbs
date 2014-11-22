@@ -63,3 +63,8 @@
 {{#script}}
 {{{block "pageScript"}}}
 {{/script}}
+<script>
+    {{#if user}}
+    var userId = {{user.id}};
+    {{/if}}
+</script>

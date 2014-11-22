@@ -56,4 +56,16 @@ module.exports = function() {
         });
         return deferred.promise;
     };
+
+    this.edit = function (where, data, options) {
+        console.log(where, data, options);
+        var deferred = when.defer();
+        this.update(where, data, options, function (err) {
+            if (err) {
+                return deferred.reject(err);
+            }
+            deferred.resolve();
+        });
+        return deferred.promise;
+    };
 };

@@ -3,12 +3,12 @@ module.exports = function () {
     'use strict';
 
     var self = this,
-        model = require('../lib/model.js');
+        model = require('../lib/model.js'),
+        when = require('when');
 
     this.get = {
         index: function () {
             var id = this.req.params.id >>> 0,
-                when = require('when'),
                 user,
                 post;
 
@@ -65,14 +65,6 @@ module.exports = function () {
                 self.res.render('forum/error.hbs', {
                     user: user,
                     message: (typeof err === 'string') ? err: 'Server error, try again'
-                });
-            });
-        },
-        edit: function () {
-            model.load('user').get(self.req.signedCookies.user).then(function (user) {
-                return self.res.render('forum/error.hbs', {
-                    user: user,
-                    message: 'Come soon'
                 });
             });
         },

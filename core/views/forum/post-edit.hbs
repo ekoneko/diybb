@@ -1,0 +1,32 @@
+{{!< ../layout}}
+{{#content "pageStyles"}}
+{{!-- page css --}}
+{{/content}}
+{{#content "pageScript"}}
+<script src="/libraries/tinymce/tinymce.jquery.min.js"></script>
+<script src="/user_libraries/tinymce/editor.js"></script>
+<script src="/javascripts/forum/topic-add.js"></script>
+{{/content}}
+{{!-- content --}}
+<div class="main">
+    <div class="breadcrumbs">
+        <a href="{{site.url}}">{{site.name}}</a>
+        <i class="icon-chevron-right"></i>
+        <a href="/topic/{{topic.id}}">{{topic.title}}</a>
+        <i class="icon-chevron-right"></i>
+        <a href="javascript:;">{{__ 'Edit'}}</a>
+    </div>
+    <div class="topic-add-panel">
+        <form id="topic-add" method="post" action="/post/edit">
+            <input type="hidden" name="topic_id" value="{{topic.id}}" />
+            <input type="hidden" name="post_id" value="{{post.id}}" />
+            {{#if post.first}}
+            <input class="title" type="text" name="title" placeholder="{{__ 'Title'}}" required="required" value="{{topic.title}}" />
+            {{/if}}
+            <textarea id="editor" class="editor" name="content">{{post.content}}</textarea>
+            <div class="row">
+                <button class="button" type="submit">{{__ 'Submit'}}</button>
+            </div>
+        </form>
+    </div>
+</div>

@@ -7,6 +7,11 @@
 <script src="/javascripts/forum/comment.js"></script>
 {{/content}}
 {{!-- content --}}
+<script>
+    var topicId = {{post.id}},
+        postId = {{post.postId}},
+        TopicUserId = {{post.user_id}};
+</script>
 <div class="main">
     <div class="breadcrumbs">
         <a href="{{site.url}}">{{site.name}}</a>
@@ -16,7 +21,9 @@
         <a ng-href="/topic/{{post.id}}">{{post.title}}</a>
     </div>
     <div class="topic-panel">
-        <h1 class="title">{{post.title}}</h1>
+        <h1 id="topic-id" class="title">{{post.title}}
+            <span class="edit small" style="display:none;"><a href="/post/edit/{{post.postId}}"><i title="{{__ 'Edit'}}" class="icon-edit"></i></a></span>
+        </h1>
         <div class="author">
             <div class="avatar"><img src="/user/avatar/{{post.user_id}}" width="32" height="32"></div>
             <a class="name" href="/user/{{post.user_id}}" target="_blank">{{post.user_name}}</a>

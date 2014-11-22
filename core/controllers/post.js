@@ -2,7 +2,9 @@
 module.exports = function () {
     'use strict';
     
-    var self = this;
+    var self = this,
+        when = require('when'),
+        model = require('../lib/model.js');
 
     this.get = {
         template: function () {
@@ -12,9 +14,7 @@ module.exports = function () {
             self.res.render('forum/comment-item.hbs');
         },
         data: function () {
-            var model = require('../lib/model.js'),
-                when = require('when'),
-                topicId = self.req.query.topic >>> 0,
+            var topicId = self.req.query.topic >>> 0,
                 page = self.req.query.page >>> 0,
                 size, where;
 
@@ -50,13 +50,46 @@ module.exports = function () {
                     error: err
                 });
             });
+        },
+        edit: function () {
+            var postId = self.req.params.id >>> 0,
+                user, post;
+            when.all([
+                model.load('user').get(self.req.signedCookies.user),
+                model.load('post').list({id:postId})
+            ]).then(function (result) {
+                post = result[1];
+                user = result[0]
+                if (!user) {
+                    return self.res.redirect('/user/login?redirect=/post/edit/' + postId);
+                }
+                if (!post || !post.length) {
+                    throw('Post not exis or no permission')
+                }
+                post = post[0];
+                if (post.user_id !== user.id) {
+                    throw('Can not edit other\'s post');
+                }
+                return model.load('topic').get(post.topic_id);
+            }).then(function (topic) {
+                return self.res.render('forum/post-edit.hbs', {
+                    topic: topic,
+                    user: user,
+                    post: post
+                });
+            }).otherwise(function (err) {
+                console.error(err);
+                self.res.render('forum/error.hbs', {
+                    user: user,
+                    message: (typeof err === 'string') ? err: 'Server error, try again'
+                });
+            });
         }
     };
 
     this.post = {
         post: function () {
-            var model = require('../lib/model.js'),
-                topic = self.req.body.topic_id >>> 0,
+            var topic = self.req.body.topic_id >>> 0,
                 content = self.req.body.content,
                 user;
             if (!topic) {
@@ -94,7 +127,46 @@ module.exports = function () {
                     state: false,
                     error: err
                 });
-            })
+            });
+        },
+        edit: function () {
+            var topicId = self.req.body.topic_id,
+                postId = self.req.body.post_id,
+                title = self.req.body.title,
+                content = self.req.body.content,
+                post, user;
+            when.all([
+                model.load('user').get(self.req.signedCookies.user),
+                model.load('post').list({id:postId})
+            ]).then(function (result) {
+                post = result[1];
+                user = result[0]
+                if (!user) {
+                    return self.res.redirect('/user/login?redirect=/post/edit/' + postId);
+                }
+                if (!post || !post.length) {
+                    throw('Post not exis or no permission')
+                }
+                post = post[0];
+                if (post.user_id !== user.id) {
+                    throw('Can not edit other\'s post');
+                }
+                if (post.first && title) {
+                    model.load('topic').edit({id: topicId}, {title: title}, {limit: 1});
+                }
+                return model.load('post').edit({id: postId}, {content: content}, {limit: 1});
+            }).then(function () {
+                self.res.send({
+                    state: true,
+                    id: self.req.body.topic_id
+                })
+            }).otherwise(function (err) {
+                console.error(err);
+                self.res.send({
+                    state: false,
+                    error: err
+                });
+            });
         }
     }
 };
