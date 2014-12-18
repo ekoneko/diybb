@@ -13,7 +13,8 @@
             path = require('path'),
             md5 = require('MD5'),
             _ = require('underscore'),
-            express = require('express');
+            express = require('express'),
+            model = require('./model.js');
         require('child_process').exec('rm -Rf ../public/javascripts/cache/*');
         app.engine('hbs', hbs.express3({
             partialsDir: path.join(__dirname + '/../views'),
@@ -64,5 +65,17 @@
             });
         });
 
+        hbs.registerAsyncHelper('admin', function (id, callback) {
+            id = parseInt(id, 10);
+            if (!id) {
+                return callback('');
+            }
+            model.load('channel_admin').getByUser(id).then(function (data) {
+                callback('<script>var adminChannel="[' + data.join(',') + ']";</script>\
+                    <script src="/javascripts/forum/admin.js"></script>');
+            }).otherwise(function () {
+                return callback('');
+            });
+        });
     };
 }.call(this));

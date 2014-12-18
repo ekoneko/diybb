@@ -109,7 +109,6 @@ module.exports = function() {
     };
 
     this.edit = function (where, data, options) {
-        console.log(where, data, options);
         var deferred = when.defer();
         this.update(where, data, options, function (err) {
             if (err) {
@@ -119,4 +118,15 @@ module.exports = function() {
         });
         return deferred.promise;
     };
+
+    this.remove = function (where, options) {
+        var deferred = when.defer();
+        this['delete'](where, options || {}, function (err) {
+            if (err) {
+                return deferred.reject(err);
+            }
+            deferred.resolve();
+        });
+        return deferred.promise;
+    }
 };
