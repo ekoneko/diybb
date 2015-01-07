@@ -42,7 +42,6 @@
                         <li><a href="/user/logout"><i class="icon-off"></i>{{__ 'Logout'}}</a></li>
                     </ul>
                 </div>
-                {{{admin user.id}}}
                 {{else}}
                 <a href="/user/login">{{__ 'Login'}}</a> |
                 <a href="/user/register">{{__ 'Register'}}</a>
@@ -64,8 +63,9 @@
 {{#script}}
 {{{block "pageScript"}}}
 {{/script}}
+{{#if user}}
 <script>
-    {{#if user}}
     var userId = {{user.id}};
-    {{/if}}
 </script>
+{{{admin user.id}}}
+{{/if}}

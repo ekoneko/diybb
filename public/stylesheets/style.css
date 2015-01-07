@@ -1408,6 +1408,33 @@ a .icon-rotate-90:before, a .icon-rotate-180:before, a .icon-rotate-270:before, 
 .icon-renren:before {
   content: "\f18b"; }
 
+.admin-topic-panel {
+  position: fixed;
+  right: 20px;
+  bottom: 40px; }
+  .admin-topic-panel .block {
+    width: 50px;
+    height: 50px;
+    margin: 5px;
+    background: #666666;
+    font-family: "FontAwesome";
+    font-size: 36px;
+    color: white;
+    cursor: pointer; }
+    .admin-topic-panel .block:before {
+      width: 100%;
+      text-align: center;
+      display: inherit;
+      line-height: 50px; }
+  .admin-topic-panel .untop {
+    color: white; }
+    .admin-topic-panel .untop:before {
+      content: "\f078"; }
+  .admin-topic-panel .top:before {
+    content: "\f077"; }
+  .admin-topic-panel .delete:before {
+    content: "\f00d"; }
+
 * {
   font-family: "Lucida Grande", "Lucida Sans Unicode", mircosoft yahei, Helvetica, Arial, Verdana, sans-serif; }
 
