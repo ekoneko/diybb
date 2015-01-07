@@ -44,7 +44,9 @@
                 cacheName,
                 data = '';
             if ('product' !== process.env.NODE_ENV) {
-                return callback(tags);
+                return process.nextTick(function () {
+                    callback(tags);
+                });
             }
             tags = tags.replace(/<!--(.*?)-->/g, '');
             cacheName = '/javascripts/cache/' + md5(tags) + '.js';
@@ -71,7 +73,7 @@
                 return callback('');
             }
             model.load('channel_admin').getByUser(id).then(function (data) {
-                callback('<script>var adminChannel="[' + data.join(',') + ']";</script>\
+                callback('<script>var adminChannel=[' + data.join(',') + '];</script>\
                     <script src="/javascripts/forum/admin.js"></script>');
             }).otherwise(function () {
                 return callback('');
