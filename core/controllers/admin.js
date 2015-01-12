@@ -11,7 +11,7 @@ module.exports = function () {
     this.get = {};
 
     this.post = {
-        topic_top: function () {
+        topicTop: function () {
             var userId = +self.req.signedCookies.user,
                 topicId = +self.req.body.id,
                 set = +self.req.body.set ? 1 : 0,
@@ -45,7 +45,7 @@ module.exports = function () {
             });
 
         },
-        topic_delete: function () {
+        topicDelete: function () {
             var userId = +self.req.signedCookies.user,
                 topicIds = self.req.body.ids.split(',').map(Number),
                 adminChannels,
@@ -76,6 +76,41 @@ module.exports = function () {
                 return model.load('topic').remove({
                     id: waitRemove
                 });
+            }).then(function () {
+                return self.res.send({state: true});
+            }).otherwise(function (err) {
+                console.error(err);
+                self.res.send('forum/error.hbs', {
+                    state: false,
+                    error: typeof err === 'string' ? err : 'Server error, try again'
+                });
+            });
+        },
+        postDelete: function () {
+            var userId = +self.req.signedCookies.user,
+                postId = +self.req.body.id,
+                adminChannels;
+
+            if (!userId || !postId) {
+                return self.res.send({
+                    state: false,
+                    error: self.res.__('no permission')
+                });
+            }
+            model.load('channel_admin').getByUser(userId).then(function (data) {
+                adminChannels = data;
+                return model.load('post').list({id: postId});
+            }).then(function (postsData) {
+                if (!postsData || !postsData.length) {
+                    throw 'Post not exis';
+                }
+                return model.load('topic').get(postsData[0].topic_id);
+
+            }).then(function (topicData) {
+                if (!topicData || adminChannels.indexOf(topicData.channel_id) === - 1) {
+                    throw 'Topic not exis or no permission';
+                }
+                return model.load('post').remove({id: postId});
             }).then(function () {
                 return self.res.send({state: true});
             }).otherwise(function (err) {

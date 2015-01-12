@@ -34,7 +34,8 @@
         "/message/delete" : "message/rm",
         "/comment/post" : "post/post",
         "/user/avatar": "user/avatar",
-        "/admin/topic/top" : "admin/topic_top",
-        "/admin/topic/delete" : "admin/topic_delete"
+        "/admin/topic/top" : "admin/topicTop",
+        "/admin/topic/delete" : "admin/topicDelete",
+        "/admin/post/delete" : "admin/postDelete"
     }
 }

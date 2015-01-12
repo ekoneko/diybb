@@ -64,5 +64,7 @@
 	"Input channel password": "输入频道密码",
 	"Topics Count": "话题数",
 	"Publish": "发布",
-	"Can not edit other's post": "不能编辑别人的内容"
+	"Can not edit other's post": "不能编辑别人的内容",
+	"Delete": "删除",
+	"no permission": "no permission"
 }

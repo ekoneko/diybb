@@ -2,7 +2,12 @@
     <div class="avatar"><img src="/user/avatar/${user_id}" width="36" height="36" /></div>
     <a class="user" href="/user/${user_id}">${user_name}</a>
     <div class="time">${created}</div>
-    <span class="edit" style="display:none;"><a href="/post/edit/${id}"><i title="{{__ 'Edit'}}" class="icon-edit"></i></a></span>
+    <span class="edit" style="display:none;">
+        <a href="/post/edit/${id}"><i title="{{__ 'Edit'}}" class="icon-edit"></i></a>
+    </span>
+    <span class="delete">
+        <a class="post-remove" data-id="${id}" href="javascript:;"><i title="{{__ 'Delete'}}" class="icon-remove"></i></a>
+    </span>
     <div class="clear"></div>
     <div class="content"></div>
 </div>

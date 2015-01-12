@@ -1815,10 +1815,15 @@ footer {
       line-height: 16px; }
     .comment-panel .comment-list .item .content {
       margin: 10px 0 32px 60px; }
-    .comment-panel .comment-list .item .edit {
+    .comment-panel .comment-list .item .edit, .comment-panel .comment-list .item .delete {
       margin-left: 8px; }
+    .comment-panel .comment-list .item .delete {
+      display: none; }
   .comment-panel .button {
     margin-top: 10px; }
+
+.comment-panel.show-admin-control .comment-list .delete {
+  display: inline-block; }
 
 .topic-add-panel, .message-post-panel {
   padding: 40px 0; }

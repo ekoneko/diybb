@@ -6,7 +6,7 @@
      * @param {int} topicId
      */
     function setTopicTop (topicId) {
-        $.post('/admin/topic/top', {
+        return $.post('/admin/topic/top', {
             id: +topicId,
             set: 1
         }).success(function (res) {
@@ -25,7 +25,7 @@
      * @param {int} topicId
      */
     function unsetTopicTop (topicId) {
-        $.post('/admin/topic/top', {
+        return $.post('/admin/topic/top', {
             id: +topicId,
             set: 0
         }).success(function (res) {
@@ -47,8 +47,29 @@
         if (!window.confirm('Confirm to remove?')) {
             return;
         }
-        $.post('/admin/topic/delete', {
+        return $.post('/admin/topic/delete', {
             ids: topicIds.join(',')
+        }).success(function (res) {
+            if (res.state) {
+                window.alert('Success');
+            } else {
+                window.alert('Error: ' + res.error);
+            }
+        }).error(function () {
+            window.alert('Service Error');
+        });
+    }
+
+    /**
+     * delete post
+     * @param  {int} postId
+     */
+    function deletePost(postId) {
+        if (!window.confirm('Confirm to remove?')) {
+            return;
+        }
+        return $.post('/admin/post/delete', {
+            id: postId
         }).success(function (res) {
             if (res.state) {
                 window.alert('Success');
@@ -87,6 +108,13 @@
                 .on('click', function () {
                     deleteTopics([window.topicId]);
                 });
+            $('.comment-panel').addClass('show-admin-control').on('click', '.post-remove', function (res) {
+                var element = $(this),
+                    id = +element.attr('data-id');
+                deletePost(id).success(function () {
+                    element.parents('.item').remove();
+                });
+            });
             $('body').append(managePanel);
         } else if (/\/channel\/(\d+)/i.test(pathName)) {
             // console.log('channel');

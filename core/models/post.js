@@ -67,4 +67,15 @@ module.exports = function() {
         });
         return deferred.promise;
     };
+
+    this.remove = function (where, options) {
+        var deferred = when.defer();
+        this['delete'](where, options || {}, function (err) {
+            if (err) {
+                return deferred.reject(err);
+            }
+            deferred.resolve();
+        });
+        return deferred.promise;
+    };
 };
