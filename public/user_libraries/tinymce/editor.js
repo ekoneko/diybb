@@ -5,7 +5,7 @@
     'use strict';
 
     jQuery.fn.editor = function (mode) {
-        var modeOptions,
+        var toolbar, modeOptions,
             options = {
                 selector: '#' + this.attr('id'),
                 language_url: '/user_libraries/tinymce/i18n/zh-CN.js',
@@ -33,8 +33,9 @@
             tinymce.DOM.loadCSS('/libraries/tinymce-yentext/style.css');
             break;
         case 'tiny':
+            toolbar = $.browser.mobile ? 'bold italic forecolor' : 'bold italic forecolor | link unlink | yen';
             modeOptions = {
-                toolbar1: 'bold italic forecolor | link unlink | yen',
+                toolbar1: toolbar,
                 plugins: 'link textcolor',
                 statusbar: false,
                 width: '100%',

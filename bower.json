@@ -21,6 +21,7 @@
     "jquery.cookie": "~1.4.1",
     "js-md5": "~1.1.0",
     "tinymce-yentext": "https://github.com/ekoneko/tinymce-yentext.git",
-    "tinymce": "https://github.com/tinymce/tinymce-dist.git#~4.0.28"
+    "tinymce": "https://github.com/tinymce/tinymce-dist.git#~4.0.28",
+    "jquery.browser": "~0.0.7"
   }
 }
