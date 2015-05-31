@@ -48,6 +48,7 @@
                     return;
                 }
                 $.tmpl(itemTemplate, {
+                    id: res.post.id,
                     user_id: res.user.id,
                     user_name: res.user.name,
                     created: $fn.smartDate(+new Date()),

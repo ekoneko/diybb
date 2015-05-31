@@ -112,13 +112,16 @@ module.exports = function () {
                     user_name : user.name,
                     content : content
                 });
-            }).then(function () {
+            }).then(function (post) {
                 model.load('user_score').add(user.id, 1);
                 self.res.send({
                     state: true,
                     user: {
                         id: user.id,
                         name: user.name
+                    },
+                    post: {
+                        id: post.id
                     }
                 });
             }).otherwise(function (err) {
