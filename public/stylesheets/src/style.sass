@@ -353,7 +353,7 @@ footer
     background-color: #fff
     padding: 18px 24px
     border: 1px solid #e3e3e3
-    box-shadow: 1px 1px 6px 1px rgba(80, 80, 80, 0.4)
+    box-shadow: 1px 1px 6px 1px rgba(80, 80, 80, 0.2)
     width: 92%
     .title
         font-size: 20px
@@ -385,7 +385,7 @@ footer
     padding: 24px 24px
     border: 1px solid #e3e3e3
     background-color: #fff
-    box-shadow: 1px 1px 10px rgba(80, 80, 80, 0.4)
+    box-shadow: 1px 1px 10px rgba(80, 80, 80, 0.2)
     width: 92%
     .comment-list
         .item
@@ -409,6 +409,15 @@ footer
             .edit, .delete
                 margin-left: 8px
             .delete
+                display: none
+            &:before
+                content: ''
+                border-top: 1px dashed #CCC
+                width: 99%
+                left: 0
+                top: -12px
+                position: absolute
+            &:first-child:before
                 display: none
     .button
         margin-top: 10px

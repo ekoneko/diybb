@@ -1767,7 +1767,7 @@ footer {
   background-color: white;
   padding: 18px 24px;
   border: 1px solid #e3e3e3;
-  box-shadow: 1px 1px 6px 1px rgba(80, 80, 80, 0.4);
+  box-shadow: 1px 1px 6px 1px rgba(80, 80, 80, 0.2);
   width: 92%; }
   .topic-panel .title, .message-content-panel .title {
     font-size: 20px;
@@ -1800,7 +1800,7 @@ footer {
   padding: 24px 24px;
   border: 1px solid #e3e3e3;
   background-color: white;
-  box-shadow: 1px 1px 10px rgba(80, 80, 80, 0.4);
+  box-shadow: 1px 1px 10px rgba(80, 80, 80, 0.2);
   width: 92%; }
   .comment-panel .comment-list .item {
     position: relative;
@@ -1823,6 +1823,15 @@ footer {
     .comment-panel .comment-list .item .edit, .comment-panel .comment-list .item .delete {
       margin-left: 8px; }
     .comment-panel .comment-list .item .delete {
+      display: none; }
+    .comment-panel .comment-list .item:before {
+      content: "";
+      border-top: 1px dashed #cccccc;
+      width: 99%;
+      left: 0;
+      top: -12px;
+      position: absolute; }
+    .comment-panel .comment-list .item:first-child:before {
       display: none; }
   .comment-panel .button {
     margin-top: 10px; }
