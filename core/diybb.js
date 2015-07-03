@@ -99,7 +99,7 @@ module.exports = function (callback) {
         },
 
         initRouter = function () {
-            var setRoute, deferred,
+            var setRoute, deferred, robots = '',
                 router = require('../configs/router.json');
             setRoute = function (method, key, value) {
                 app[method](key, function (req, res, next) {
@@ -114,6 +114,13 @@ module.exports = function (callback) {
                     c.execAction(req.params[0] || 'index', method);
                 });
             };
+            fs.readFile(path.join(__dirname, '../public/robots.txt'), function(err, data) {
+                if (err) return;
+                app.get('/robots.txt', function (req, res) {
+                    res.header('Content-Type', 'text/plain');
+                    res.send(data);
+                });
+            });
             deferred = when.defer();
             _.each(['get', 'post'], function (method) {
                 _.map(router[method], function (value, key) {
