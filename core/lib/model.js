@@ -135,6 +135,9 @@
                 } else {
                     sql -= '- ' + detla;
                 }
+                if (where) {
+                    sql += ' WHERE ' + this._where(where);
+                }
                 if (options.orderby) {
                     sql += ' ORDER BY' + this._orderby(options.orderby);
                 }
@@ -142,6 +145,7 @@
                 limit = Math.min(limit, 500);
                 sql += ' LIMIT ?';
                 data.push(limit);
+                console.log(sql, data)
                 __db.query(sql, data, callback);
 
             }
