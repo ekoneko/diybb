@@ -11,7 +11,11 @@ module.exports = function () {
             if (!uploadConfig.apiUrl) {
                 return this.res.render('forum/uploader-unsupport.hbs');
             }
-            redirectUrl = url.resolve(commonConfig.siteurl, 'system/imageupredirect');
+            var baseUrl = commonConfig.siteurl;
+            if (baseUrl.indexOf('//') === 0) {
+                baseUrl = this.req.protocol + ':' + baseUrl;
+            }
+            redirectUrl = url.resolve(baseUrl, 'system/imageupredirect');
             redirectUrl = encodeURIComponent(redirectUrl);
             this.res.redirect(301, url.resolve(uploadConfig.apiUrl, '?redirect_url=' + redirectUrl));
         },
