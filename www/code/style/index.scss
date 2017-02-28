@@ -1,0 +1,28 @@
+a {
+  &:hover, &:focus {
+    text-decoration: none;
+  }
+}
+.pagination > li:first-child > a {
+  border-radius: 0;
+}
+.pagination > li:last-child > a {
+  border-radius: 0;
+}
+.pagination > .active > a, .pagination > .active > span, .pagination > .active > a:hover, .pagination > .active > span:hover, .pagination > .active > a:focus, .pagination > .active > span:focus {
+  background-color: #59d;
+  border-color: #59d;
+}
+.pagination > li > a, .pagination > li > span {
+  color: #59d;
+}
+.panel {
+  box-shadow: none;
+  border-radius: 0;
+  &.panel-default > .panel-heading {
+    background-color: #59d;
+    color: #fff;
+    border-top-left-radius: 2px;
+    border-top-right-radius: 2px;
+  }
+}

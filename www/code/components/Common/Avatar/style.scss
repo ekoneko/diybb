@@ -1,0 +1,14 @@
+.avatar-container {
+  .avatar {
+    background: #aaaaaa;
+    display: inline-block;
+    vertical-align: middle;
+  }
+  &> label {
+    font-weight: 100;
+    font-size: inherit;
+    color: inherit;
+    text-indent: .5rem;
+    margin-bottom: 0;
+  }
+}
