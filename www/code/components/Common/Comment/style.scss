@@ -1,0 +1,32 @@
+.comment-container {
+  .form {
+    background: #fff;
+    .form-group {
+      margin-top: 1rem;
+      textarea {
+        background: none;
+        font-size: 1rem;
+        padding: 1rem.5rem;
+        margin-bottom: 0;
+        &.is-focused {
+          background: none;
+        }
+      }
+    }
+  }
+  .list {
+    background: #fff;
+    .comment-item {
+      position: relative;
+      min-height: 80px;
+      padding-left: 60px;
+      .avatar-container {
+        position: absolute;
+        left: 0;
+      }
+      .text {
+
+      }
+    }
+  }
+}

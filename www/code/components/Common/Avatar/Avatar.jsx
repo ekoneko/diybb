@@ -11,7 +11,7 @@ export default class Avatar extends React.Component {
   static propTypes = {
     sharp: React.PropTypes.string,
     name: React.PropTypes.string,
-    size: React.PropTypes.number
+    size: React.PropTypes.oneOfType([React.PropTypes.number, React.PropTypes.string]),
   };
   render() {
     const {sharp, name, size} = this.props;
