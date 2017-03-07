@@ -25,10 +25,10 @@ function storeGenerator() {
   );
 }
 
-function combineActions(store, actions) {
+function combineActions(store) {
   const combinedActions = {};
   for (let key in actions) {
-    if (actions.hasOwnProperty(key)) {
+    if (Object.prototype.hasOwnProperty.call(actions, key)) {
       combinedActions[key] = bindActionCreators(actions[key], store.dispatch);
     }
   }
@@ -44,8 +44,8 @@ const App = connect(state => state)(Index);
 App.childContextTypes = {
   actions: React.PropTypes.object
 };
-App.prototype.getChildContext = function() {
-  return {actions: combineActions(store, actions)}
+App.prototype.getChildContext = function () {
+  return {actions: combineActions(store)}
 };
 ReactDOM.render(
   <Provider store={store}>

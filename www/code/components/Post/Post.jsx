@@ -7,7 +7,7 @@ import AccessCard from '../Common/AccessCard/AccessCard'
 import Article from '../Common/Article/Article'
 import Comment from '../Common/Comment/Comment'
 
-export default class Post extends React.Component {
+export default class Post extends React.PureComponent {
   render() {
     return (
       <div>
@@ -18,7 +18,7 @@ export default class Post extends React.Component {
             <Comment></Comment>
           </Col>
           <Col xs={3}>
-            <AccessCard/>
+            <AccessCard />
           </Col>
         </Grid>
       </div>

@@ -5,7 +5,7 @@ import Header from '../Header/Header'
 import List from '../List/List'
 import Forum from '../Common/Forum/Forum'
 
-export default class Home extends React.Component {
+export default class Home extends React.PureComponent {
   render() {
     return (<div>
       <Header />
@@ -20,8 +20,8 @@ export default class Home extends React.Component {
             这里是公告
           </Panel>
           <Panel header="论坛">
-            <Forum/>
-            <Forum/>
+            <Forum />
+            <Forum />
           </Panel>
         </Col>
       </Grid>

@@ -5,14 +5,12 @@ import Home from './Home/Home'
 import Channel from './Channel/Channel'
 import Post from './Post/Post'
 
-export default class Index extends React.Component {
-  render() {
-    return (
-      <Router history={hashHistory}>
-        <Route path="/" component={Home} />
-        <Route path="/f/:id" component={Channel} />
-        <Route path="/p/:id" component={Post} />
-      </Router>
-    )
-  }
+export default function Index() {
+  return (
+    <Router history={hashHistory}>
+      <Route path="/" component={Home} />
+      <Route path="/f/:id" component={Channel} />
+      <Route path="/p/:id" component={Post} />
+    </Router>
+  )
 }

@@ -3,7 +3,7 @@ import {Link} from 'react-router'
 
 import Avatar from '../Common/Avatar/Avatar'
 
-export default class Item extends React.Component {
+export default class Item extends React.PureComponent {
   render() {
     return (
       <div className="item">

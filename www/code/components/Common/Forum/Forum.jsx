@@ -3,7 +3,7 @@ import {Link} from 'react-router'
 
 import './style.scss'
 
-export default class Forum extends React.Component {
+export default class Forum extends React.PureComponent {
   render() {
     return (
       <div className="forum">

@@ -3,15 +3,22 @@
     background: #fff;
     .form-group {
       margin-top: 1rem;
+      padding: 1rem 1rem 0;
       textarea {
-        background: none;
+        background: #eee;
         font-size: 1rem;
         padding: 1rem.5rem;
         margin-bottom: 0;
-        &.is-focused {
-          background: none;
+        &::-webkit-input-placeholder {
+          font-size: 1rem;
         }
       }
+      &.is-focused textarea {
+        height: 100px;
+      }
+    }
+    .submit {
+      margin-top: 0;
     }
   }
   .list {

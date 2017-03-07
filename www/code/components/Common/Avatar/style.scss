@@ -4,11 +4,13 @@
     display: inline-block;
     vertical-align: middle;
   }
-  &> label {
+  &> .label {
     font-weight: 100;
     font-size: inherit;
     color: inherit;
     text-indent: .5rem;
     margin-bottom: 0;
+    padding: 0 0 0 .3em;
+    background: none;
   }
 }

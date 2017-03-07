@@ -4,7 +4,7 @@ import {Link} from 'react-router'
 import './style.scss'
 import Avatar from '../Common/Avatar/Avatar'
 
-export default class Header extends React.Component {
+export default class Header extends React.PureComponent {
   render() {
     return (
       <div className="header">

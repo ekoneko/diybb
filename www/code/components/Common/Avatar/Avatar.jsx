@@ -2,7 +2,7 @@ import React from 'react'
 
 import './style.scss'
 
-export default class Avatar extends React.Component {
+export default class Avatar extends React.PureComponent {
   static defaultProps = {
     sharp: 'rect',
     name: '',
@@ -27,7 +27,7 @@ export default class Avatar extends React.Component {
       <div className="avatar-container">
         <div className="avatar" style={style}></div>
         {name && (
-          <label>{name}</label>
+          <span className="label">{name}</span>
         )}
       </div>
     )
