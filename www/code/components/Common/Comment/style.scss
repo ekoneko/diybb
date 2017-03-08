@@ -40,6 +40,13 @@
       .avatar-container {
         position: absolute;
         left: 0;
+        top: 1.5rem;
+      }
+      .info {
+        color: #aaa;
+        .tag {
+          margin-right: 1rem;
+        }
       }
       .text {
 
