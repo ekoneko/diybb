@@ -9,7 +9,12 @@ a {
 .pagination > li:last-child > a {
   border-radius: 0;
 }
-.pagination > .active > a, .pagination > .active > span, .pagination > .active > a:hover, .pagination > .active > span:hover, .pagination > .active > a:focus, .pagination > .active > span:focus {
+.pagination > .active > a,
+.pagination > .active > span,
+.pagination > .active > a:hover,
+.pagination > .active > span:hover,
+.pagination > .active > a:focus,
+.pagination > .active > span:focus {
   background-color: #59d;
   border-color: #59d;
 }
@@ -25,4 +30,13 @@ a {
     border-top-left-radius: 2px;
     border-top-right-radius: 2px;
   }
+}
+.dropdown-menu li a:hover {
+  color: #5599dd;
+}
+:focus {
+  outline: none!important;
+}
+a, a:hover, a:focus {
+  color: #5599dd;
 }

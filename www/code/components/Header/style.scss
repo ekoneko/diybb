@@ -1,5 +1,4 @@
 .header {
-  overflow: hidden;
   height: 5rem;
   line-height: 5rem;
   padding: 0 2rem;
@@ -15,5 +14,11 @@
   }
   .avatar-panel {
     float: right;
+    .dropdown {
+      margin: 0;
+      &.open > .dropdown-toggle.btn {
+        background: inherit;
+      }
+    }
   }
 }
