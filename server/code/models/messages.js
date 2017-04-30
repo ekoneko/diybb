@@ -14,12 +14,10 @@ module.exports = {
     },
     fromUser: {
       type: Sequelize.INTEGER,
-      field: 'from_user',
       allowNull: false,
     },
     toUser: {
       type: Sequelize.INTEGER,
-      field: 'to_user',
     },
     state: {
       type: Sequelize.ENUM('new','read'),
@@ -31,10 +29,10 @@ module.exports = {
     indexes: [
       {
         unique: false,
-        fields: ['from_user']
+        fields: ['fromUser']
       }, {
         unique: false,
-        fields: ['to_user', 'state']
+        fields: ['toUser', 'state']
       },
     ],
   }

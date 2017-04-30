@@ -22,10 +22,9 @@ module.exports = {
       type: Sequelize.INTEGER(10),
       allowNull: false,
     },
-    lastpostTime: {
+    lastCommentTime: {
       type: Sequelize.DATE,
       allowNull: true,
-      field: 'lastpost_time',
     },
     state: {
       type: Sequelize.ENUM('enable', 'disable'),

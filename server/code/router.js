@@ -14,9 +14,9 @@ module.exports = function () {
   router.get('/posts', post.list)
   router.get('/post/:id', post.getDetail)
   router.post('/post', post.create)
-  router.del('./post/:id', post.remove)
-  router.put('./post/:id', post.edit)
-  router.patch('./post/:id', post.patch)
+  router.del('/post/:id', post.remove)
+  router.put('/post/:id', post.edit)
+  router.patch('/post/:id', post.patch)
 
   return router.routes()
 };

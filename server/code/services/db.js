@@ -42,7 +42,7 @@ class DB {
   static getErrorMessage(err) {
     if (err instanceof Sequelize.ValidationError) {
       return {
-        err_no: ErrorCode,
+        err_no: ErrorCode.DATABASE_VALIDATION_ERROR,
         err_message: err.message
       }
     } else if (err instanceof Sequelize.UniqueConstraintError) {
@@ -81,6 +81,15 @@ class DB {
    */
   model(name) {
     return this.sequelize.model(name);
+  }
+
+  /**
+   * create a transaction
+   * @param func
+   * @return {Promise}
+   */
+  transaction(func) {
+    return this.sequelize.transaction(t => func(t))
   }
 }
 

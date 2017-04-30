@@ -7,17 +7,14 @@ module.exports = {
       type: Sequelize.INTEGER,
       allowNull: false,
       unique: true,
-      field: 'topic_id',
     },
     userId: {
       type: Sequelize.INTEGER,
       allowNull: false,
-      field: 'user_id',
     },
     userName: {
       type: Sequelize.STRING(80),
       allowNull: false,
-      field: 'user_name',
     },
     content: {
       type: Sequelize.TEXT('medium'),
@@ -28,7 +25,10 @@ module.exports = {
     indexes: [
       {
         unique: false,
-        fields: ['user_id']
+        fields: ['topicId']
+      }, {
+        unique: false,
+        fields: ['userId']
       }
     ]
   }

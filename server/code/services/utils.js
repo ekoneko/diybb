@@ -18,3 +18,7 @@ module.exports.getParamUnmatchedError = () => {
     err_message: 'params not match'
   }
 }
+
+module.exports.reportErrorMessage = (message) => {
+  console.error(message)
+}

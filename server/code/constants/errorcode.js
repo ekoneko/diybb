@@ -8,4 +8,6 @@ module.exports = {
 
   USER_NOT_EXISTS_ERROR: 3001,
   PASSWORD_ERROR: 3002,
+
+  NOT_FOUND: 4004,
 };
