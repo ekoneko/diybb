@@ -23,15 +23,16 @@ module.exports.create = async ctx => {
   data.salt = generateSalt();
   data.password = encryptPassword(data.password, data.salt);
 
-  ctx.body = await userModel.create(data, {
-    fields: writableFields,
-  }).then(() => {
+  try {
+    await userModel.create(data, {
+      fields: writableFields,
+    })
     ctx.status = 201;
-    return {}
-  }).catch(err => {
+    ctx.body = {}
+  } catch (err) {
     ctx.status = 500;
-    return DB.getErrorMessage(err)
-  });
+    ctx.body = DB.getErrorMessage(err)
+  }
 }
 
 module.exports.login = async ctx => {
@@ -41,42 +42,38 @@ module.exports.login = async ctx => {
     return
   }
   const searchParam = isEmail(data.name) ? {email: data.name} : {name: data.name};
-  ctx.body = await userModel.findOne(searchParam)
-    .then(row => {
-      if (!row) {
-        return {
-          err_no: ErrorCode.USER_NOT_EXISTS_ERROR,
-          err_message: 'user not exists'
-        }
+
+  try {
+    const row = await userModel.findOne(searchParam)
+    if (!row) {
+      ctx.body = {
+        err_no: ErrorCode.USER_NOT_EXISTS_ERROR,
+        err_message: 'user not exists'
       }
-      const password = encryptPassword(data.password, row.get('salt'));
-      if (row.get('password') !== password) {
-        return {
-          err_no: ErrorCode.PASSWORD_ERROR,
-          err_message: 'password not match'
-        }
+      return
+    }
+    const password = encryptPassword(data.password, row.get('salt'));
+    if (row.get('password') !== password) {
+      ctx.body = {
+        err_no: ErrorCode.PASSWORD_ERROR,
+        err_message: 'password not match'
       }
-      return sessionManager.set({
-        id: row.get('id'),
-        name: row.get('name'),
-        email: row.get('email'),
-        role: row.get('role'),
-      });
-    })
-    .then(res => {
-      if (typeof res === 'object') {
-        return res;
-      }
-      ctx.cookies.set('SESSIONID', res, {
-        maxAge: +process.env.SESSION_EXPIRE_SECOND * 1000
-      });
-      return {state: true};
-    })
-    .catch(err => {
-      console.log(err)
-      ctx.status = 500;
-      return DB.getErrorMessage(err)
-    })
+      return
+    }
+    const sessionId = await sessionManager.set({
+      id: row.get('id'),
+      name: row.get('name'),
+      email: row.get('email'),
+      role: row.get('role'),
+    });
+    ctx.cookies.set('SESSIONID', sessionId, {
+      maxAge: +process.env.SESSION_EXPIRE_SECOND * 1000
+    });
+    ctx.body = {state: true};
+  } catch (err) {
+    ctx.status = 500;
+    ctx.body = DB.getErrorMessage(err)
+  }
 }
 
 module.exports.logout = async ctx => {
