@@ -21,8 +21,7 @@ module.exports.create = async ctx => {
     return
   }
 
-  const userId = 0;
-  const userName = 'test'
+  const {id: userId, name: userName} = user
   try {
     ctx.body = await DB.getInstance().transaction(async transaction => {
       const topic = await topicsModel.findOne({where: {id: postId}})
@@ -79,6 +78,7 @@ module.exports.list = async ctx => {
 module.exports.edit = async ctx => {
   const {postId, commentId} = ctx.params
   const data = await parse(ctx);
+  const {id: userId} = user
   const commentRow = await commentsModel.findOne({
     where: {topicId: postId, id: commentId}
   })
@@ -88,6 +88,15 @@ module.exports.edit = async ctx => {
       err_no: ErrorCode.NOT_FOUND,
       err_message: 'post not found'
     }
+    return
+  }
+  if (commentRow.userId !== userId) {
+    ctx.status = 403
+    ctx.body = {
+      err_no: ErrorCode.NO_PERMISSION,
+      error_message: 'no permission',
+    }
+    return
   }
   await commentRow.update({
     content: data.content

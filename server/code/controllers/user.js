@@ -64,7 +64,7 @@ module.exports.login = async ctx => {
       id: row.get('id'),
       name: row.get('name'),
       email: row.get('email'),
-      role: row.get('role'),
+      role: row.get('admin'),
     });
     ctx.cookies.set('SESSIONID', sessionId, {
       maxAge: +process.env.SESSION_EXPIRE_SECOND * 1000

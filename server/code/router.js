@@ -2,26 +2,30 @@
 const Router = require('koa-router');
 const router = new Router();
 
-module.exports = function () {
-  const test = require('./controllers/test');
-  router.get('/test', test.test)
+const auth = require('./services/auth')
+const AuthLevel = require('./constants/authLevel')
 
-  const user = require('./controllers/user');
+module.exports = function () {
+  const test = require('./controllers/test')
+  router.get('/test', test.test)
+  router.get('/test/auth', auth(AuthLevel.USER), test.auth)
+
+  const user = require('./controllers/user')
   router.post('/user', user.create)
   router.post('/login', user.login)
 
   const post = require('./controllers/post')
   router.get('/posts', post.list)
   router.get('/post/:id', post.getDetail)
-  router.post('/post', post.create)
-  router.del('/post/:id', post.remove)
-  router.put('/post/:id', post.edit)
-  router.patch('/post/:id', post.patch)
+  router.post('/post', auth(AuthLevel.USER), post.create)
+  router.del('/post/:id', auth(AuthLevel.USER), post.remove)
+  router.put('/post/:id', auth(AuthLevel.USER), post.edit)
+  router.patch('/post/:id', auth(AuthLevel.USER), post.patch)
 
   const comment = require('./controllers/comment')
-  router.post('/post/:postId/comment', comment.create)
-  router.put('/post/:postId/comment/:commentId', comment.edit)
-  router.del('/post/:postId/comment/:commentId', comment.remove)
+  router.post('/post/:postId/comment', auth(AuthLevel.USER), comment.create)
+  router.put('/post/:postId/comment/:commentId', auth(AuthLevel.USER), comment.edit)
+  router.del('/post/:postId/comment/:commentId', auth(AuthLevel.USER), comment.remove)
   router.get('/post/:postId/comments', comment.list)
 
   const channel = require('./controllers/channel')
@@ -32,6 +36,6 @@ module.exports = function () {
 };
 
 module.exports.allowedMethods = function() {
-  return router.allowedMethods();
+  return router.allowedMethods()
 };
 

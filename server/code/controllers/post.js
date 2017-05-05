@@ -11,7 +11,7 @@ const {
   reportErrorMessage ,
 } = require('../services/utils');
 
-const RequiredFields = ['userId', 'channelId', 'userName', 'title', 'content'];
+const RequiredFields = ['channelId', 'title', 'content'];
 const EditableFields = ['title', 'content'];
 const TopicWritableFields = ['userId', 'channelId', 'userName', 'title', 'lastCommentTime'];
 const TopicReadFields = ['id', 'userId', 'userName', 'channelId', 'lastCommentUser', 'lastCommentTime',
@@ -26,7 +26,7 @@ module.exports.create = async ctx => {
   }
   try {
     const topicId = await DB.getInstance().transaction(async transaction => {
-      const topicId = await createTopic(data, transaction)
+      const topicId = await createTopic(data, ctx.state.user, transaction)
       await createPost(topicId, data.content, transaction)
       await updateChannel(data.channelId)
 
@@ -87,12 +87,29 @@ module.exports.getDetail = async ctx => {
 
 module.exports.remove = async ctx => {
   const id = ctx.params.id
+  const {id: userId, role} = ctx.state.user
   try {
+    const topicRow = await topicsModel.findOne({
+      where: {id}
+    })
+    if (!topicRow) {
+      ctx.status = 404
+      ctx.body = {
+        err_no: ErrorCode.NOT_FOUND,
+        err_message: 'post not found'
+      }
+      return
+    }
+    if (topicRow.userId !== userId && +role === 0) {
+      ctx.status = 403
+      ctx.body = {
+        err_no: ErrorCode.NO_PERMISSION,
+        error_message: 'no permission',
+      }
+      return
+    }
     DB.getInstance().transaction(async transaction => {
-      await topicsModel.destroy({
-        where: {id},
-        transaction,
-      })
+      await topicRow.destroy({transaction})
       await postsModel.destroy({
         where: {topicId: id},
         transaction,
@@ -108,6 +125,7 @@ module.exports.remove = async ctx => {
 
 module.exports.edit = async ctx => {
   const id = ctx.params.id
+  const {id: userId} = ctx.state.user
   const data = await parse(ctx);
   const {title, content} = data;
   try {
@@ -118,10 +136,18 @@ module.exports.edit = async ctx => {
         err_no: ErrorCode.NOT_FOUND,
         err_message: 'post not found'
       }
-    } else {
-      await editPost(title, content, topicRow, postRow)
-      ctx.body = {}
+      return
     }
+    if (topicRow.userId !== userId) {
+      ctx.status = 403
+      ctx.body = {
+        err_no: ErrorCode.NO_PERMISSION,
+        error_message: 'no permission',
+      }
+      return
+    }
+    await editPost(title, content, topicRow, postRow)
+    ctx.body = {}
   } catch (e) {
     reportErrorMessage(e)
     ctx.status = 500;
@@ -135,8 +161,11 @@ module.exports.patch = async ctx => {
   // TODO
 }
 
-async function createTopic(data, transaction) {
+async function createTopic(data, user, transaction) {
+  const {id: userId, name: userName} = user
   const topicRow = await topicsModel.create(Object.assign({}, data, {
+    userId,
+    userName,
     lastCommentTime: new Date,
   }), {
     fields: TopicWritableFields,
