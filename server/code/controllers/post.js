@@ -47,6 +47,7 @@ module.exports.list = async ctx => {
   let {offset, limit} = queryParse(ctx.request.querystring);
   offset = +offset || 0
   limit = +limit || 10
+  limit = Math.min(50, limit)
   const where = {
     state: 'enable',
   }

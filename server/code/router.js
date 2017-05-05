@@ -18,6 +18,10 @@ module.exports = function () {
   router.put('/post/:id', post.edit)
   router.patch('/post/:id', post.patch)
 
+  const channel = require('./controllers/channel')
+  router.get('/channel/recommend', channel.recommend)
+  router.get('/channels', channel.list)
+
   return router.routes()
 };
 

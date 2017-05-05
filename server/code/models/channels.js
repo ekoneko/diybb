@@ -8,6 +8,10 @@ module.exports = {
       allowNull: false,
       unique: true,
     },
+    description: {
+      type: Sequelize.TEXT,
+      allowNull: true,
+    },
     count: {
       type: Sequelize.INTEGER(10),
       allowNull: false,
