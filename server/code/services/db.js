@@ -55,11 +55,13 @@ class DB {
         err_no: ErrorCode.DATABASE_TIMEOUT_ERROR,
         err_message: 'timeout'
       }
-    } else {
+    } else if (err instanceof Sequelize.Error) {
       return {
         err_no: ErrorCode.DATABASE_SERVER_ERROR,
         err_message: 'system error'
       }
+    } else {
+      throw err
     }
   }
 

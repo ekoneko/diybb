@@ -18,6 +18,12 @@ module.exports = function () {
   router.put('/post/:id', post.edit)
   router.patch('/post/:id', post.patch)
 
+  const comment = require('./controllers/comment')
+  router.post('/post/:postId/comment', comment.create)
+  router.put('/post/:postId/comment/:commentId', comment.edit)
+  router.del('/post/:postId/comment/:commentId', comment.remove)
+  router.get('/post/:postId/comments', comment.list)
+
   const channel = require('./controllers/channel')
   router.get('/channel/recommend', channel.recommend)
   router.get('/channels', channel.list)

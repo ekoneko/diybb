@@ -13,7 +13,7 @@ const {
 
 const RequiredFields = ['userId', 'channelId', 'userName', 'title', 'content'];
 const EditableFields = ['title', 'content'];
-const TopicWritableTopicFields = ['userId', 'channelId', 'userName', 'title', 'lastCommentTime'];
+const TopicWritableFields = ['userId', 'channelId', 'userName', 'title', 'lastCommentTime'];
 const TopicReadFields = ['id', 'userId', 'userName', 'channelId', 'lastCommentUser', 'lastCommentTime',
   'count', 'isTop', 'title', 'createdAt',];
 const PostReadFields = ['id', 'content'];
@@ -120,7 +120,7 @@ module.exports.edit = async ctx => {
       }
     } else {
       await editPost(title, content, topicRow, postRow)
-      ctx.body = {state: true}
+      ctx.body = {}
     }
   } catch (e) {
     reportErrorMessage(e)
@@ -139,7 +139,7 @@ async function createTopic(data, transaction) {
   const topicRow = await topicsModel.create(Object.assign({}, data, {
     lastCommentTime: new Date,
   }), {
-    fields: TopicWritableTopicFields,
+    fields: TopicWritableFields,
     transaction,
   })
   return topicRow.get('id')
