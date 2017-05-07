@@ -32,6 +32,9 @@ module.exports = function () {
   router.get('/channel/recommend', channel.recommend)
   router.get('/channels', channel.list)
 
+  const system = require('./controllers/system')
+  router.get('/system', system.get)
+
   return router.routes()
 };
 
