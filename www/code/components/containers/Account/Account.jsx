@@ -2,8 +2,8 @@ import React from 'react'
 import {Grid, Col, Media} from 'react-bootstrap'
 
 import Header from '../Header/Header'
-import List from '../List/List'
-import AccessCard from '../Common/AccessCard/AccessCard'
+import List from '../../globals/List/List'
+import AccessCard from '../../globals/AccessCard/AccessCard'
 
 import './style.scss'
 

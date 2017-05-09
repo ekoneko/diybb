@@ -2,6 +2,7 @@ import React from 'react'
 
 import './style.scss'
 
+/* eslint max-len: 0 */
 export default function Article() {
   return (
     <div className="article">

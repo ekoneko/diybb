@@ -2,8 +2,8 @@ import React from 'react'
 import {Grid, Col, Panel} from 'react-bootstrap'
 
 import Header from '../Header/Header'
-import List from '../List/List'
-import Forum from '../Common/Forum/Forum'
+import List from '../../globals/List/List'
+import Forum from '../../globals/Forum/Forum'
 
 export default class Home extends React.PureComponent {
   render() {

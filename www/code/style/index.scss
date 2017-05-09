@@ -40,3 +40,12 @@ a {
 a, a:hover, a:focus {
   color: #5599dd;
 }
+.form-group.is-focused .form-control {
+  outline: none;
+  background-image: linear-gradient(#5599dd, #5599dd), linear-gradient(#D2D2D2, #D2D2D2);
+  background-size: 100% 2px, 100% 1px;
+  box-shadow: none;
+  transition-duration: 0.3s; }
+.btn:not(.btn-raised).btn-primary, .input-group-btn .btn:not(.btn-raised).btn-primary {
+  color: #5599dd
+}

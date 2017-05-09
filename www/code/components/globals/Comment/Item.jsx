@@ -1,6 +1,6 @@
 import React from 'react'
 
-import Avatar from '../../Common/Avatar/Avatar'
+import Avatar from '../Avatar/Avatar'
 
 export default class Item extends React.PureComponent {
   render() {

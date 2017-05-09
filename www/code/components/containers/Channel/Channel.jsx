@@ -3,7 +3,7 @@ import React from 'react'
 import {Grid, Col, Panel} from 'react-bootstrap'
 
 import Header from '../Header/Header'
-import List from '../List/List'
+import List from '../../globals/List/List'
 
 export default function Channel(props) {
   return (

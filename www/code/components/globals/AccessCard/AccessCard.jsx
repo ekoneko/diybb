@@ -1,7 +1,7 @@
 import React from 'react'
 
 import './style.scss'
-import Avatar from '../../Common/Avatar/Avatar'
+import Avatar from '../Avatar/Avatar'
 
 export default function AccessCard() {
   return (

@@ -3,7 +3,7 @@ import {Link} from 'react-router'
 import {DropdownButton, MenuItem, Modal} from 'react-bootstrap'
 
 import './style.scss'
-import Avatar from '../Common/Avatar/Avatar'
+import Avatar from '../../globals/Avatar/Avatar'
 
 function setting() {
   //
@@ -20,7 +20,7 @@ export default function Header(props) {
         <Link to="/">Logo</Link>
       </h1>
       <div className="avatar-panel">
-        <DropdownButton noCaret bsStyle="link" title={<Avatar sharp="circle" />}>
+        <DropdownButton id="account-setting" noCaret bsStyle="link" title={<Avatar sharp="circle" />}>
           <MenuItem onClick={setting}>设置</MenuItem>
           <MenuItem onClick={logout}>登出</MenuItem>
         </DropdownButton>

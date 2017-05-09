@@ -1,7 +1,7 @@
 import React from 'react'
 import {Link} from 'react-router'
 
-import Avatar from '../Common/Avatar/Avatar'
+import Avatar from '../Avatar/Avatar'
 
 export default class Item extends React.PureComponent {
   render() {

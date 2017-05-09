@@ -1,0 +1,5 @@
+export const USER_STATUS = {
+  UN_LOGIN: 'UN_LOGIN',
+  IN_LOGIN: 'IN_LOGIN',
+  LOGINED: 'LOGINED',
+}
