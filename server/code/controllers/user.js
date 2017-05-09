@@ -60,16 +60,17 @@ module.exports.login = async ctx => {
       }
       return
     }
-    const sessionId = await sessionManager.set({
+    const result = {
       id: row.get('id'),
       name: row.get('name'),
       email: row.get('email'),
       role: row.get('admin'),
-    });
+    }
+    const sessionId = await sessionManager.set(result);
     ctx.cookies.set('SESSIONID', sessionId, {
       maxAge: +process.env.SESSION_EXPIRE_SECOND * 1000
     });
-    ctx.body = {state: true};
+    ctx.body = result;
   } catch (err) {
     ctx.status = 500;
     ctx.body = DB.getErrorMessage(err)

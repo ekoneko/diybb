@@ -94,7 +94,7 @@ module.exports.edit = async ctx => {
     ctx.status = 403
     ctx.body = {
       err_no: ErrorCode.NO_PERMISSION,
-      error_message: 'no permission',
+      err_message: 'no permission',
     }
     return
   }
