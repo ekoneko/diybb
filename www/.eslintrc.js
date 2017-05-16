@@ -47,6 +47,7 @@ module.exports = {
     "no-use-before-define": [2, {functions: false}],
     "object-property-newline": [2, {allowMultiplePropertiesPerLine: true}],
     "consistent-return": [2, {treatUndefinedAsUnspecified: true}],
+    "no-mixed-operators": 0,
     "react/jsx-indent": [2, 2],
     "react/jsx-indent-props": [2, 2],
     "react/prefer-stateless-function": [1, {"ignorePureComponents": true}],
@@ -56,7 +57,7 @@ module.exports = {
     "react/jsx-first-prop-new-line": 0,
     "react/jsx-boolean-value": 0,
     "react/self-closing-comp": 0,
-    "react/prop-types": [2, {ignore: ['dispatch', 'history']}],
+    "react/prop-types": [2, {ignore: ['dispatch', 'router', 'model']}],
   },
   "globals": {
     'alert': true,

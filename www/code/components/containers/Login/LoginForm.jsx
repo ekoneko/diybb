@@ -9,11 +9,12 @@ import './style.scss'
 export default class Login extends React.PureComponent {
   static defaultProps = {
     isRequesting: false,
+    form: {},
   }
 
   static propTypes = {
     onSubmit: PropTypes.func.isRequired,
-    form: PropTypes.any.isRequired,
+    form: PropTypes.any,
     isRequesting: PropTypes.bool,
   }
 

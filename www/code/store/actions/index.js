@@ -1,5 +1,11 @@
 import userLogin from './user/login'
+import postHome from './post/home'
+import getSetting from './setting/getter'
+import getRecommend from './forum/recommend'
 
 export {
-  userLogin
+  userLogin,
+  postHome,
+  getSetting,
+  getRecommend,
 }

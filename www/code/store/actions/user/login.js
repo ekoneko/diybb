@@ -9,7 +9,10 @@ const beforeRequest = dispatch => () => {
 }
 
 const response = dispatch => payload => {
-  payload && dispatch({
+  if (!payload) {
+    return
+  }
+  dispatch({
     type: ActionTypes.LOGIN_RECEIVE,
     payload,
   })
@@ -27,10 +30,14 @@ export default function login(name, password) {
   return dispatch => {
     beforeRequest(dispatch)()
     const md5Password = md5(password)
-    return http.post('/login', {
-      name,
-      password: md5Password,
-    }, responseError(dispatch))
+    return http.post({
+      url: '/login',
+      body: {
+        name,
+        password: md5Password,
+      },
+      onError: responseError(dispatch),
+    })
       .then(response(dispatch))
   }
 }
