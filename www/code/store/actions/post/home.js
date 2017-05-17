@@ -14,7 +14,7 @@ const response = dispatch => payload => {
   })
 }
 
-export default function home(page, limit, hasLoading = false) {
+export default function postHome(page, limit, hasLoading = false) {
   const offset = (page - 1) * limit
   return dispatch => {
     if (hasLoading) {
