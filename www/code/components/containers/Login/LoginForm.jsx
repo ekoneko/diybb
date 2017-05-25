@@ -14,7 +14,7 @@ export default class Login extends React.PureComponent {
 
   static propTypes = {
     onSubmit: PropTypes.func.isRequired,
-    form: PropTypes.any,
+    form: PropTypes.shape({}),
     isRequesting: PropTypes.bool,
   }
 

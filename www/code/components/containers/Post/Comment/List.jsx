@@ -8,18 +8,25 @@ import Item from './Item'
 export default function List(props) {
   const {
     list,
-    total,
     offset,
     limit,
+    total,
     onPageTo,
   } = props
+
   const pages = Math.ceil(total / limit)
   const activePage = offset / limit + 1
+
   return (
-    <div className="list">
-      {list.map(item => (
-        <Item key={item.id} item={item} />
-      ))}
+    <div className="list-container">
+      <div className="list">
+        {list.map(item => (
+          <Item
+            key={item.id}
+            {...item}
+          />
+        ))}
+      </div>
       <div className="page-container text-right">
         <Pagination
           items={pages}
@@ -31,18 +38,20 @@ export default function List(props) {
   )
 }
 List.propTypes = {
-  list: PropTypes.arrayOf(PropTypes.shape({
-    id: PropTypes.number,
-  })),
-  total: PropTypes.number,
+  list: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number,
+    })
+  ),
   offset: PropTypes.number,
   limit: PropTypes.number,
+  total: PropTypes.number,
   onPageTo: PropTypes.func,
 }
 List.defaultProps = {
   list: [],
-  total: 0,
   offset: 0,
-  limit: 0,
-  onPageTo: () => {}
+  limit: 20,
+  total: 0,
+  onPageTo: () => {},
 }
