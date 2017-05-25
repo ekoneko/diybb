@@ -21,7 +21,7 @@ module.exports.create = async ctx => {
     return
   }
 
-  const {id: userId, name: userName} = user
+  const {id: userId, name: userName} = ctx.state.user
   try {
     ctx.body = await DB.getInstance().transaction(async transaction => {
       const topic = await topicsModel.findOne({where: {id: postId}})
@@ -78,7 +78,7 @@ module.exports.list = async ctx => {
 module.exports.edit = async ctx => {
   const {postId, commentId} = ctx.params
   const data = await parse(ctx);
-  const {id: userId} = user
+  const {id: userId} = ctx.state.user
   const commentRow = await commentsModel.findOne({
     where: {topicId: postId, id: commentId}
   })
@@ -119,7 +119,7 @@ function updatePostLastComment(topic, userId, userName, transaction) {
       name: userName,
     }),
     lastCommentTime: new Date(),
-    count: count + 1,
+    count: topic.count + 1,
   }, {transaction})
 }
 
