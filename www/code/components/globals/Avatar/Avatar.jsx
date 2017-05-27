@@ -56,7 +56,7 @@ export default class Avatar extends React.PureComponent {
     computeStyle.backgroundColor = backgroundColor
     computeStyle.color = color
 
-    const shortName = name.slice(0, 2)
+    const shortName = name.slice(0, 1)
 
     return (
       <div className="avatar-container">
