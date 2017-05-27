@@ -12,5 +12,9 @@ export default function add(postId, content) {
   return dispatch => http.post({
     url: `/post/${postId}/comment`,
     body: {content},
-  }).then(response(dispatch))
+  })
+    .then(response(dispatch))
+    .catch(err => {
+      // console.log(err)
+    })
 }

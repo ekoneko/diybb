@@ -6,7 +6,6 @@ import {
   postContent as postContentAction,
 } from 'store/actions'
 
-import './style.scss'
 import Header from '../Header/Header'
 import AccessCard from '../../globals/AccessCard/AccessCard'
 import Article from '../../globals/Article/Article'
@@ -65,6 +64,9 @@ export default class Post extends React.PureComponent {
   }
 
   render() {
+    const {
+      model: {postContent},
+    } = this.props
     return (
       <div>
         <Header />
@@ -73,7 +75,10 @@ export default class Post extends React.PureComponent {
             {this.renderContent()}
           </Col>
           <Col xs={3}>
-            <AccessCard />
+            <AccessCard
+              userId={postContent.userId}
+              userName={postContent.userName}
+            />
           </Col>
         </Grid>
       </div>

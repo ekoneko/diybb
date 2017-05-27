@@ -1,8 +1,18 @@
 .avatar-container {
   .avatar {
-    background: #aaaaaa;
     display: inline-block;
     vertical-align: middle;
+    text-align: center;
+    overflow: hidden;
+    white-space: normal;
+    position: relative;
+    > span {
+      line-height: 0;
+      position: absolute;
+      top: 50%;
+      left: 0;
+      width: 100%;
+    }
   }
   &> .label {
     font-weight: 100;

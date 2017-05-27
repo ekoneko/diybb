@@ -12,6 +12,11 @@
         &::-webkit-input-placeholder {
           font-size: 1rem;
         }
+        transition: height .3s;
+        height: 100px;
+      }
+      &.is-empty textarea {
+        height: 58px;
       }
       &.is-focused textarea {
         height: 100px;

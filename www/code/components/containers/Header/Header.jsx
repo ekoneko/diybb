@@ -20,7 +20,9 @@ export default function Header(props) {
         <Link to="/">Logo</Link>
       </h1>
       <div className="avatar-panel">
-        <DropdownButton id="account-setting" noCaret bsStyle="link" title={<Avatar sharp="circle" />}>
+        <DropdownButton id="account-setting" noCaret bsStyle="link" title={(
+          <Avatar sharp="circle" name="" id={0} />
+        )}>
           <MenuItem onClick={setting}>设置</MenuItem>
           <MenuItem onClick={logout}>登出</MenuItem>
         </DropdownButton>

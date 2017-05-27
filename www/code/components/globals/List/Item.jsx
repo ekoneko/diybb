@@ -25,7 +25,7 @@ export default function Item(props) {
           <Time date={createdAt}></Time>
         </div>
         <div className="tag">
-          <Avatar size={16} id={userId} name={userName}></Avatar>
+          <Avatar size={16} id={userId} name={userName} showLabel></Avatar>
         </div>
         {!!count && (
           <div className="tag">

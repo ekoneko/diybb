@@ -79,7 +79,7 @@ function request({method, url, body, onError = handleGlobalError, head = false})
       // TODO: support hash history and browser history
       if (response.status === 401 && !window.location.hash.includes('/login')) {
         location.hash = '#/login'
-        return null
+        throw new Error('no login')
       } else if (response.status < 200 && response.status >= 300) {
         errFlag = true
         return response.json()

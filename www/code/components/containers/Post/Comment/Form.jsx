@@ -34,7 +34,7 @@ export default class Form extends React.PureComponent {
     const {content} = this.state
     return (
       <form className="form">
-        <FormGroup>
+        <FormGroup className="is-empty">
           <FormControl
             componentClass="textarea"
             value={content}
