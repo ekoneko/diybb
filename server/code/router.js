@@ -13,6 +13,8 @@ module.exports = function () {
   const user = require('./controllers/user')
   router.post('/user', user.create)
   router.post('/login', user.login)
+  router.post('/logout', user.logout)
+  router.get('/user', user.account)
 
   const post = require('./controllers/post')
   router.get('/posts', post.list)
@@ -31,6 +33,7 @@ module.exports = function () {
   const channel = require('./controllers/channel')
   router.get('/channel/recommend', channel.recommend)
   router.get('/channels', channel.list)
+  router.get('/channel/:id', channel.detail)
 
   const system = require('./controllers/system')
   router.get('/system', system.get)

@@ -30,6 +30,18 @@ export default function userAccount(state = initedState, action) {
           error: action.error,
         }
       }
+    case ActionTypes.USER_ACCOUNT_RECEIVE:
+      if (action.payload && action.payload.id) {
+        const {id, name} = action.payload
+        return {
+          state: USER_STATUS.LOGINED,
+          id,
+          name,
+        }
+      }
+      return state
+    case ActionTypes.USER_LOGOUT_RECEIVE:
+      return initedState
     default:
       return state
   }

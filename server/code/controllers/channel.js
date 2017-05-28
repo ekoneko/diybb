@@ -4,6 +4,20 @@ const channelsModel = DB.getInstance().model('channels');
 const ErrorCode = require('../constants/errorcode');
 
 const SimpleAttr = ['id', 'name'];
+const DetailAttr = ['id', 'name', 'description'];
+
+module.exports.detail = async ctx => {
+  const id = ctx.params.id
+  try {
+    ctx.body = await channelsModel.findOne({
+      where: {id: id, state: 'enable'},
+      attributes: DetailAttr,
+    })
+  } catch (e) {
+    ctx.status = 500;
+    ctx.body = DB.getErrorMessage(e)
+  }
+}
 
 module.exports.recommend = async ctx => {
   let {limit} = queryParse(ctx.request.querystring);

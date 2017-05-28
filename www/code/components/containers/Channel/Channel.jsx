@@ -6,6 +6,7 @@ import {Grid, Col, Panel} from 'react-bootstrap'
 
 import {
   postForum as postForumAction,
+  getForumDetail as getForumDetailAction,
 } from 'store/actions'
 import Header from '../Header/Header'
 import List from '../../globals/List/List'
@@ -15,9 +16,11 @@ const PAGE_SIZE = 20
 @connect(
   ({
      postForum,
+     forumDetail,
   }) => ({
     model: {
       postForum,
+      forumDetail,
     }
   }),
   dispatch => ({dispatch}),
@@ -34,6 +37,11 @@ export default class Channel extends React.PureComponent {
   }
 
   componentWillMount() {
+    const {
+      routeParams: {id},
+      dispatch,
+    } = this.props
+    dispatch(getForumDetailAction(id))
     this.request(1)
   }
 
@@ -59,6 +67,10 @@ export default class Channel extends React.PureComponent {
           limit,
           total,
         },
+        forumDetail: {
+          name: forumName = '',
+          description = '',
+        }
       }
     } = this.props
     return (
@@ -79,8 +91,8 @@ export default class Channel extends React.PureComponent {
             </div>
           </Col>
           <Col xs={3}>
-            <Panel header="论坛名称">
-              论坛的介绍
+            <Panel header={forumName}>
+              {description}
             </Panel>
           </Col>
         </Grid>

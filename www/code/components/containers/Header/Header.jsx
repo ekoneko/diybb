@@ -1,42 +1,64 @@
 import React from 'react'
+import {connect} from 'react-redux'
 import {Link} from 'react-router'
-import {DropdownButton, MenuItem, Modal} from 'react-bootstrap'
-
+import {
+  userAccount as userAccountAction,
+  userLogout as userLogoutAction,
+} from 'store/actions'
+import {USER_STATUS} from 'consts/User'
+import Logined from './Account/Logined'
+import UnLogin from './Account/UnLogin'
 import './style.scss'
-import Avatar from '../../globals/Avatar/Avatar'
 
-function setting() {
-  //
-}
 
-function logout() {
-  //
-}
+@connect(
+  ({userAccount}) => ({
+    model: {
+      userAccount,
+    }
+  }),
+  dispatch => ({dispatch}),
+)
+export default class Header extends React.PureComponent {
+  componentWillMount() {
+    const {dispatch} = this.props
+    dispatch(userAccountAction())
+  }
 
-export default function Header(props) {
-  return (
-    <div className="header">
-      <h1 className="logo">
-        <Link to="/">Logo</Link>
-      </h1>
+  handleLogout = () => {
+    const {dispatch} = this.props
+    dispatch(userLogoutAction())
+  }
+
+  renderAvatar() {
+    const {model: {
+      userAccount: {id, name, state}
+    }} = this.props
+
+    return (
       <div className="avatar-panel">
-        <DropdownButton id="account-setting" noCaret bsStyle="link" title={(
-          <Avatar sharp="circle" name="" id={0} />
-        )}>
-          <MenuItem onClick={setting}>设置</MenuItem>
-          <MenuItem onClick={logout}>登出</MenuItem>
-        </DropdownButton>
+        {state === USER_STATUS.LOGINED && (
+          <Logined
+            id={id}
+            name={name}
+            logout={this.handleLogout}
+          />
+        )}
+        {state === USER_STATUS.LOGINED || (
+          <UnLogin />
+        )}
       </div>
-      <Modal
-        show={false}
-        aria-labelledby="contained-modal-title"
-      >
-        <Modal.Body>
-        </Modal.Body>
-        <Modal.Footer>
-          <a onClick={close}>Close</a>
-        </Modal.Footer>
-      </Modal>
-    </div>
-  )
+    )
+  }
+
+  render() {
+    return (
+      <div className="header">
+        <h1 className="logo">
+          <Link to="/">Logo</Link>
+        </h1>
+        {this.renderAvatar()}
+      </div>
+    )
+  }
 }

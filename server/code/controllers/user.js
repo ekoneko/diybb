@@ -77,12 +77,24 @@ module.exports.login = async ctx => {
   }
 }
 
-module.exports.logout = async ctx => {
-  //
+module.exports.account = async ctx => {
+  const sid = ctx.cookies.get('SESSIONID');
+  const sessionManager = new Session({
+    schema: process.env.SESSION_SCHEMA,
+    expireSecond: process.env.SESSION_EXPIRE_SECOND
+  });
+  const user = await sessionManager.get(sid);
+  ctx.body = user || {}
 }
 
-module.exports.getDetail = async ctx => {
-  //
+module.exports.logout = async ctx => {
+  const sid = ctx.cookies.get('SESSIONID');
+  const sessionManager = new Session({
+    schema: process.env.SESSION_SCHEMA,
+    expireSecond: process.env.SESSION_EXPIRE_SECOND
+  });
+  await sessionManager.rm(sid)
+  ctx.body = {}
 }
 
 function md5(string) {
