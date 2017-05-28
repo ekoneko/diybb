@@ -1,0 +1,13 @@
+.login {
+  $width: 400px;
+  $height: 264px;
+  width: $width;
+  background: #fff;
+  padding: 2rem;
+  height: $height;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  margin-top: -$height / 2;
+  margin-left: -$width / 2;
+}

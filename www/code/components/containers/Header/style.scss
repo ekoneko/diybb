@@ -1,0 +1,24 @@
+.header {
+  height: 5rem;
+  line-height: 5rem;
+  padding: 0 2rem;
+  margin-bottom: 2rem;
+  background: #fff;
+  .logo {
+    margin: 0;
+    display: inline-block;
+    vertical-align: middle;
+    a {
+      color: #999;
+    }
+  }
+  .avatar-panel {
+    float: right;
+    .dropdown {
+      margin: 0;
+      &.open > .dropdown-toggle.btn {
+        background: inherit;
+      }
+    }
+  }
+}

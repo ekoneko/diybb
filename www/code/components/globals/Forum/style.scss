@@ -1,0 +1,34 @@
+.forum {
+  white-space: nowrap;
+  overflow: hidden;
+  margin-bottom: 1rem;
+  &:last-child {
+    margin-bottom: 0;
+  }
+  & > a {
+    color: #666;
+  }
+  .title {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    position: relative;
+    padding-left: 2rem;
+    .icon {
+      width: 1.6rem;
+      height: 1.6rem;
+      display: inline-block;
+      vertical-align: top;
+      background: #aaa;
+      position: absolute;
+      left: 0;
+      top: 50%;
+      margin-top: -0.8rem;
+    }
+  }
+  .tag {
+    margin-top: .5rem;
+    font-size: 1rem;
+    color: #999;
+  }
+}

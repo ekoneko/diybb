@@ -1,0 +1,54 @@
+body {
+  background: #EEEEEE!important;
+}
+a {
+  &:hover, &:focus {
+    text-decoration: none;
+  }
+}
+.pagination > li:first-child > a {
+  border-radius: 0;
+}
+.pagination > li:last-child > a {
+  border-radius: 0;
+}
+.pagination > .active > a,
+.pagination > .active > span,
+.pagination > .active > a:hover,
+.pagination > .active > span:hover,
+.pagination > .active > a:focus,
+.pagination > .active > span:focus {
+  background-color: #59d;
+  border-color: #59d;
+}
+.pagination > li > a, .pagination > li > span {
+  color: #59d;
+}
+.panel {
+  box-shadow: none;
+  border-radius: 0;
+  &.panel-default > .panel-heading {
+    background-color: #59d;
+    color: #fff;
+    border-top-left-radius: 2px;
+    border-top-right-radius: 2px;
+  }
+}
+.dropdown-menu li a:hover {
+  color: #5599dd;
+}
+:focus {
+  outline: none!important;
+}
+a, a:hover, a:focus {
+  color: #5599dd;
+}
+.form-group.is-focused .form-control {
+  outline: none;
+  background-image: linear-gradient(#5599dd, #5599dd), linear-gradient(#D2D2D2, #D2D2D2);
+  background-size: 100% 2px, 100% 1px;
+  box-shadow: none;
+  transition-duration: 0.3s; }
+.btn:not(.btn-raised).btn-primary, .input-group-btn .btn:not(.btn-raised).btn-primary {
+  color: #5599dd
+}
