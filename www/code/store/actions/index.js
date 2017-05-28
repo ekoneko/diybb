@@ -4,6 +4,7 @@ import userLogout from './user/logout'
 import postHome from './post/home'
 import postContent from './post/content'
 import postForum from './post/forum'
+import postAdd from './post/add'
 import commentList from './comment/list'
 import commentAdd from './comment/add'
 import getSetting from './setting/getter'
@@ -17,6 +18,7 @@ export {
   postHome,
   postContent,
   postForum,
+  postAdd,
   commentList,
   commentAdd,
   getSetting,

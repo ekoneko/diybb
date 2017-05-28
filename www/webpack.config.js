@@ -8,6 +8,7 @@ console.log(path.join(__dirname, 'code'));
 module.exports = {
   entry: {
     index: "entries/index",
+    editor: "entries/editor",
   },
   output: {
     path: __dirname + "/dist",

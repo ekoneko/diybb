@@ -1,8 +1,9 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import PropTypes from 'prop-types'
+import {Link} from 'react-router'
 
-import {Grid, Col, Panel} from 'react-bootstrap'
+import {Grid, Col, Panel, Button} from 'react-bootstrap'
 
 import {
   postForum as postForumAction,
@@ -59,6 +60,7 @@ export default class Channel extends React.PureComponent {
 
   render() {
     const {
+      routeParams: {id},
       model: {
         postForum: {
           loaded: postLoaded,
@@ -91,6 +93,16 @@ export default class Channel extends React.PureComponent {
             </div>
           </Col>
           <Col xs={3}>
+            <Link to={`f/add/${id}`}>
+              <Button
+                className="btn-raised"
+                bsStyle="danger"
+                style={{
+                  marginTop: 0,
+                  width: '100%',
+                }}
+              >新文章</Button>
+            </Link>
             <Panel header={forumName}>
               {description}
             </Panel>
