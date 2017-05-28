@@ -1,4 +1,0 @@
-diybb
-=====
-
-a nodejs bbs
