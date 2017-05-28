@@ -5,11 +5,12 @@ import postHome from './post/home'
 import postContent from './post/content'
 import postForum from './post/forum'
 import postAdd from './post/add'
+import postEdit from './post/edit'
 import commentList from './comment/list'
 import commentAdd from './comment/add'
 import getSetting from './setting/getter'
 import getRecommend from './forum/recommend'
-import getForumDetail  from './forum/detail'
+import getForumDetail from './forum/detail'
 
 export {
   userLogin,
@@ -19,6 +20,7 @@ export {
   postContent,
   postForum,
   postAdd,
+  postEdit,
   commentList,
   commentAdd,
   getSetting,

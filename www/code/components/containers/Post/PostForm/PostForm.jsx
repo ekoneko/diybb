@@ -14,10 +14,24 @@ const style = {
 export default class PostForm extends React.PureComponent {
   static propTypes = {
     onSubmit: PropTypes.func,
+    title: PropTypes.string,
+    content: PropTypes.string,
   }
 
   static defaultProps = {
     onSubmit: () => {},
+    title: '',
+    content: '',
+  }
+
+  componentDidMount() {
+    const {title} = this.props
+    this.title.value = title
+  }
+
+  componentDidUpdate() {
+    const {title} = this.props
+    this.title.value = title
   }
 
   handleSubmit = () => {
@@ -32,13 +46,14 @@ export default class PostForm extends React.PureComponent {
   }
 
   render() {
+    const {content} = this.props
     return (
       <FormGroup style={style}>
         <FormControl
           inputRef={title => { this.title = title }}
           placeholder="请输入标题"
         />
-        <Editor id="editor" />
+        <Editor id="editor" content={content} />
         <div className="text-right">
           <Button
             className="btn-raised"

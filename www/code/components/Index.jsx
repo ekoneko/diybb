@@ -6,6 +6,7 @@ import Login from './containers/Login/Login'
 import Channel from './containers/Channel/Channel'
 import Post from './containers/Post/Post'
 import PostAdd from './containers/Post/Add'
+import PostEdit from './containers/Post/Edit'
 import Account from './containers/Account/Account'
 import AccountSetting from './containers/Account/Setting'
 
@@ -16,7 +17,8 @@ export default function Index() {
       <Route path="/login" component={Login} />
       <Route path="/f/:id" component={Channel} />
       <Route path="/p/:id" component={Post} />
-      <Route path="/f/add/:id" component={PostAdd} />
+      <Route path="/p/add/:channelId" component={PostAdd} />
+      <Route path="/p/edit/:id" component={PostEdit} />
       <Route path="/account/setting" component={AccountSetting} />
       <Route path="/account(/:id)" component={Account} />
     </Router>

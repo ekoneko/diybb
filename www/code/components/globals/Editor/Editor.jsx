@@ -35,14 +35,17 @@ export default class Editor extends React.PureComponent {
     //
   }
 
-  componentDidUpdate() {
-    if (this.state.editorReady) {
+  componentDidUpdate(prevProps, prevState) {
+    if (this.state.editorReady && !prevState.editorReady) {
       this.initEditor()
+    } else if (window.tinyMCE.activeEditor && prevProps.content !== this.props.content) {
+      window.tinyMCE.activeEditor.setContent(this.props.content)
     }
   }
   componentWillUnmount() {
     window.tinyMCE.activeEditor.destroy();
   }
+
   initEditor() {
     window.tinyMCE.init({
       selector: `#${this.props.id}`,
@@ -52,7 +55,10 @@ export default class Editor extends React.PureComponent {
       toolbar1: 'undo redo | styleselect bold italic forecolor outdent indent | link unlink',
       plugins: 'link code textcolor',
       min_height: 300,
-      resize: true
+      resize: true,
+      init_instance_callback: ed => {
+        ed.setContent(this.props.content)
+      }
     });
   }
   render() {

@@ -14,7 +14,7 @@ import PostForm from './PostForm/PostForm'
 export default class PostAdd extends React.PureComponent {
   static propTypes = {
     routeParams: PropTypes.shape({
-      id: PropTypes.string,
+      channelId: PropTypes.string,
     })
   }
 
@@ -26,11 +26,11 @@ export default class PostAdd extends React.PureComponent {
     const {
       dispatch,
       router,
-      routeParams: {id},
+      routeParams: {channelId},
     } = this.props
     dispatch(postAddAction({
       ...params,
-      channelId: id,
+      channelId,
     })).then(() => {
       router.goBack()
     })

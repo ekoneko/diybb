@@ -93,7 +93,7 @@ export default class Channel extends React.PureComponent {
             </div>
           </Col>
           <Col xs={3}>
-            <Link to={`f/add/${id}`}>
+            <Link to={`p/add/${id}`}>
               <Button
                 className="btn-raised"
                 bsStyle="danger"
