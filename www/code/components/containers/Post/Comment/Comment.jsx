@@ -4,6 +4,7 @@ import {connect} from 'react-redux'
 import {
   commentList as commentListAction,
   commentAdd as commentAddAction,
+  commentRemove as commentRemoveAction,
 } from 'store/actions'
 
 import './style.scss'
@@ -14,10 +15,12 @@ const PAGE_SIZE = 20
 
 @connect(
   ({
-     commentList,
+    commentList,
+    userAccount,
   }) => ({
     model: {
       commentList,
+      userAccount,
     }
   }),
   dispatch => ({dispatch}),
@@ -47,19 +50,32 @@ export default class Comment extends React.PureComponent {
       })
   }
 
+  handleDelete = commentId => {
+    const {
+      dispatch,
+      id: postId,
+    } = this.props
+    dispatch(commentRemoveAction(postId, commentId))
+  }
+
   handlePageTo = (page) => {
     this.requestList(page)
   }
 
   render() {
     const {
-      model: {commentList: {
-        loaded,
-        list,
-        offset,
-        limit,
-        total,
-      }},
+      model: {
+        commentList: {
+          loaded,
+          list,
+          offset,
+          limit,
+          total,
+        },
+        userAccount: {
+          id: userId
+        },
+      },
     } = this.props
     return (
       <div className="comment-container">
@@ -70,7 +86,9 @@ export default class Comment extends React.PureComponent {
             list={list}
             limit={limit}
             total={total}
+            userId={userId}
             onPageTo={this.handlePageTo}
+            onDelete={this.handleDelete}
           />
         )}
       </div>

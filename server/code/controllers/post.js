@@ -1,5 +1,6 @@
 const parse = require('co-body');
 const queryParse = require('query-string').parse;
+const xssClean = require('node-xss').clean;
 const DB = require('../services/db');
 const topicsModel = DB.getInstance().model('topics');
 const postsModel = DB.getInstance().model('posts');
@@ -181,7 +182,10 @@ async function createTopic(data, user, transaction) {
 }
 
 async function createPost(topicId, content, transaction) {
-  return postsModel.create({topicId, content,}, {transaction})
+  return postsModel.create({
+    topicId,
+    content: xssClean(content),
+  }, {transaction})
 }
 
 async function updateChannel(channelId, transaction) {
@@ -227,7 +231,9 @@ async function editPost(title, content, topicRow, postRow) {
       await topicRow.update({title}, {transaction})
     }
     if (content && content !== postRow.content) {
-      await postRow.update({content}, {transaction})
+      await postRow.update({
+        content: xssClean(content),
+      }, {transaction})
     }
   })
 }

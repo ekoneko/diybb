@@ -1,5 +1,5 @@
 import React from 'react'
-import {Grid, Col} from 'react-bootstrap'
+import {Grid, Col, DropdownButton, MenuItem} from 'react-bootstrap'
 import {connect} from 'react-redux'
 import PropTypes from 'prop-types'
 import {
@@ -13,10 +13,12 @@ import Comment from './Comment/Comment'
 
 @connect(
   ({
-     postContent,
+    postContent,
+    userAccount,
   }) => ({
     model: {
       postContent,
+      userAccount,
     }
   }),
   dispatch => ({dispatch}),
@@ -43,6 +45,36 @@ export default class Post extends React.PureComponent {
     }
   }
 
+  handleEdit = () => {
+    const {
+      routeParams: {id},
+      router,
+    } = this.props
+    router.push(`/p/edit/${id}`)
+  }
+
+  renderMenu() {
+    const {
+      model: {
+        userAccount: {id},
+        postContent: {userId},
+      }
+    } = this.props
+    if (!id || !userId || (id !== userId)) {
+      return null
+    }
+    return (
+      <div style={{position: 'absolute', right: '1rem'}}>
+        <DropdownButton
+          noCaret bsStyle="link"
+          title={(<div className="material-icons">menu</div>)}
+        >
+          <MenuItem onClick={this.handleEdit}>编辑</MenuItem>
+        </DropdownButton>
+      </div>
+    )
+  }
+
   renderContent() {
     const {
       routeParams: {id},
@@ -54,6 +86,7 @@ export default class Post extends React.PureComponent {
     }
     return (
       <div>
+        {this.renderMenu()}
         <Article
           title={postContent.title}
           content={postContent.content}

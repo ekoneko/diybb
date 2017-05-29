@@ -1,5 +1,6 @@
 const parse = require('co-body');
 const queryParse = require('query-string').parse;
+const xssClean = require('node-xss').clean;
 const DB = require('../services/db');
 const topicsModel = DB.getInstance().model('topics');
 const channelsModel = DB.getInstance().model('channels');
@@ -37,7 +38,7 @@ module.exports.create = async ctx => {
         topicId: postId,
         userId,
         userName,
-        content: data.content
+        content: xssClean(data.content),
       }, {transaction})
       await updatePostLastComment(topic, userId, userName, transaction)
       await updateChannelLastComment(topic.channelId, transaction)
@@ -99,7 +100,7 @@ module.exports.edit = async ctx => {
     return
   }
   await commentRow.update({
-    content: data.content
+    content: xssClean(data.content)
   })
   ctx.body = commentRow.dataValues
 }

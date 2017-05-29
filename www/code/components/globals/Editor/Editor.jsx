@@ -5,10 +5,12 @@ export default class Editor extends React.PureComponent {
   static propTypes = {
     id: PropTypes.string.isRequired,
     content: PropTypes.string,
+    options: PropTypes.shape({}),
   }
 
   static defaultProps = {
     content: '',
+    options: {},
   }
 
   state = {
@@ -47,7 +49,8 @@ export default class Editor extends React.PureComponent {
   }
 
   initEditor() {
-    window.tinyMCE.init({
+    const {options} = this.props
+    const defaultOptions = {
       selector: `#${this.props.id}`,
       menubar: false,
       statusbar: false,
@@ -59,6 +62,10 @@ export default class Editor extends React.PureComponent {
       init_instance_callback: ed => {
         ed.setContent(this.props.content)
       }
+    }
+    window.tinyMCE.init({
+      ...defaultOptions,
+      ...options,
     });
   }
   render() {

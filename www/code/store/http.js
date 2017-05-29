@@ -51,7 +51,7 @@ export function patch({url, body, onError, head}) {
 
 export function del({url, body, onError, head}) {
   return request({
-    method: 'DEL',
+    method: 'DELETE',
     url,
     body,
     onError,

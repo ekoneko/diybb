@@ -12,6 +12,8 @@ export default function List(props) {
     limit,
     total,
     onPageTo,
+    userId,
+    onDelete,
   } = props
 
   const pages = Math.ceil(total / limit)
@@ -23,6 +25,8 @@ export default function List(props) {
         {list.map(item => (
           <Item
             key={item.id}
+            currentUserId={userId}
+            onDelete={onDelete}
             {...item}
           />
         ))}
@@ -46,12 +50,16 @@ List.propTypes = {
   offset: PropTypes.number,
   limit: PropTypes.number,
   total: PropTypes.number,
+  userId: PropTypes.number,
   onPageTo: PropTypes.func,
+  onDelete: PropTypes.func,
 }
 List.defaultProps = {
   list: [],
   offset: 0,
   limit: 20,
   total: 0,
+  userId: 0,
   onPageTo: () => {},
+  onDelete: () => {},
 }

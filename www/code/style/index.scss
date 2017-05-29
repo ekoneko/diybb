@@ -52,3 +52,8 @@ a, a:hover, a:focus {
 .btn:not(.btn-raised).btn-primary, .input-group-btn .btn:not(.btn-raised).btn-primary {
   color: #5599dd
 }
+.btn-group.open {
+  .dropdown-toggle.btn {
+    background: inherit;
+  }
+}

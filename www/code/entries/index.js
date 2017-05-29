@@ -12,6 +12,7 @@ import {Provider} from 'react-redux'
 import {createStore, applyMiddleware, combineReducers} from 'redux'
 import thunkMiddleware from 'redux-thunk'
 import Index from 'components/Index'
+import 'style/fonts/font.css'
 import 'style/index.scss'
 import * as reducers from '../store/reducers/index'
 

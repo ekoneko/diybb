@@ -24,6 +24,7 @@
     font-size: 1.4rem;
   }
   .info {
+    visibility: hidden;
     display: flex;
     flex-flow: row nowrap;
     justify-content: space-around;

@@ -29,6 +29,16 @@ export default function commentList(state = initedState, action) {
         list: [action.payload, ...state.list],
         total: state.total + 1
       }
+    case ActionTypes.COMMENT_DEL_RECEIVE: {
+      let {list, total} = state
+      list = list.filter(({id}) => id !== action.commentId)
+      total -= 1
+      return {
+        ...state,
+        list,
+        total,
+      }
+    }
     default:
       return state
   }
