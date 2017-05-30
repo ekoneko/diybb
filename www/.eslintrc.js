@@ -59,6 +59,7 @@ module.exports = {
     "react/jsx-boolean-value": 0,
     "react/self-closing-comp": 0,
     "react/prop-types": [2, {ignore: ['dispatch', 'router', 'model']}],
+    "guard-for-in": 0,
   },
   "globals": {
     'alert': true,

@@ -97,6 +97,31 @@ module.exports.logout = async ctx => {
   ctx.body = {}
 }
 
+module.exports.updatePassword = async ctx => {
+  const {user: {id}} = ctx.state
+  const data = await parse(ctx)
+  if (!verifyRequiredFields(data, ['oldPassword', 'newPassword'])) {
+    ctx.body = getParamUnmatchedError();
+    return
+  }
+  const {oldPassword, newPassword} = data
+  const userRow = await userModel.findOne({id})
+  if (userRow.password !== encryptPassword(oldPassword, userRow.salt)) {
+    ctx.status = 403
+    ctx.body = {
+      err_no: ErrorCode.PASSWORD_ERROR,
+      err_message: 'password not match'
+    }
+    return
+  }
+  const newSalt = generateSalt()
+  await userRow.update({
+    password: encryptPassword(newPassword, newSalt),
+    salt: newSalt,
+  })
+  ctx.body = {}
+}
+
 function md5(string) {
   return crypto.createHash('md5').update(string).digest('hex');
 }

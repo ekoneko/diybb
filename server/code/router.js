@@ -15,6 +15,7 @@ module.exports = function () {
   router.post('/login', user.login)
   router.post('/logout', user.logout)
   router.get('/user', user.account)
+  router.put('/password', auth(AuthLevel.USER), user.updatePassword)
 
   const post = require('./controllers/post')
   router.get('/posts', post.list)

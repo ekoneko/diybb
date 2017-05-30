@@ -80,7 +80,7 @@ function request({method, url, body, onError = handleGlobalError, head = false})
       if (response.status === 401 && !window.location.hash.includes('/login')) {
         location.hash = '#/login'
         throw new Error('no login')
-      } else if (response.status < 200 && response.status >= 300) {
+      } else if (response.status < 200 || response.status >= 300) {
         errFlag = true
         return response.json()
       } else if (head) {
