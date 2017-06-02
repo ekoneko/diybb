@@ -4,7 +4,8 @@ import {connect} from 'react-redux'
 import {FormGroup, ControlLabel, Button, FormControl} from 'react-bootstrap'
 import {createForm} from 'rc-form'
 import {
-  userUpdatePassword as userUpdatePasswordAction
+  userUpdatePassword as userUpdatePasswordAction,
+  userUpdateAvatar as userUpdateAvatarAction,
 } from 'store/actions'
 import Header from '../Header/Header'
 
@@ -31,11 +32,13 @@ export default class AccountSetting extends React.PureComponent {
   state = {
     avatarUrl: ''
   }
+
   handleAvatarSubmit = () => {
+    const {dispatch} = this.props
     if (!this.avatar.files || !this.avatar.files.length) {
       return
     }
-    this.sendFile(this.avatar.files[0], '/api/avatar', {})
+    dispatch(userUpdateAvatarAction(this.avatar.files[0]))
       .then(() => {
         this.avatar.files = []
       })
@@ -66,31 +69,6 @@ export default class AccountSetting extends React.PureComponent {
           alert('操作失败')
         }
       })
-  }
-
-  sendFile(file, url, data = {}) {
-    return new Promise(resolve => {
-      const xhr = new XMLHttpRequest();
-      const fd = new FormData();
-
-      xhr.open('POST', url, true)
-      xhr.onreadystatechange = () => {
-        if (xhr.readyState === 4 && xhr.status === 200) {
-          // Handle response.
-          resolve(xhr.responseText);
-        }
-      }
-      // xhr.upload.onprogress = ...
-
-      fd.append('avatar', file);
-      // 将 data的内容一并放入post中
-      for (const k in data) {
-        const v = data[k]
-        fd.append(k, v)
-      }
-      // Initiate a multipart/form-data upload
-      xhr.send(fd)
-    })
   }
 
   renderLabel() {

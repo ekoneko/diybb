@@ -1,6 +1,7 @@
 'use strict';
 const Router = require('koa-router');
 const router = new Router();
+const koaBody = require('koa-body');
 
 const auth = require('./services/auth')
 const AuthLevel = require('./constants/authLevel')
@@ -16,6 +17,10 @@ module.exports = function () {
   router.post('/logout', user.logout)
   router.get('/user', user.account)
   router.put('/password', auth(AuthLevel.USER), user.updatePassword)
+
+  const avatar = require('./controllers/avatar')
+  router.get('/avatar/:id', avatar.get)
+  router.post('/avatar', auth(AuthLevel.USER), koaBody({ multipart: true }), avatar.set)
 
   const post = require('./controllers/post')
   router.get('/posts', post.list)

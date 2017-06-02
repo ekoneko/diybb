@@ -4,7 +4,9 @@ const compress = require('koa-compress');
 const logger = require('koa-logger');
 const serve = require('koa-static');
 const Koa = require('koa');
+const fs = require('fs');
 const path = require('path');
+const mkdirp = require('mkdirp')
 const app = module.exports = new Koa();
 const DB = require('./services/db');
 
@@ -16,6 +18,12 @@ DB.createInstance({
   host: process.env.DATABASE_HOST,
   dialect: process.env.DATABASE_DIALECT
 });
+
+// check storage directory perm and create
+const avatarPath = path.resolve(process.env.DATA_PATH, 'avatar')
+if (!fs.existsSync(avatarPath)) {
+  mkdirp.sync(avatarPath, 0o766)
+}
 
 const router = require('./router');
 

@@ -59,6 +59,37 @@ export function del({url, body, onError, head}) {
   })
 }
 
+export function sendFile({
+  file,
+  url,
+  method = 'POST',
+  name = 'file',  // form field name
+  data = {},
+}) {
+  return new Promise(resolve => {
+    const xhr = new XMLHttpRequest();
+    const fd = new FormData();
+
+    xhr.open(method, url, true)
+    xhr.onreadystatechange = () => {
+      if (xhr.readyState === 4 && xhr.status === 200) {
+        // Handle response.
+        resolve(xhr.responseText);
+      }
+    }
+    // xhr.upload.onprogress = ...
+
+    fd.append(name, file);
+    // 将 data的内容一并放入post中
+    for (const k in data) {
+      const v = data[k]
+      fd.append(k, v)
+    }
+    // Initiate a multipart/form-data upload
+    xhr.send(fd)
+  })
+}
+
 function request({method, url, body, onError = handleGlobalError, head = false}) {
   const headers = new Headers();
   headers.append('Content-Type', 'application/json');
