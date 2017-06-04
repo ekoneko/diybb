@@ -44,7 +44,7 @@ module.exports.login = async ctx => {
   const searchParam = isEmail(data.name) ? {email: data.name} : {name: data.name};
 
   try {
-    const row = await userModel.findOne(searchParam)
+    const row = await userModel.findOne({where: searchParam})
     if (!row) {
       ctx.body = {
         err_no: ErrorCode.USER_NOT_EXISTS_ERROR,
@@ -105,7 +105,7 @@ module.exports.updatePassword = async ctx => {
     return
   }
   const {oldPassword, newPassword} = data
-  const userRow = await userModel.findOne({id})
+  const userRow = await userModel.findOne({where: {id}})
   if (userRow.password !== encryptPassword(oldPassword, userRow.salt)) {
     ctx.status = 403
     ctx.body = {
@@ -135,5 +135,5 @@ function encryptPassword(rawPassword, salt) {
 }
 
 function isEmail(name) {
-  return !!name.indexOf('@');
+  return name.indexOf('@') > 0;
 }
