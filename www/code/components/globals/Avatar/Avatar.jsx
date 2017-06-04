@@ -3,6 +3,8 @@ import PropTypes from 'prop-types'
 
 import './style.scss'
 
+const AVATAR_URL = '/api/avatar'
+
 const COLOR = [
   ['#ffb900', '#fff'],
   ['#e81123', '#fff'],
@@ -33,6 +35,31 @@ export default class Avatar extends React.PureComponent {
     showLabel: PropTypes.bool,
     style: PropTypes.shape({}),
   };
+
+  state = {
+    avatarImgUrl: ''
+  }
+
+  componentWillMount() {
+    const {id} = this.props
+    const url = `${AVATAR_URL}/${id}`
+    const img = new Image()
+    img.onload = () => {
+      this.setState({avatarImgUrl: url})
+    }
+    img.src = url
+  }
+
+  renderContent() {
+    const {name} = this.props
+    const {avatarImgUrl} = this.state
+    if (avatarImgUrl) {
+      return <img src={avatarImgUrl} alt="" />
+    }
+    const shortName = name.slice(0, 1)
+    return <span>{shortName}</span>
+  }
+
   render() {
     const {
       id,
@@ -56,8 +83,6 @@ export default class Avatar extends React.PureComponent {
     computeStyle.backgroundColor = backgroundColor
     computeStyle.color = color
 
-    const shortName = name.slice(0, 1)
-
     return (
       <div className="avatar-container">
         <div
@@ -67,7 +92,7 @@ export default class Avatar extends React.PureComponent {
             ...style,
           }}
         >
-          <span>{shortName}</span>
+          {this.renderContent()}
         </div>
         {showLabel && (
           <span className="label">{name}</span>

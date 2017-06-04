@@ -18,6 +18,7 @@ function auth(authLevel) {
       expireSecond: process.env.SESSION_EXPIRE_SECOND
     });
     const user = await sessionManager.get(sid);
+    console.log(user)
     if (!user || !authLevel.includes(user.role)) {
       ctx.status = 401;
       ctx.body = '';
