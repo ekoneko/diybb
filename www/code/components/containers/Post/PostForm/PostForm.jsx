@@ -53,7 +53,9 @@ export default class PostForm extends React.PureComponent {
           inputRef={title => { this.title = title }}
           placeholder="请输入标题"
         />
-        <Editor id="editor" content={content} />
+        <div style={{margin: '1rem 0'}}>
+          <Editor id="editor" content={content} />
+        </div>
         <div className="text-right">
           <Button
             className="btn-raised"

@@ -4,6 +4,7 @@ import {connect} from 'react-redux'
 import PropTypes from 'prop-types'
 import {
   postContent as postContentAction,
+  getForumDetail as getForumDetailAction,
 } from 'store/actions'
 
 import Header from '../Header/Header'
@@ -15,10 +16,12 @@ import Comment from './Comment/Comment'
   ({
     postContent,
     userAccount,
+    forumDetail,
   }) => ({
     model: {
       postContent,
       userAccount,
+      forumDetail,
     }
   }),
   dispatch => ({dispatch}),
@@ -42,6 +45,15 @@ export default class Post extends React.PureComponent {
 
     if (id) {
       dispatch(postContentAction(id))
+    }
+  }
+
+  componentWillReceiveProps(newProps) {
+    const {dispatch} = this.props
+    const newChannelId = newProps.model.postContent.channelId
+    const srcChannelId = this.props.model.postContent.channelId
+    if (newChannelId !== srcChannelId) {
+      dispatch(getForumDetailAction(newChannelId))
     }
   }
 
@@ -98,11 +110,17 @@ export default class Post extends React.PureComponent {
 
   render() {
     const {
-      model: {postContent},
+      model: {
+        postContent,
+        forumDetail: {
+          id: forumId = 0,
+          name: forumName = '',
+        }
+      },
     } = this.props
     return (
       <div>
-        <Header />
+        <Header forumId={forumId} forumName={forumName} />
         <Grid>
           <Col xs={9}>
             {this.renderContent()}

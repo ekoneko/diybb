@@ -3,12 +3,20 @@ import {connect} from 'react-redux'
 import PropTypes from 'prop-types'
 import {
   postAdd as postAddAction,
+  getForumDetail as getForumDetailAction,
 } from 'store/actions'
 
 import Header from '../Header/Header'
 import PostForm from './PostForm/PostForm'
 
 @connect(
+  ({
+    forumDetail,
+  }) => ({
+    model: {
+      forumDetail,
+    }
+  }),
   dispatch => ({dispatch}),
 )
 export default class PostAdd extends React.PureComponent {
@@ -20,6 +28,14 @@ export default class PostAdd extends React.PureComponent {
 
   static defaultProps = {
     routeParams: {}
+  }
+
+  componentWillMount() {
+    const {
+      dispatch,
+      routeParams: {channelId},
+    } = this.props
+    dispatch(getForumDetailAction(channelId))
   }
 
   handleSubmit = (params) => {
@@ -37,9 +53,17 @@ export default class PostAdd extends React.PureComponent {
   }
 
   render() {
+    const {
+      model: {
+        forumDetail: {
+          id: forumId = 0,
+          name: forumName = '',
+        }
+      },
+    } = this.props
     return (
       <div>
-        <Header />
+        <Header forumId={forumId} forumName={forumName} />
         <PostForm
           onSubmit={this.handleSubmit}
         />

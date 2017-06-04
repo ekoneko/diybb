@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {PropTypes} from 'react'
 import {connect} from 'react-redux'
 import {Link} from 'react-router'
 import {
@@ -20,6 +20,16 @@ import './style.scss'
   dispatch => ({dispatch}),
 )
 export default class Header extends React.PureComponent {
+  static propTypes = {
+    forumId: PropTypes.number,
+    forumName: PropTypes.string,
+  }
+
+  static defaultProps = {
+    forumId: 0,
+    forumName: '',
+  }
+
   componentWillMount() {
     const {dispatch} = this.props
     dispatch(userAccountAction())
@@ -51,12 +61,25 @@ export default class Header extends React.PureComponent {
     )
   }
 
+  renderSubNav() {
+    const {forumId, forumName} = this.props
+    if (!forumId) {
+      return null
+    }
+    return (
+      <div className="sub-nav">
+        / <Link to={`/f/${forumId}`}>{forumName}</Link>
+      </div>
+    )
+  }
+
   render() {
     return (
       <div className="header">
-        <h1 className="logo">
+        <div className="logo">
           <Link to="/">Logo</Link>
-        </h1>
+        </div>
+        {this.renderSubNav()}
         {this.renderAvatar()}
       </div>
     )

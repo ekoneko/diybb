@@ -70,6 +70,7 @@ export default class Channel extends React.PureComponent {
           total,
         },
         forumDetail: {
+          id: forumId = 0,
           name: forumName = '',
           description = '',
         }
@@ -77,7 +78,7 @@ export default class Channel extends React.PureComponent {
     } = this.props
     return (
       <div>
-        <Header />
+        <Header forumId={forumId} forumName={forumName} />
         <Grid>
           <Col xs={9}>
             <div className="list-container">
@@ -99,6 +100,7 @@ export default class Channel extends React.PureComponent {
                 bsStyle="danger"
                 style={{
                   marginTop: 0,
+                  marginBottom: 8,
                   width: '100%',
                 }}
               >新文章</Button>

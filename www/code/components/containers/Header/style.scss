@@ -8,6 +8,18 @@
     margin: 0;
     display: inline-block;
     vertical-align: middle;
+    font-size: 3rem;
+    a {
+      color: #666;
+    }
+  }
+  .sub-nav {
+    display: inline-block;
+    margin-left: .5rem;
+    font-size: 1.6rem;
+    position: relative;
+    top: .6rem;
+    color: #999;
     a {
       color: #999;
     }
