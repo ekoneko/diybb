@@ -6,6 +6,7 @@ import commentList from './comment/list'
 import setting from './setting/setting'
 import forumRecommend from './forum/recommend'
 import forumDetail from './forum/detail'
+import forumList from './forum/list'
 
 export {
   userAccount,
@@ -16,4 +17,5 @@ export {
   setting,
   forumRecommend,
   forumDetail,
+  forumList,
 }

@@ -1,4 +1,4 @@
-.channel-list {
+.list {
   .item {
     background: #fff;
     padding: 1rem 2rem .8rem 4rem;
@@ -10,6 +10,19 @@
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
+    }
+    .info {
+      font-size: 1.2rem;
+      line-height: 1.6rem;
+      margin-top: .5rem;
+      color: #999;
+      .tag {
+        display: inline-block;
+        margin-right: 2rem;
+        .avatar {
+          vertical-align: text-bottom;
+        }
+      }
     }
   }
 }

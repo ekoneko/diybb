@@ -14,6 +14,7 @@ import commentRemove from './comment/remove'
 import getSetting from './setting/getter'
 import getRecommend from './forum/recommend'
 import getForumDetail from './forum/detail'
+import getForumList from './forum/list'
 
 export {
   userLogin,
@@ -32,4 +33,5 @@ export {
   getSetting,
   getRecommend,
   getForumDetail,
+  getForumList,
 }

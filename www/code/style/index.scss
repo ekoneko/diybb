@@ -28,6 +28,7 @@ a {
   box-shadow: none;
   border-radius: 0;
   &.panel-default > .panel-heading {
+    min-height: 40px;
     background-color: #59d;
     color: #fff;
     border-top-left-radius: 2px;

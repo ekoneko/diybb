@@ -1,33 +1,32 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import {Grid, Col, Panel} from 'react-bootstrap'
-
 import {
-  postHome as postHomeAction,
+  getForumList as getForumListAction,
   getSetting as getSettingAction,
   getRecommend as getRecommendAction,
 } from 'store/actions'
-import Header from '../Header/Header'
-import List from '../../globals/List/List'
 import ForumPanel from '../../globals/ForumPanel/ForumPanel'
+import Header from '../Header/Header'
+import List from './ChannelList/List'
 
 const PAGE_SIZE = 20
 
 @connect(
   ({
-     postHome,
-     setting,
-     forumRecommend,
+    forumList,
+    setting,
+    forumRecommend,
   }) => ({
     model: {
-      postHome,
+      forumList,
       setting,
       forumRecommend,
     }
   }),
   dispatch => ({dispatch}),
 )
-export default class Home extends React.PureComponent {
+export default class Channel extends React.PureComponent {
   componentWillMount() {
     const {dispatch} = this.props
     dispatch(getSettingAction(['announce']))
@@ -41,14 +40,14 @@ export default class Home extends React.PureComponent {
 
   request(page) {
     const {dispatch} = this.props
-    dispatch(postHomeAction(page, PAGE_SIZE))
+    dispatch(getForumListAction(page, PAGE_SIZE))
   }
 
   render() {
     const {
       model: {
-        postHome: {
-          loaded: postLoaded,
+        forumList: {
+          loaded,
           list = [],
           offset,
           limit,
@@ -61,31 +60,33 @@ export default class Home extends React.PureComponent {
         }
       }
     } = this.props
-    return (<div>
-      <Header />
-      <Grid>
-        <Col xs={9}>
-          <div className="list-container">
-            {postLoaded && (
-              <List
-                list={list}
-                offset={offset}
-                limit={limit}
-                total={total}
-                onPageTo={this.handlePageTo}
-              />
+    return (
+      <div>
+        <Header />
+        <Grid>
+          <Col xs={9}>
+            <div className="list-container">
+              {loaded && (
+                <List
+                  list={list}
+                  offset={offset}
+                  limit={limit}
+                  total={total}
+                  onPageTo={this.handlePageTo}
+                />
+              )}
+            </div>
+          </Col>
+          <Col xs={3}>
+            <Panel header="公告">
+              {announce}
+            </Panel>
+            {forumLoaded && (
+              <ForumPanel data={forumData} noMore />
             )}
-          </div>
-        </Col>
-        <Col xs={3}>
-          <Panel header="公告">
-            {announce}
-          </Panel>
-          {forumLoaded && (
-            <ForumPanel data={forumData} />
-          )}
-        </Col>
-      </Grid>
-    </div>)
+          </Col>
+        </Grid>
+      </div>
+    )
   }
 }
