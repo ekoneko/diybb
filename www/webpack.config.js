@@ -1,12 +1,20 @@
 const path = require('path')
+const webpack = require('webpack')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 const extractCSS = new ExtractTextPlugin('[name].style.css');
 
-console.log(path.join(__dirname, 'code'));
 module.exports = {
   entry: {
+    vendor: [
+      'jquery',
+      'initialize-css',
+      'bootstrap/dist/js/bootstrap',
+      'lodash',
+      'whatwg-fetch',
+      'react',
+    ],
     index: "entries/index",
     editor: "entries/editor",
   },
@@ -15,13 +23,13 @@ module.exports = {
     filename: '[name].js'
   },
   resolve: {
-    root: path.join(__dirname, 'code'),
-    extensions: ["", ".js", ".jsx"]
+    modules: [path.join(__dirname, 'code'), 'node_modules'],
+    extensions: [".js", ".jsx"]
   },
   module: {
-    loaders: [
+    rules: [
       {
-        loader: 'babel',
+        loader: 'babel-loader',
         test: /\.jsx?$/,
         exclude: /(node_modules|bower_components)/,
         query: {
@@ -30,10 +38,10 @@ module.exports = {
         }
       }, {
         test: /\.s?css$/i,
-        loader: extractCSS.extract(['css', 'sass'])
+        use: extractCSS.extract(['css-loader', 'sass-loader'])
       }, {
         test: /\.html$/,
-        loader: 'html',
+        loader: 'html-loader',
         query: {
           minimize: true
         }
@@ -48,7 +56,13 @@ module.exports = {
       title: 'DIYBB2',
       // favicon: ''
     }),
-    extractCSS
+    new webpack.optimize.CommonsChunkPlugin({name: 'vendor', filename: 'vendor.bundle.js'}),
+    extractCSS,
+    new webpack.ProvidePlugin({
+      jQuery: 'jquery',
+      $: 'jquery',
+      jquery: 'jquery',
+    }),
   ],
   devtool: process.env.DEV ? 'inline-source-map' : ''
 }
