@@ -2,9 +2,6 @@ import $ from 'jQuery'
 import 'initialize-css'
 import 'bootstrap/dist/css/bootstrap.css'
 import 'imports-loader?jQuery!bootstrap/dist/js/bootstrap'
-// import 'bootstrap-material-design/dist/css/bootstrap-material-design.css'
-import 'imports-loader?jQuery!bootstrap-material-design/dist/js/material'
-
 import 'lodash'
 import 'whatwg-fetch'
 import React from 'react'
@@ -25,7 +22,6 @@ function storeGenerator() {
   );
 }
 
-$.material.init();
 const rootDOM = document.createElement('div');
 document.body.appendChild(rootDOM);
 

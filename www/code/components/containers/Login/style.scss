@@ -3,11 +3,30 @@
   $height: 264px;
   width: $width;
   background: #fff;
-  padding: 2rem;
+  padding: 4rem 2rem;
   height: $height;
   position: absolute;
   left: 50%;
   top: 50%;
   margin-top: -$height / 2;
   margin-left: -$width / 2;
+  input.form-control {
+    box-shadow: none;
+    border: none;
+    border-bottom: 1px solid #D2D2D2;
+    border-radius: 0;
+    margin: 16px 0;
+    &:focus {
+      border-color: #D2D2D2;
+    }
+  }
+  .btn {
+    background: none;
+    border: none;
+    &:active {
+      box-shadow: none;
+      background: none;
+      border: none;
+    }
+  }
 }
