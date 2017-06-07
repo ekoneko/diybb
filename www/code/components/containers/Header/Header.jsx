@@ -77,7 +77,7 @@ export default class Header extends React.PureComponent {
     return (
       <div className="header">
         <div className="logo">
-          <Link to="/">Logo</Link>
+          <Link to="/">{GLOBALS.LOGO}</Link>
         </div>
         {this.renderSubNav()}
         {this.renderAvatar()}

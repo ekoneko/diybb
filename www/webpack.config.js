@@ -1,3 +1,4 @@
+require('dotenv').config();
 const path = require('path')
 const webpack = require('webpack')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
@@ -52,8 +53,14 @@ module.exports = {
     ]
   },
   plugins: [
+    new webpack.DefinePlugin({
+      GLOBALS: JSON.stringify({
+        LOGO: process.env.LOGO || '',
+        AVATAR_URL: process.env.AVATAR_URL || '',
+      })
+    }),
     new HtmlWebpackPlugin({
-      title: 'DIYBB2',
+      title: process.env.LOGO,
       // favicon: ''
     }),
     new webpack.optimize.CommonsChunkPlugin({name: 'vendor', filename: 'vendor.bundle.js'}),
@@ -66,4 +73,3 @@ module.exports = {
   ],
   devtool: process.env.DEV ? 'inline-source-map' : ''
 }
-

@@ -63,6 +63,7 @@ module.exports = {
   },
   "globals": {
     'alert': true,
+    'GLOBALS': true,
     '_': true,
   }
 }

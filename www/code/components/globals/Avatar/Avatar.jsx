@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 
 import './style.scss'
 
-const AVATAR_URL = '/api/avatar'
+const AVATAR_URL = GLOBALS.AVATAR_URL
 
 const COLOR = [
   ['#ffb900', '#fff'],
