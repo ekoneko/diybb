@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import {DropdownButton, MenuItem} from 'react-bootstrap'
 
 import Avatar from '../../../globals/Avatar/Avatar'
+import Time from '../../../globals/Time'
 
 export default function Item(props) {
   const {
@@ -12,6 +13,7 @@ export default function Item(props) {
     content,
     currentUserId,
     onDelete,
+    updatedAt,
   } = props
   return (
     <div className="comment-item">
@@ -34,7 +36,9 @@ export default function Item(props) {
       />
       <div className="info">
         <span className="tag">{userName}</span>
-        <span className="tag">2017-03-09</span>
+        <span className="tag">
+          <Time date={updatedAt} />
+        </span>
       </div>
       <div className="text" dangerouslySetInnerHTML={{__html: content}}></div>
     </div>
@@ -47,6 +51,7 @@ Item.propTypes = {
   userName: PropTypes.string,
   content: PropTypes.string,
   onDelete: PropTypes.func,
+  updatedAt: PropTypes.string,
 }
 Item.defaultProps = {
   id: 0,
@@ -55,4 +60,5 @@ Item.defaultProps = {
   userName: '',
   content: '',
   onDelete: () => {},
+  updatedAt: '',
 }
