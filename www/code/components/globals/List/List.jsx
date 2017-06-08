@@ -12,13 +12,14 @@ export default function List(props) {
     offset,
     limit,
     onPageTo,
+    showChannel,
   } = props
   const pages = Math.ceil(total / limit)
   const activePage = offset / limit + 1
   return (
     <div className="list">
       {list.map(item => (
-        <Item key={item.id} item={item} />
+        <Item showChannel={showChannel} key={item.id} item={item} />
       ))}
       <div className="page-container text-right">
         <Pagination
@@ -38,11 +39,13 @@ List.propTypes = {
   offset: PropTypes.number,
   limit: PropTypes.number,
   onPageTo: PropTypes.func,
+  showChannel: PropTypes.bool,
 }
 List.defaultProps = {
   list: [],
   total: 0,
   offset: 0,
   limit: 0,
-  onPageTo: () => {}
+  onPageTo: () => {},
+  showChannel: false,
 }

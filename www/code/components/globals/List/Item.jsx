@@ -3,6 +3,7 @@ import {Link} from 'react-router'
 import PropTypes from 'prop-types'
 
 import Avatar from '../Avatar/Avatar'
+import Forum from '../Forum/Forum'
 import Time from '../Time'
 
 export default function Item(props) {
@@ -15,8 +16,11 @@ export default function Item(props) {
       createdAt,
       lastCommentTime,
       count,
-    }
+      channelName,
+    },
+    showChannel,
   } = props
+
   return (
     <div className="item">
       <Link to={`/p/${id}`} className="title">{title}</Link>
@@ -28,6 +32,11 @@ export default function Item(props) {
         <div className="tag">
           <Avatar size={16} id={userId} name={userName} showLabel></Avatar>
         </div>
+        {showChannel && (
+          <div className="tag">
+            {channelName}
+          </div>
+        )}
         {!!count && (
           <div className="tag">
             <div className="tag">
@@ -52,5 +61,9 @@ Item.propTypes = {
     createdAt: PropTypes.string,
     lastCommentTime: PropTypes.string,
     count: PropTypes.number,
-  }).isRequired
+  }).isRequired,
+  showChannel: PropTypes.bool,
+}
+Item.defaultProps = {
+  showChannel: false,
 }

@@ -57,15 +57,29 @@ module.exports.list = async ctx => {
     where.channelId = channel
   }
 
-  console.log(where)
-
   try {
     const {count, rows} = await getPostList(where, offset, limit)
+
+    const channelIds = getChannelIds(rows)
+    const channelRows = await channelsModel.findAll({
+      where: {id: channelIds},
+      attributes: ['id', 'name'],
+    })
+
+    const channelMap = {}
+    channelRows.forEach(channel => {
+      channelMap[channel.id] = channel.name
+    })
+
+
+    const rowsWithChannel = rows.map(row => {
+      return Object.assign({channelName: channelMap[row.channelId]}, row.dataValues)
+    })
 
     ctx.set('X-total', count);
     ctx.set('X-offset', offset);
     ctx.set('X-limit', limit);
-    ctx.body = rows
+    ctx.body = rowsWithChannel
   } catch (e) {
     ctx.status = 500;
     ctx.body = DB.getErrorMessage(e)
@@ -166,6 +180,16 @@ module.exports.edit = async ctx => {
 module.exports.patch = async ctx => {
   const id = ctx.params.id
   // TODO
+}
+
+function getChannelIds(rows) {
+  const channelIds = []
+  rows.forEach(row => {
+    if (!channelIds.includes(row.channelId)) {
+      channelIds.push(row.channelId)
+    }
+  })
+  return channelIds
 }
 
 async function createTopic(data, user, transaction) {

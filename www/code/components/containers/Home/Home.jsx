@@ -73,6 +73,7 @@ export default class Home extends React.PureComponent {
                 limit={limit}
                 total={total}
                 onPageTo={this.handlePageTo}
+                showChannel
               />
             )}
           </div>
