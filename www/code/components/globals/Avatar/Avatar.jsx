@@ -42,6 +42,18 @@ export default class Avatar extends React.PureComponent {
 
   componentWillMount() {
     const {id} = this.props
+    this.getAvatarImg(id)
+  }
+
+  componentWillReceiveProps(newProps) {
+    if (newProps.id !== this.props.id) {
+      this.setState({avatarImgUrl: ''})
+      this.getAvatarImg(newProps.id)
+    }
+  }
+
+  getAvatarImg(id) {
+    if (!id) return
     const url = `${AVATAR_URL}/${id}`
     const img = new Image()
     img.onload = () => {
