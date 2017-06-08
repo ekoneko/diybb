@@ -11,7 +11,7 @@ export default function Forum(props) {
     <div className="forum">
       <Link to={`/f/${id}`}>
         <div className="title">
-          <div className="icon"></div>
+          {/*<div className="icon"></div>*/}
           <span className="text">{name}</span>
         </div>
         <div className="tag">

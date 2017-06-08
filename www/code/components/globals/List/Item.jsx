@@ -13,6 +13,7 @@ export default function Item(props) {
       userId,
       userName,
       createdAt,
+      lastCommentTime,
       count,
     }
   } = props
@@ -29,7 +30,13 @@ export default function Item(props) {
         </div>
         {!!count && (
           <div className="tag">
-            回复 {count}
+            <div className="tag">
+              回复 {count}
+            </div>
+            <div className="tag">
+              回复于
+              <Time date={lastCommentTime}></Time>
+            </div>
           </div>
         )}
       </div>
@@ -43,6 +50,7 @@ Item.propTypes = {
     userId: PropTypes.number,
     username: PropTypes.string,
     createdAt: PropTypes.string,
+    lastCommentTime: PropTypes.string,
     count: PropTypes.number,
   }).isRequired
 }

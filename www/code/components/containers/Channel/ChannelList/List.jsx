@@ -16,7 +16,7 @@ export default function List(props) {
   const pages = Math.ceil(total / limit)
   const activePage = offset / limit + 1
   return (
-    <div className="channel-list">
+    <div className="channel-list" style={{marginBottom: '2rem'}}>
       {list.map(item => (
         <Item key={item.id} item={item} />
       ))}
