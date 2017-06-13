@@ -55,10 +55,11 @@ export default class Editor extends React.PureComponent {
       menubar: false,
       statusbar: false,
       auto_focus: false,
-      toolbar1: 'undo redo | styleselect bold italic forecolor outdent indent | link unlink',
-      plugins: 'link code textcolor',
+      toolbar1: 'undo redo | styleselect bold italic forecolor outdent indent | link unlink | image yen',
+      plugins: 'link code textcolor image yen',
       min_height: 300,
       resize: true,
+      skin: false,
       init_instance_callback: ed => {
         ed.setContent(this.props.content)
       }

@@ -61,9 +61,10 @@ module.exports = {
     }),
     new HtmlWebpackPlugin({
       title: process.env.LOGO,
+      excludeChunks: ['editor'],
       // favicon: ''
     }),
-    new webpack.optimize.CommonsChunkPlugin({name: 'vendor', filename: 'vendor.bundle.js'}),
+    new webpack.optimize.CommonsChunkPlugin('vendor'),
     extractCSS,
     new webpack.ProvidePlugin({
       jQuery: 'jquery',
