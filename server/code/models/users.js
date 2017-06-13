@@ -23,6 +23,11 @@ module.exports = {
       allowNull: false,
       defaultValue: '',
     },
+    count: {
+      type: Sequelize.INTEGER(10),
+      allowNull: false,
+      defaultValue: 0,
+    },
     admin: {
       type: Sequelize.STRING(6),
       allowNull: true,

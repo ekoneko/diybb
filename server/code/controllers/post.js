@@ -5,6 +5,7 @@ const DB = require('../services/db');
 const topicsModel = DB.getInstance().model('topics');
 const postsModel = DB.getInstance().model('posts');
 const channelsModel = DB.getInstance().model('channels');
+const usersModel = DB.getInstance().model('users');
 const ErrorCode = require('../constants/errorcode');
 const {
   verifyRequiredFields,
@@ -29,6 +30,7 @@ module.exports.create = async ctx => {
     const topicId = await DB.getInstance().transaction(async transaction => {
       const topicId = await createTopic(data, ctx.state.user, transaction)
       await createPost(topicId, data.content, transaction)
+      await incUserPostCount(ctx.state.user, transaction)
       await updateChannel(data.channelId)
 
       return topicId
@@ -203,6 +205,20 @@ async function createTopic(data, user, transaction) {
     transaction,
   })
   return topicRow.get('id')
+}
+
+async function incUserPostCount(user, transaction) {
+  const {id} = user
+  const userRow = await usersModel.findOne({
+    where: {id}
+  })
+  if (userRow) {
+    userRow.count += 1
+  }
+  await userRow.save({
+    returning: false,
+    transaction,
+  })
 }
 
 async function createPost(topicId, content, transaction) {
