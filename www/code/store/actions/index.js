@@ -3,6 +3,7 @@ import userAccount from './user/account'
 import userLogout from './user/logout'
 import userUpdatePassword from './user/updatePassword'
 import userUpdateAvatar from './user/updateAvatar'
+import userCreate from './user/create'
 import postHome from './post/home'
 import postContent from './post/content'
 import postForum from './post/forum'
@@ -22,6 +23,7 @@ export {
   userLogout,
   userUpdatePassword,
   userUpdateAvatar,
+  userCreate,
   postHome,
   postContent,
   postForum,

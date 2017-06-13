@@ -3,7 +3,6 @@ import {Link} from 'react-router'
 import PropTypes from 'prop-types'
 
 import Avatar from '../Avatar/Avatar'
-import Forum from '../Forum/Forum'
 import Time from '../Time'
 
 export default function Item(props) {

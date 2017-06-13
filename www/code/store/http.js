@@ -1,4 +1,4 @@
-export function get({url, query = {}, onError, head}) {
+export function get({url, query = {}, onError = () => {}, head}) {
   if (query && Object.keys(query).length) {
     /* eslint no-param-reassign: 0 */
     url += url.includes('?') ? '&' : '?'

@@ -23,6 +23,7 @@ export default function userAccount(state = initedState, action) {
       }
     }
     case ActionTypes.LOGIN_FAILED:
+    case ActionTypes.USER_CREATE_FAILED:
       return {
         ...initedState,
         lastError: {

@@ -6,7 +6,7 @@ import PropTypes from 'prop-types'
 import './style.scss'
 
 @createForm()
-export default class Login extends React.PureComponent {
+export default class LoginForm extends React.PureComponent {
   static defaultProps = {
     isRequesting: false,
     form: {},
