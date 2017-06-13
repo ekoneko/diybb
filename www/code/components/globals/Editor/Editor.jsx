@@ -25,6 +25,10 @@ export default class Editor extends React.PureComponent {
         this.setState({editorReady: true});
       };
       document.body.appendChild(script);
+      const link = document.createElement('link');
+      link.href = '/editor.style.css';
+      link.rel = 'stylesheet';
+      document.body.appendChild(link);
     } else {
       this.state.editorReady = true
       setTimeout(() => {
