@@ -59,7 +59,7 @@
     "redux": "^3.6.0",
     "redux-thunk": "^2.1.0",
     "tinymce": "^4.5.2",
-    "tinymce-yentext": "^2.0.0",
+    "tinymce-yentext": "^2.0.1",
     "whatwg-fetch": "^2.0.2"
   }
 }
