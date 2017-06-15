@@ -6,6 +6,7 @@ const topicsModel = DB.getInstance().model('topics');
 const channelsModel = DB.getInstance().model('channels');
 const commentsModel = DB.getInstance().model('comments');
 const ErrorCode = require('../constants/errorcode');
+const score = require('../services/score')
 const {
   verifyRequiredFields,
   getParamUnmatchedError,
@@ -42,6 +43,9 @@ module.exports.create = async ctx => {
       }, {transaction})
       await updatePostLastComment(topic, userId, userName, transaction)
       await updateChannelLastComment(topic.channelId, transaction)
+
+      score(userId, 'addComment')
+
       return commentRow.dataValues
     })
   } catch (e) {
@@ -106,10 +110,12 @@ module.exports.edit = async ctx => {
 }
 
 module.exports.remove = async ctx => {
+  const {id: userId} = ctx.state.user
   const {postId, commentId} = ctx.params
   await commentsModel.destroy({
-    where: {topicId: postId, id: commentId},
+    where: {topicId: postId, id: commentId, userId},
   })
+  score(userId, 'deleteComment')
   ctx.body = {}
 }
 

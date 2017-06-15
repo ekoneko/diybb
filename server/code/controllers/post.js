@@ -7,6 +7,7 @@ const postsModel = DB.getInstance().model('posts');
 const channelsModel = DB.getInstance().model('channels');
 const usersModel = DB.getInstance().model('users');
 const ErrorCode = require('../constants/errorcode');
+const score = require('../services/score')
 const {
   verifyRequiredFields,
   getParamUnmatchedError,
@@ -35,6 +36,9 @@ module.exports.create = async ctx => {
 
       return topicId
     })
+
+    score(ctx.state.user.id, 'addPost')
+
     ctx.body = {
       state: true,
       id: topicId,
@@ -138,6 +142,7 @@ module.exports.remove = async ctx => {
         transaction,
       })
     })
+    score(ctx.state.user.id, 'deletePost')
     ctx.body = {state: true}
   } catch (e) {
     reportErrorMessage(e)

@@ -129,6 +129,7 @@ export default class Post extends React.PureComponent {
             <AccessCard
               userId={postContent.userId}
               userName={postContent.userName}
+              postCount={postContent.count}
             />
           </Col>
         </Grid>
