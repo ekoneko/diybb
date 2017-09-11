@@ -4,9 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node build/index.js",
+    "start": "DEV=1 node build/index.js",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "DEV=1 node build/index.js",
     "eslint": "node_modules/eslint/bin/eslint.js --ext .js --ext .jsx code",
     "build": "rm -rf ./dist ./dist.tar.gz && webpack --optimize-minimize && tar -zcvf dist.tar.gz ./dist"
   },

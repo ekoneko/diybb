@@ -9,12 +9,12 @@ const server = new webpackDevServer(compiler, {
       target: {
         host: 'localhost',
         protocol: 'http:',
-        port: process.env.SERVERPORT
+        port: process.env.SERVERPORT || 3000
       },
       pathRewrite: {'^/api' : ''},
     }
   }
 });
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 3001;
 server.listen(port);
 console.log(`listen ${port} port success!`);
