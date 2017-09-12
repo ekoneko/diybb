@@ -72,5 +72,18 @@ module.exports = {
       jquery: 'jquery',
     }),
   ],
+  devServer: {
+    proxy: {
+      '/api': {
+        target: {
+          host: 'localhost',
+          protocol: 'http:',
+          port: process.env.SERVERPORT || 3000,
+        },
+        pathRewrite: {'^/api' : ''},
+      }
+    },
+    port: process.env.PORT || 3001,
+  },
   devtool: process.env.DEV ? 'inline-source-map' : ''
 }
