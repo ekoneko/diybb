@@ -64,7 +64,7 @@ export default class Editor extends React.PureComponent {
       statusbar: false,
       auto_focus: false,
       toolbar1: 'undo redo | styleselect bold italic forecolor outdent indent | link image yen',
-      plugins: 'link code textcolor image yen autolink',
+      plugins: 'link code textcolor image yen autolink responsiveImage',
       min_height: 300,
       resize: true,
       skin: false,
