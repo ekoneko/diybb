@@ -31,7 +31,7 @@ export default class Avatar extends React.PureComponent {
     id: PropTypes.number.isRequired,
     sharp: PropTypes.string,
     name: PropTypes.string,
-    size: PropTypes.oneOfType([React.PropTypes.number, React.PropTypes.string]),
+    size: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
     showLabel: PropTypes.bool,
     style: PropTypes.shape({}),
   };
