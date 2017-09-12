@@ -31,3 +31,17 @@ ReactDOM.render(
     <Index />
   </Provider>, rootDOM
 );
+
+// load TinyMCE
+window.addEventListener('load', () => {
+  const script = document.createElement('script');
+  script.src = '/editor.js';
+  script.onload = () => {
+    window.dispatchEvent(new Event('tinymceReady'));
+  };
+  document.body.appendChild(script);
+  const link = document.createElement('link');
+  link.href = '/editor.style.css';
+  link.rel = 'stylesheet';
+  document.body.appendChild(link);
+});

@@ -18,7 +18,16 @@ export default class Editor extends React.PureComponent {
   }
 
   componentWillMount() {
-    if (!window.tinyMCE) {
+    if (window.tinyMCE) {
+      this.state.editorReady = true
+      setTimeout(() => {
+        this.initEditor()
+      }, 50)
+    } else if (window.addEventListener) {
+      window.addEventListener('tinymceReady', () => {
+        this.setState({editorReady: true});
+      })
+    } else {
       const script = document.createElement('script');
       script.src = '/editor.js';
       script.onload = () => {
@@ -29,11 +38,6 @@ export default class Editor extends React.PureComponent {
       link.href = '/editor.style.css';
       link.rel = 'stylesheet';
       document.body.appendChild(link);
-    } else {
-      this.state.editorReady = true
-      setTimeout(() => {
-        this.initEditor()
-      }, 50)
     }
   }
 
