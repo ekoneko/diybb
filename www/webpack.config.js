@@ -62,6 +62,7 @@ module.exports = {
     new HtmlWebpackPlugin({
       title: process.env.LOGO,
       excludeChunks: ['editor'],
+      template: 'code/index.ejs',
       // favicon: ''
     }),
     new webpack.optimize.CommonsChunkPlugin('vendor'),

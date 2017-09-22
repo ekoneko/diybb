@@ -58,3 +58,16 @@ a, a:hover, a:focus {
     background: inherit;
   }
 }
+
+@media (min-width: 768px) {
+  .container {
+    width: 100%;
+  }
+}
+
+@media (max-width: 900px) {
+  .container {
+    width: 100%;
+    padding: 0!important;
+  }
+}

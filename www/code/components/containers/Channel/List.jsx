@@ -64,7 +64,7 @@ export default class Channel extends React.PureComponent {
       <div>
         <Header />
         <Grid>
-          <Col xs={9}>
+          <Col sm={9}>
             <div className="list-container">
               {loaded && (
                 <List
@@ -77,7 +77,7 @@ export default class Channel extends React.PureComponent {
               )}
             </div>
           </Col>
-          <Col xs={3}>
+          <Col sm={3}>
             <Panel header="公告">
               {announce}
             </Panel>

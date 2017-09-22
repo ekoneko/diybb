@@ -80,7 +80,7 @@ export default class Channel extends React.PureComponent {
       <div>
         <Header forumId={forumId} forumName={forumName} />
         <Grid>
-          <Col xs={9}>
+          <Col sm={9}>
             <div className="list-container">
               {postLoaded && (
                 <List
@@ -93,7 +93,7 @@ export default class Channel extends React.PureComponent {
               )}
             </div>
           </Col>
-          <Col xs={3}>
+          <Col sm={3}>
             <Link to={`p/add/${id}`}>
               <Button
                 className="btn-raised"

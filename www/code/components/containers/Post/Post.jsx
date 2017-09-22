@@ -122,10 +122,10 @@ export default class Post extends React.PureComponent {
       <div>
         <Header forumId={forumId} forumName={forumName} />
         <Grid>
-          <Col xs={9}>
+          <Col sm={9}>
             {this.renderContent()}
           </Col>
-          <Col xs={3}>
+          <Col sm={3}>
             <AccessCard
               userId={postContent.userId}
               userName={postContent.userName}
