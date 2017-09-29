@@ -1,5 +1,6 @@
 import React from 'react'
-import { Router, Route, hashHistory } from 'react-router'
+import { Route, Switch } from 'react-router'
+import { HashRouter } from 'react-router-dom'
 
 import Home from './containers/Home/Home'
 import Login from './containers/Login/Login'
@@ -14,17 +15,17 @@ import AccountSetting from './containers/Account/Setting'
 
 export default function Index() {
   return (
-    <Router history={hashHistory}>
-      <Route path="/" component={Home} />
-      <Route path="/login" component={Login} />
-      <Route path="/signup" components={SignUp} />
-      <Route path="/f" components={ChannelList} />
-      <Route path="/f/:id" component={Channel} />
-      <Route path="/p/:id" component={Post} />
-      <Route path="/p/add/:channelId" component={PostAdd} />
-      <Route path="/p/edit/:id" component={PostEdit} />
-      <Route path="/account/setting" component={AccountSetting} />
-      <Route path="/account(/:id)" component={Account} />
-    </Router>
+    <Switch>
+      <Route exact path="/" component={Home} />
+      <Route exact path="/login" component={Login} />
+      <Route exact path="/signup" component={SignUp} />
+      <Route exact path="/f" components={ChannelList} />
+      <Route exact path="/f/:id" component={Channel} />
+      <Route exact path="/p/:id" component={Post} />
+      <Route exact path="/p/add/:channelId" component={PostAdd} />
+      <Route exact path="/p/edit/:id" component={PostEdit} />
+      <Route exact path="/account/setting" component={AccountSetting} />
+      <Route exact path="/account(/:id)" component={Account} />
+    </Switch>
   )
 }

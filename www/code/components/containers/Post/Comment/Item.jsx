@@ -45,9 +45,9 @@ export default function Item(props) {
   )
 }
 Item.propTypes = {
-  id: PropTypes.number,
-  userId: PropTypes.number,
-  currentUserId: PropTypes.number,
+  id: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+  userId: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+  currentUserId: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   userName: PropTypes.string,
   content: PropTypes.string,
   onDelete: PropTypes.func,

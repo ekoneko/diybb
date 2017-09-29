@@ -1,7 +1,7 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import PropTypes from 'prop-types'
-import {Link} from 'react-router'
+import {Link} from 'react-router-dom'
 
 import {Grid, Col, Panel, Button} from 'react-bootstrap'
 
@@ -28,18 +28,18 @@ const PAGE_SIZE = 20
 )
 export default class Channel extends React.PureComponent {
   static propTypes = {
-    routeParams: PropTypes.shape({
-      id: PropTypes.string,
+    match: PropTypes.shape({
+      params: PropTypes.shape({id: PropTypes.string})
     })
   }
 
   static defaultProps = {
-    routeParams: {}
+    match: {params: {}}
   }
 
   componentWillMount() {
     const {
-      routeParams: {id},
+      match: {params: {id}},
       dispatch,
     } = this.props
     dispatch(getForumDetailAction(id))
@@ -52,7 +52,7 @@ export default class Channel extends React.PureComponent {
 
   request(page) {
     const {
-      routeParams: {id},
+      match: {params: {id}},
       dispatch,
     } = this.props
     dispatch(postForumAction(id, page, PAGE_SIZE))
@@ -60,7 +60,7 @@ export default class Channel extends React.PureComponent {
 
   render() {
     const {
-      routeParams: {id},
+      match: {params: {id}},
       model: {
         postForum: {
           loaded: postLoaded,
@@ -94,7 +94,7 @@ export default class Channel extends React.PureComponent {
             </div>
           </Col>
           <Col sm={3}>
-            <Link to={`p/add/${id}`}>
+            <Link to={`/p/add/${id}`}>
               <Button
                 className="btn-raised"
                 bsStyle="danger"

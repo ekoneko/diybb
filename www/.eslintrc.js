@@ -58,7 +58,7 @@ module.exports = {
     "react/jsx-first-prop-new-line": 0,
     "react/jsx-boolean-value": 0,
     "react/self-closing-comp": 0,
-    "react/prop-types": [2, {ignore: ['dispatch', 'router', 'model']}],
+    "react/prop-types": [2, {ignore: ['dispatch', 'history', 'model']}],
     "guard-for-in": 0,
   },
   "globals": {

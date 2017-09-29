@@ -6,6 +6,7 @@ import 'lodash'
 import 'whatwg-fetch'
 import React from 'react'
 import ReactDOM from 'react-dom'
+import { HashRouter } from 'react-router-dom'
 import {Provider} from 'react-redux'
 import {createStore, applyMiddleware, combineReducers} from 'redux'
 import thunkMiddleware from 'redux-thunk'
@@ -28,7 +29,9 @@ document.body.appendChild(rootDOM);
 const store = storeGenerator();
 ReactDOM.render(
   <Provider store={store}>
-    <Index />
+    <HashRouter>
+      <Index />
+    </HashRouter>
   </Provider>, rootDOM
 );
 

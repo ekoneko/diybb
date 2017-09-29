@@ -2,6 +2,7 @@ import React from 'react'
 import {FormGroup, FormControl, Button} from 'react-bootstrap'
 import {createForm} from 'rc-form'
 import PropTypes from 'prop-types'
+import {Link} from 'react-router-dom'
 
 import './style.scss'
 
@@ -50,6 +51,12 @@ export default class LoginForm extends React.PureComponent {
             <FormControl componentClass="input" placeholder="密码" type="password" />
           )}
         </FormGroup>
+        <Link to="/signup" className="pull-left">
+          <Button
+            bsStyle="primary"
+            type="submit"
+          >注册</Button>
+        </Link>
         <FormGroup className="text-right">
           <Button
             bsStyle="primary"

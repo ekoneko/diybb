@@ -17,14 +17,14 @@ import LoginForm from './LoginForm'
 )
 export default class Login extends React.PureComponent {
   handleSubmit = (name, password) => {
-    const {dispatch, router} = this.props
+    const {dispatch, history} = this.props
     return dispatch(userLoginAction(name, password))
       .then(() => {
         const {model: {userAccount}} = this.props
         if (userAccount.lastError) {
           alert(_.get(userAccount.lastError, 'error.err_message'))
         } else {
-          router.push('/')
+          history.push('/')
         }
       })
   }

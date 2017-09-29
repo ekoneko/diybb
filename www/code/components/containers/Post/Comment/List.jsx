@@ -50,7 +50,7 @@ List.propTypes = {
   offset: PropTypes.number,
   limit: PropTypes.number,
   total: PropTypes.number,
-  userId: PropTypes.number,
+  userId: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   onPageTo: PropTypes.func,
   onDelete: PropTypes.func,
 }

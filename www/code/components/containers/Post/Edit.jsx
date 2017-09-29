@@ -26,19 +26,19 @@ import PostForm from './PostForm/PostForm'
 )
 export default class PostAdd extends React.PureComponent {
   static propTypes = {
-    routeParams: PropTypes.shape({
-      id: PropTypes.string,
+    match: PropTypes.shape({
+      params: PropTypes.shape({id: PropTypes.string})
     })
   }
 
   static defaultProps = {
-    routeParams: {}
+    match: {params: {}}
   }
 
   componentWillMount() {
     const {
       dispatch,
-      routeParams: {id},
+      match: {params: {id}},
     } = this.props
     dispatch(postContentAction(id))
   }
@@ -58,13 +58,13 @@ export default class PostAdd extends React.PureComponent {
         postContent: {userId},
         userAccount: {id},
       },
-      router,
+      history,
     } = newProps
 
     if (!this.goingBack && id && userId && id !== userId) {
       alert('不能编辑他人的文章!')
       this.goingBack = true
-      router.goBack()
+      history.goBack()
     }
   }
   goingBack = false
@@ -72,11 +72,11 @@ export default class PostAdd extends React.PureComponent {
   handleSubmit = (params) => {
     const {
       dispatch,
-      router,
-      routeParams: {id},
+      history,
+      match: {params: {id}},
     } = this.props
     dispatch(postEditAction(id, params)).then(() => {
-      router.push(`/p/${id}`)
+      history.push(`/p/${id}`)
     })
   }
 

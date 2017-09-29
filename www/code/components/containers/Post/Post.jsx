@@ -28,18 +28,18 @@ import Comment from './Comment/Comment'
 )
 export default class Post extends React.PureComponent {
   static propTypes = {
-    routeParams: PropTypes.shape({
-      id: PropTypes.string,
+    match: PropTypes.shape({
+      params: PropTypes.shape({id: PropTypes.string})
     })
   }
 
   static defaultProps = {
-    routeParams: {}
+    match: {params: {}}
   }
 
   componentWillMount() {
     const {
-      routeParams: {id},
+      match: {params: {id}},
       dispatch,
     } = this.props
 
@@ -59,10 +59,10 @@ export default class Post extends React.PureComponent {
 
   handleEdit = () => {
     const {
-      routeParams: {id},
-      router,
+      match: {params: {id}},
+      history,
     } = this.props
-    router.push(`/p/edit/${id}`)
+    history.push(`/p/edit/${id}`)
   }
 
   renderMenu() {
@@ -89,7 +89,7 @@ export default class Post extends React.PureComponent {
 
   renderContent() {
     const {
-      routeParams: {id},
+      match: {params: {id}},
       model: {postContent},
     } = this.props
     if (!id) {

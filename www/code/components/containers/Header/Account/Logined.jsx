@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import {DropdownButton, MenuItem} from 'react-bootstrap'
-import {Link} from 'react-router'
+import {Link} from 'react-router-dom'
 
 import Avatar from '../../../globals/Avatar/Avatar'
 

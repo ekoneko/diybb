@@ -21,19 +21,19 @@ import PostForm from './PostForm/PostForm'
 )
 export default class PostAdd extends React.PureComponent {
   static propTypes = {
-    routeParams: PropTypes.shape({
-      channelId: PropTypes.string,
+    match: PropTypes.shape({
+      params: PropTypes.shape({channelId: PropTypes.string})
     })
   }
 
   static defaultProps = {
-    routeParams: {}
+    match: {params: {}}
   }
 
   componentWillMount() {
     const {
       dispatch,
-      routeParams: {channelId},
+      match: {params: {channelId}},
     } = this.props
     dispatch(getForumDetailAction(channelId))
   }
@@ -42,7 +42,7 @@ export default class PostAdd extends React.PureComponent {
     const {
       dispatch,
       router,
-      routeParams: {channelId},
+      match: {params: {channelId}},
     } = this.props
     dispatch(postAddAction({
       ...params,
