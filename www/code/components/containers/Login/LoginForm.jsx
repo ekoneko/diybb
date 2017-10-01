@@ -52,10 +52,7 @@ export default class LoginForm extends React.PureComponent {
           )}
         </FormGroup>
         <Link to="/signup" className="pull-left">
-          <Button
-            bsStyle="primary"
-            type="submit"
-          >注册</Button>
+          <Button bsStyle="primary">注册</Button>
         </Link>
         <FormGroup className="text-right">
           <Button

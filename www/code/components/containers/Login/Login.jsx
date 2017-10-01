@@ -27,6 +27,12 @@ export default class Login extends React.PureComponent {
           history.push('/')
         }
       })
+      .catch(() => {
+        const {model: {userAccount}} = this.props
+        if (userAccount.lastError) {
+          alert(_.get(userAccount.lastError, 'error.err_message'))
+        }
+      })
   }
 
   render() {

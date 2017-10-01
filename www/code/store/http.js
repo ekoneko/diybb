@@ -119,16 +119,18 @@ function request({method, url, body, onError = handleGlobalError, head = false})
       }
       return response.json()
     })
-    .then(data => {
-      if (errFlag) {
-        if (_.get(data, 'err_no')) {
+    .then(data => new Promise((resolve, reject) => {
+      if (errFlag || _.get(data, 'err_no')) {
+        if (typeof onError === 'function') {
           onError(response.status, data)
         } else {
           alert('unknown error')
         }
+        reject(data)
+      } else {
+        resolve(data)
       }
-      return data
-    })
+    }))
 }
 
 function handleGlobalError(status, error) {
