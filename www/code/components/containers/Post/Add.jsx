@@ -41,14 +41,14 @@ export default class PostAdd extends React.PureComponent {
   handleSubmit = (params) => {
     const {
       dispatch,
-      router,
       match: {params: {channelId}},
+      history,
     } = this.props
     dispatch(postAddAction({
       ...params,
       channelId,
     })).then(() => {
-      router.goBack()
+      history.goBack()
     })
   }
 

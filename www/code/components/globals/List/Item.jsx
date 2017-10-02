@@ -15,6 +15,7 @@ export default function Item(props) {
       createdAt,
       lastCommentTime,
       count,
+      channelId,
       channelName,
     },
     showChannel,
@@ -33,7 +34,9 @@ export default function Item(props) {
         </div>
         {showChannel && (
           <div className="tag">
-            {channelName}
+            <Link to={`/f/${channelId}`}>
+              {channelName}
+            </Link>
           </div>
         )}
         {!!count && (
@@ -60,6 +63,8 @@ Item.propTypes = {
     createdAt: PropTypes.string,
     lastCommentTime: PropTypes.string,
     count: PropTypes.number,
+    channelId: PropTypes.string,
+    channelName: PropTypes.string,
   }).isRequired,
   showChannel: PropTypes.bool,
 }

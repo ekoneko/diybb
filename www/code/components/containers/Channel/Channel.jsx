@@ -106,7 +106,7 @@ export default class Channel extends React.PureComponent {
               >新文章</Button>
             </Link>
             <Panel header={forumName}>
-              {description}
+              {description || <span style={{color: '#999'}}>暂无公告</span>}
             </Panel>
           </Col>
         </Grid>
