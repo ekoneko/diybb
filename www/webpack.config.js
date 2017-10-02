@@ -54,6 +54,9 @@ module.exports = {
   },
   plugins: [
     new webpack.DefinePlugin({
+      'process.env': {
+        NODE_ENV: JSON.stringify(process.env.NODE_ENV || 'development')
+      },
       GLOBALS: JSON.stringify({
         LOGO: process.env.LOGO || '',
         AVATAR_URL: process.env.AVATAR_URL || '',

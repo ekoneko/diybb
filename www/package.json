@@ -7,7 +7,7 @@
     "start": "DEV=1 webpack-dev-server",
     "test": "echo \"Error: no test specified\" && exit 1",
     "eslint": "node_modules/eslint/bin/eslint.js --ext .js --ext .jsx code",
-    "build": "rm -rf ./dist ./dist.tar.gz && webpack --optimize-minimize && tar -zcvf dist.tar.gz ./dist"
+    "build": "rm -rf ./dist ./dist.tar.gz && NODE_ENV=production webpack --optimize-minimize && tar -zcvf dist.tar.gz ./dist"
   },
   "author": "",
   "license": "MIT",
