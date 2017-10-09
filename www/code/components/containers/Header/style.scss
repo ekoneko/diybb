@@ -31,6 +31,11 @@
       &.open > .dropdown-toggle.btn {
         background: inherit;
       }
+      .dropdown-menu {
+        right: 0;
+        left: inherit;
+        min-width: 60px;
+      }
     }
   }
 }
