@@ -39,3 +39,9 @@
     }
   }
 }
+
+@media (max-width: 900px) {
+  .header .sub-nav {
+    display: none;
+  }
+}
