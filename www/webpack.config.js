@@ -78,13 +78,11 @@ module.exports = {
   ],
   devServer: {
     proxy: {
-      '/api': {
-        target: {
-          host: 'localhost',
-          protocol: 'http:',
-          port: process.env.SERVERPORT || 3000,
-        },
+      '/api/**': {
+        target: process.env.PROXY_HOST,
         pathRewrite: {'^/api' : ''},
+        autoRewrite: !!process.env.PROXY_CORS,
+        changeOrigin: !!process.env.PROXY_CORS,
       }
     },
     port: process.env.PORT || 3001,

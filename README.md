@@ -22,12 +22,12 @@ PORT=SERVERPORT npm start
 cd ../www
 cp .env.example .env
 # Confiure your custom .env
-PORT=WEBPORT SERVERPORT=SERVERPORT npm start
+PORT=WEBPORT npm start
 ```
 
 Then you can find your site on `http://localhost:WEBPORT`.
 
-The default `SERVERPORT` is `3000` and `WEBPORT` is `3001`.
+The default `SERVERPORT` is `3000` and `WEBPORT` is `3001`. You may need to change the `PROXY_HOST` in `.env` file if you set a different server port.
 
 ### server/.env
 

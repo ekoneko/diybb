@@ -22,12 +22,12 @@ PORT=SERVERPORT npm start
 cd ../www
 cp .env.example .env
 # 配置 .env
-PORT=WEBPORT SERVERPORT=SERVERPORT npm start
+PORT=WEBPORT npm start
 ```
 
 然后, 访问 `http://localhost:WEBPORT` 浏览你的网站吧.
 
-`SERVERPORT` 默认值是 `3000`, `WEBPORT` 默认值是 `3001`.
+`SERVERPORT` 默认值是 `3000`, `WEBPORT` 默认值是 `3001`. 如果设置了不同的 `SERVERPORT`, 你需要对应修改 `.env`文件里的 `PROXY_HOST` 字段
 
 ### server/.env
 
