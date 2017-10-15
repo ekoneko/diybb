@@ -1,10 +1,23 @@
-require('dotenv').config();
+require('dotenv').config()
 const path = require('path')
+const crypto = require('crypto')
 const webpack = require('webpack')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 
-const extractCSS = new ExtractTextPlugin('[name].style.css');
+const extractCSS = new ExtractTextPlugin('[name].style.css')
+
+const htmlWebpackPluginOptions = {
+  title: process.env.LOGO,
+  excludeChunks: ['editor'],
+  template: 'code/index.ejs',
+  // favicon: ''
+}
+
+if (process.env.SENTRY && !process.env.DEV) {
+  htmlWebpackPluginOptions.sentry = process.env.SENTRY
+  htmlWebpackPluginOptions.sentry_release = crypto.createHash('md5').update(Date.now().toString()).digest('hex')
+}
 
 module.exports = {
   entry: {
@@ -62,12 +75,7 @@ module.exports = {
         AVATAR_URL: process.env.AVATAR_URL || '',
       })
     }),
-    new HtmlWebpackPlugin({
-      title: process.env.LOGO,
-      excludeChunks: ['editor'],
-      template: 'code/index.ejs',
-      // favicon: ''
-    }),
+    new HtmlWebpackPlugin(htmlWebpackPluginOptions),
     new webpack.optimize.CommonsChunkPlugin('vendor'),
     extractCSS,
     new webpack.ProvidePlugin({

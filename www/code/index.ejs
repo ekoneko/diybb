@@ -7,4 +7,12 @@
   </head>
   <body>
   </body>
+  <% if (htmlWebpackPlugin.options.sentry) { %>
+    <script src="https://cdn.ravenjs.com/3.18.1/raven.min.js" crossorigin="anonymous"></script>
+    <script>
+    Raven.config('<%= htmlWebpackPlugin.options.sentry %>', {
+        release: '<%= htmlWebpackPlugin.options.sentry_release %>'
+    }).install()
+</script>
+  <% } %>
 </html>
