@@ -1,6 +1,5 @@
 require('dotenv').config()
 const path = require('path')
-const crypto = require('crypto')
 const webpack = require('webpack')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
@@ -16,7 +15,7 @@ const htmlWebpackPluginOptions = {
 
 if (process.env.SENTRY && !process.env.DEV) {
   htmlWebpackPluginOptions.sentry = process.env.SENTRY
-  htmlWebpackPluginOptions.sentry_release = crypto.createHash('md5').update(Date.now().toString()).digest('hex')
+  htmlWebpackPluginOptions.sentry_release = Date.now()
 }
 
 module.exports = {
@@ -95,5 +94,5 @@ module.exports = {
     },
     port: process.env.PORT || 3001,
   },
-  devtool: process.env.DEV ? 'inline-source-map' : ''
+  devtool: process.env.DEV ? 'inline-source-map' : 'source-map'
 }
