@@ -27,7 +27,11 @@ export default class LoginForm extends React.PureComponent {
     } = this.props
 
     const {name, password} = getFieldsValue()
-    onSubmit(name, password)
+    if (name && password) {
+      onSubmit(name, password)
+    } else {
+      alert('用户名密码不能为空')
+    }
   }
 
   render() {
