@@ -68,7 +68,7 @@ export default class SignUpForm extends React.PureComponent {
           {getFieldDecorator('name', {
             rules: [{required: true}],
           })(
-            <FormControl label="用户名" type="password" placeholder="你的昵称" />
+            <FormControl label="用户名" type="text" placeholder="你的昵称" />
           )}
         </FormGroup>
         <FormGroup>
