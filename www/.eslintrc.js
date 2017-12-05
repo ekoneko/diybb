@@ -49,6 +49,7 @@ module.exports = {
     "consistent-return": [2, {treatUndefinedAsUnspecified: true}],
     "no-mixed-operators": 0,
     "no-alert": 0,
+    "no-empty": 0,
     "react/jsx-indent": [2, 2],
     "react/jsx-indent-props": [2, 2],
     "react/prefer-stateless-function": [1, {"ignorePureComponents": true}],

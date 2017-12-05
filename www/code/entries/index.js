@@ -43,7 +43,15 @@ window.addEventListener('load', () => {
   const script = document.createElement('script');
   script.src = '/editor.js';
   script.onload = () => {
-    window.dispatchEvent(new Event('tinymceReady'));
+    try {
+      window.dispatchEvent(new Event('tinymceReady'));
+    } catch (e) {
+      try {
+        const event = document.createEvent('Event');
+        event.initEvent('tinymceReady', true, true);
+        window.dispatchEvent(event);
+      } catch (_e) {}
+    }
   };
   document.body.appendChild(script);
   const link = document.createElement('link');

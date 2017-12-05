@@ -27,17 +27,13 @@ export default class Editor extends React.PureComponent {
       window.addEventListener('tinymceReady', () => {
         this.setState({editorReady: true});
       })
+      setTimeout(() => {
+        if (!this.state.editorReady) {
+          this.loadEditor()
+        }
+      }, 5000)
     } else {
-      const script = document.createElement('script');
-      script.src = '/editor.js';
-      script.onload = () => {
-        this.setState({editorReady: true});
-      };
-      document.body.appendChild(script);
-      const link = document.createElement('link');
-      link.href = '/editor.style.css';
-      link.rel = 'stylesheet';
-      document.body.appendChild(link);
+      this.loadEditor()
     }
   }
 
@@ -54,6 +50,19 @@ export default class Editor extends React.PureComponent {
   }
   componentWillUnmount() {
     window.tinyMCE.activeEditor.destroy();
+  }
+
+  loadEditor = () => {
+    const script = document.createElement('script');
+    script.src = '/editor.js';
+    script.onload = () => {
+      this.setState({editorReady: true});
+    };
+    document.body.appendChild(script);
+    const link = document.createElement('link');
+    link.href = '/editor.style.css';
+    link.rel = 'stylesheet';
+    document.body.appendChild(link);
   }
 
   initEditor() {
