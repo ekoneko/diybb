@@ -14,6 +14,13 @@ export default function userAccount(state = initedState, action) {
       return {...initedState, state: USER_STATUS.IN_LOGIN}
     case ActionTypes.LOGIN_RECEIVE: {
       const {id, name, email, role} = action.payload
+      if (id && window.Raven) {
+        window.Raven.setUserContext({
+          id,
+          name,
+          email,
+        })
+      }
       return {
         state: USER_STATUS.LOGINED,
         id,
@@ -33,11 +40,19 @@ export default function userAccount(state = initedState, action) {
       }
     case ActionTypes.USER_ACCOUNT_RECEIVE:
       if (action.payload && action.payload.id) {
-        const {id, name} = action.payload
+        const {id, name, email} = action.payload
+        if (id && window.Raven) {
+          window.Raven.setUserContext({
+            id,
+            name,
+            email,
+          })
+        }
         return {
           state: USER_STATUS.LOGINED,
           id,
           name,
+          email,
         }
       }
       return state
