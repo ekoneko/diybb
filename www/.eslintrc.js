@@ -63,6 +63,7 @@ module.exports = {
     "guard-for-in": 0,
   },
   "globals": {
+    'window': true,
     'alert': true,
     'GLOBALS': true,
     '_': true,
