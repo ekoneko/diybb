@@ -1,21 +1,17 @@
+/**
+ * request list
+ */
 import * as http from 'utils/http'
-import ActionTypes from 'store/ActionTypes'
 
-const response = dispatch => payload => {
-  dispatch({
-    type: ActionTypes.COMMENT_LIST_RECEIVE,
-    payload,
-  })
-}
-
-export default function list(id, {page, limit}) {
+export default (requestFn, requestCb, responseCb) =>
+(page, limit, hasLoading = false) => {
   const offset = (page - 1) * limit
   return dispatch => {
-    return http.get({
-      url: `/post/${id}/comments`,
-      query: {offset, limit},
-      head: true,
-    }).then(res => {
+    if (hasLoading) {
+      requestCb(dispatch)()
+    }
+    requestFn(offset, limit)
+    .then(res => {
       return Promise.all([
         res.json(),
         {
@@ -25,10 +21,18 @@ export default function list(id, {page, limit}) {
         }
       ])
     }).then(([list, options]) => {
-      response(dispatch)({
+      responseCb(dispatch)({
         list,
         ...options
       })
     })
   }
+}
+
+export const requestFn = (url) => (offset, limit) => {
+  return http.get({
+    url,
+    query: {offset, limit},
+    head: true
+  })
 }

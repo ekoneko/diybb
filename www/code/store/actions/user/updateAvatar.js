@@ -1,4 +1,4 @@
-import {sendFile} from '../../http'
+import {sendFile} from 'utils/http'
 
 export default function updateAvatar(file) {
   return dispatch => {

@@ -1,6 +1,6 @@
 import md5 from 'md5'
-import * as http from '../../http'
-import ActionTypes from '../../ActionTypes'
+import * as http from 'utils/http'
+import ActionTypes from 'store/ActionTypes'
 
 const response = dispatch => () => {
   dispatch({
