@@ -1,31 +1,14 @@
 import React from 'react'
 import {Grid, Col, DropdownButton, MenuItem} from 'react-bootstrap'
-import {connect} from 'react-redux'
 import PropTypes from 'prop-types'
-import {
-  postContent as postContentAction,
-  getForumDetail as getForumDetailAction,
-} from 'store/actions'
 
+import withRequestHoc from './withRequestHoc'
 import Header from '../Header/Header'
 import AccessCard from '../../globals/AccessCard/AccessCard'
 import Article from '../../globals/Article/Article'
 import Comment from './Comment/Comment'
 
-@connect(
-  ({
-    postContent,
-    userAccount,
-    forumDetail,
-  }) => ({
-    model: {
-      postContent,
-      userAccount,
-      forumDetail,
-    }
-  }),
-  dispatch => ({dispatch}),
-)
+@withRequestHoc
 export default class Post extends React.PureComponent {
   static propTypes = {
     match: PropTypes.shape({
@@ -35,26 +18,6 @@ export default class Post extends React.PureComponent {
 
   static defaultProps = {
     match: {params: {}}
-  }
-
-  componentWillMount() {
-    const {
-      match: {params: {id}},
-      dispatch,
-    } = this.props
-
-    if (id) {
-      dispatch(postContentAction(id))
-    }
-  }
-
-  componentWillReceiveProps(newProps) {
-    const {dispatch} = this.props
-    const newChannelId = newProps.model.postContent.channelId
-    const srcChannelId = this.props.model.postContent.channelId
-    if (newChannelId !== srcChannelId) {
-      dispatch(getForumDetailAction(newChannelId))
-    }
   }
 
   handleEdit = () => {
