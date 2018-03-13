@@ -18,5 +18,5 @@ Time.propTypes = {
 }
 Time.defaultProps = {
   date: '',
-  format: 'YYYY-MM-DD hh:mm',
+  format: 'YYYY-MM-DD HH:mm',
 }
