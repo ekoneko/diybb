@@ -30,10 +30,11 @@ module.exports = {
     ],
     index: "entries/index",
     editor: "entries/editor",
+    sw: "entries/sw"
   },
   output: {
     path: __dirname + "/dist",
-    filename: '[name].js'
+    filename: '[name]_[chunkhash:8].js'
   },
   resolve: {
     modules: [path.join(__dirname, 'code'), 'node_modules'],

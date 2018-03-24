@@ -38,8 +38,8 @@ ReactDOM.render(
   </ErrorBoundary>, rootDOM
 );
 
-// load TinyMCE
 window.addEventListener('load', () => {
+  // load TinyMCE
   const script = document.createElement('script');
   script.src = '/editor.js';
   script.onload = () => {
@@ -58,4 +58,9 @@ window.addEventListener('load', () => {
   link.href = '/editor.style.css';
   link.rel = 'stylesheet';
   document.body.appendChild(link);
+
+  // service worker
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('/sw.js')
+  }
 });
