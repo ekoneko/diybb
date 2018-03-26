@@ -16,6 +16,8 @@ import 'style/fonts/font.css'
 import 'style/index.scss'
 import * as reducers from '../store/reducers/index'
 
+const swJS = require('file-loader?name=sw.js!./sw.js')
+
 function storeGenerator() {
   const combinedReducer = combineReducers(reducers);
   return createStore(
@@ -40,20 +42,21 @@ ReactDOM.render(
 
 window.addEventListener('load', () => {
   // load TinyMCE
-  const script = document.createElement('script');
-  script.src = '/editor.js';
-  script.onload = () => {
-    try {
-      window.dispatchEvent(new Event('tinymceReady'));
-    } catch (e) {
+
+  import(/* webpackChunkName: "editor" */ './editor.js')
+    .then(() => {
       try {
-        const event = document.createEvent('Event');
-        event.initEvent('tinymceReady', true, true);
-        window.dispatchEvent(event);
-      } catch (_e) {}
+        window.dispatchEvent(new Event('tinymceReady'));
+      } catch (e) {
+        try {
+          const event = document.createEvent('Event');
+          event.initEvent('tinymceReady', true, true);
+          window.dispatchEvent(event);
+        } catch (_e) {}
+      }
     }
-  };
-  document.body.appendChild(script);
+  );
+
   const link = document.createElement('link');
   link.href = '/editor.style.css';
   link.rel = 'stylesheet';
@@ -61,6 +64,6 @@ window.addEventListener('load', () => {
 
   // service worker
   if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.register('/sw.js')
+    navigator.serviceWorker.register(swJS)
   }
 });

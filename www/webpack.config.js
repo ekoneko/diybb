@@ -13,6 +13,8 @@ const htmlWebpackPluginOptions = {
   // favicon: ''
 }
 
+console.log('process.env.PROXY_HOST', process.env.PROXY_HOST)
+
 if (process.env.SENTRY && !process.env.DEV) {
   htmlWebpackPluginOptions.sentry = process.env.SENTRY
   htmlWebpackPluginOptions.sentry_release = Date.now()
@@ -29,8 +31,7 @@ module.exports = {
       'react',
     ],
     index: "entries/index",
-    editor: "entries/editor",
-    sw: "entries/sw"
+    editor: "entries/editor"
   },
   output: {
     path: __dirname + "/dist",
