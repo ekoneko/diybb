@@ -26,7 +26,7 @@ module.exports.recommend = async ctx => {
   try {
     const list = await channelsModel.findAll({
       where: {state: 'enable'},
-      order: 'lastCommentTime desc',
+      order: [['lastCommentTime', 'desc']],
       attributes: SimpleAttr,
       limit,
     })
@@ -47,7 +47,7 @@ module.exports.list = async ctx => {
   try {
     const {count, rows} = await channelsModel.findAndCountAll({
       where: {state: 'enable'},
-      order: 'sort desc, id desc',
+      order: [['sort', 'desc'], ['id', 'desc']],
       attributes: SimpleAttr,
       offset,
       limit,

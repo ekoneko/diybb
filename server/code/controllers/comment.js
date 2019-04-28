@@ -67,7 +67,7 @@ module.exports.list = async ctx => {
       where: {topicId: postId},
       offset,
       limit,
-      order: 'createdAt desc'
+      order: [['createdAt', 'desc']]
     })
 
     ctx.set('X-total', count);

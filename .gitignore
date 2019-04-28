@@ -10,3 +10,4 @@ core/controllers/test.js
 core/views/forum/test.hbs
 public/images/avatar/*
 update.js
+migrate

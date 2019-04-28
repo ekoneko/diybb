@@ -8,7 +8,6 @@ const extractCSS = new ExtractTextPlugin('[name].style.css')
 
 const htmlWebpackPluginOptions = {
   title: process.env.LOGO,
-  excludeChunks: ['editor'],
   template: 'code/index.ejs',
   // favicon: ''
 }
@@ -30,8 +29,7 @@ module.exports = {
       'whatwg-fetch',
       'react',
     ],
-    index: "entries/index",
-    editor: "entries/editor"
+    index: "entries/index"
   },
   output: {
     path: __dirname + "/dist",
@@ -86,6 +84,7 @@ module.exports = {
     }),
   ],
   devServer: {
+    host: '0.0.0.0',
     proxy: {
       '/api/**': {
         target: process.env.PROXY_HOST,

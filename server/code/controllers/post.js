@@ -253,7 +253,7 @@ async function getPostList(where, offset, limit) {
     offset,
     limit,
     attributes: TopicReadFields,
-    order: 'isTop desc, lastCommentTime desc'
+    order: [['isTop', 'desc'], ['lastCommentTime', 'desc']]
   })
 }
 
