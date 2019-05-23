@@ -6,8 +6,7 @@ A lite bbs on nodejs + react
 
 1. node 8+
 2. redis
-3. A `sequelize` supports database (We suggest `MySQL`)
-4. Redis
+3. A `sequelize` database driver (We suggest `mysql2`)
 
 ## How to start dev server
 
