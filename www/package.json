@@ -57,7 +57,7 @@
     "react-router-dom": "^4.2.2",
     "redux": "^3.6.0",
     "redux-thunk": "^2.1.0",
-    "tinymce": "^4.6.7",
+    "tinymce": "^5.7.1",
     "tinymce-plugin-responsive-image": "^1.0.0",
     "tinymce-yentext": "^2.0.2",
     "whatwg-fetch": "^2.0.2"
